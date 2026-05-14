@@ -39,6 +39,7 @@ export function ProductCard({ item }: { item: VaultItem }) {
             src={item.imageUrl}
             alt={item.title}
             fill
+            unoptimized={true}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-transform duration-700 ease-luxury group-hover:scale-105"
             loading="lazy"
