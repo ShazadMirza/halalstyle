@@ -15,9 +15,17 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "HalalStyle — Discover Your Perfect Halal Look",
+  title: "HalalStyle — The Excellence Filter for Modest Fashion",
   description:
-    "Answer a few questions to find modest, halal-certified fashion picks.",
+    "AI-curated modest fashion for Muslim families in Canada. Take our style quiz and get 5 halal-verified picks in 60 seconds.",
+  openGraph: {
+    title: "HalalStyle — The Excellence Filter for Modest Fashion",
+    description: "AI-powered halal modest fashion quiz. Get 5 personalised picks in 60 seconds.",
+    url: "https://halalstyle.vercel.app",
+    siteName: "HalalStyle",
+    locale: "en_CA",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
