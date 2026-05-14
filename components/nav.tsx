@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/vault", label: "The Vault" },
   { href: "/about", label: "Our Story" },
+  { href: "/partners", label: "Partners" },
 ];
 
 export function Nav() {
@@ -42,7 +43,7 @@ export function Nav() {
 
         {/* CTA + mobile toggle */}
         <div className="flex items-center gap-4">
-          <Link href="/#quiz" className="hidden btn-gold text-[0.75rem] py-2.5 px-5 md:inline-flex">
+          <Link href="/#quiz" className="btn-gold btn-shop-glow hidden px-5 py-2.5 text-[0.75rem] md:inline-flex">
             Take the Quiz
           </Link>
           <button onClick={() => setOpen(!open)} aria-label="Menu"
@@ -56,7 +57,7 @@ export function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-halal-border/30 bg-halal-forest px-6 pb-6 pt-4 md:hidden">
+        <div className="border-t border-halal-border/30 bg-halal-forest/85 px-6 pb-6 pt-4 backdrop-blur-md md:hidden">
           <div className="flex flex-col gap-4">
             {NAV_LINKS.map(({ href, label }) => (
               <Link key={href} href={href} onClick={() => setOpen(false)}
@@ -64,7 +65,7 @@ export function Nav() {
                 {label}
               </Link>
             ))}
-            <Link href="/#quiz" onClick={() => setOpen(false)} className="btn-gold mt-2 text-[0.8rem]">
+            <Link href="/#quiz" onClick={() => setOpen(false)} className="btn-gold btn-shop-glow mt-2 text-[0.8rem]">
               Take the Quiz
             </Link>
           </div>

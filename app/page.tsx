@@ -3,13 +3,7 @@ import { ProductCard } from "@/components/product-card";
 import { VAULT_ITEMS } from "@/lib/vault-items";
 import { HalalStyleApp } from "@/components/halal-style-app";
 import { NewsletterSection } from "@/components/newsletter-section";
-
-const TRUST_ITEMS = [
-  { icon: "✦", label: "100% Halal Verified" },
-  { icon: "🍁", label: "Ships to Canada" },
-  { icon: "⭐", label: "Amazon Trusted" },
-  { icon: "🕌", label: "Deen-Aligned" },
-];
+import { HomeHero } from "@/components/home-hero";
 
 const CATEGORIES = [
   { label: "Fashion", icon: "✦", href: "/vault?cat=Fashion", desc: "Abayas, dresses & modest wear" },
@@ -25,51 +19,7 @@ export default function HomePage() {
     <main className="min-h-dvh">
 
       {/* ── HERO ─────────────────────────────────────────── */}
-      <section className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden pattern-bg px-6 pt-20 text-center">
-        {/* Radial glow */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-[600px] w-[600px] rounded-full bg-halal-gold/5 blur-[120px]" />
-        </div>
-
-        <div className="relative z-10 max-w-3xl">
-          <span className="section-eyebrow mb-6 block animate-fade-in">
-            AI-Powered Modest Fashion · Est. 2025
-          </span>
-
-          <h1 className="font-display text-[clamp(2.5rem,7vw,5rem)] font-medium leading-[1.05] tracking-[-0.01em] text-halal-cream mb-6 animate-fade-up">
-            The{" "}
-            <span className="italic text-halal-gold">Excellence</span>
-            <br />Filter for Modest<br />Fashion
-          </h1>
-
-          <p className="mx-auto mb-10 max-w-[520px] text-[1rem] leading-relaxed text-halal-cream/55 animate-fade-up"
-             style={{ animationDelay: "0.1s" }}>
-            We&apos;ve already vetted the world&apos;s finest products for quality and Islamic
-            values — so you don&apos;t have to. Zero noise. Infinite barakah.
-          </p>
-
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center animate-fade-up"
-               style={{ animationDelay: "0.2s" }}>
-            <Link href="#quiz" className="btn-gold text-[0.9rem]">
-              Discover My Style ✦
-            </Link>
-            <Link href="/vault" className="btn-outline text-[0.9rem]">
-              Browse The Vault
-            </Link>
-          </div>
-        </div>
-
-        {/* Trust bar */}
-        <div className="absolute bottom-0 inset-x-0 border-t border-halal-border/30 bg-halal-forest/80 backdrop-blur-sm">
-          <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-6 px-6 py-4">
-            {TRUST_ITEMS.map(({ icon, label }) => (
-              <span key={label} className="flex items-center gap-2 text-[0.7rem] font-medium tracking-wider text-halal-cream/40 uppercase">
-                <span className="text-halal-gold/50">{icon}</span>{label}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HomeHero />
 
       {/* ── CATEGORIES ───────────────────────────────────── */}
       <section className="border-y border-halal-border/30 bg-halal-surface px-6 py-16">
@@ -103,7 +53,7 @@ export default function HomePage() {
               <p className="section-eyebrow mb-3">Editor&apos;s Selection</p>
               <h2 className="section-title">Featured Picks</h2>
             </div>
-            <Link href="/vault" className="btn-outline text-[0.75rem] py-2 px-5 hidden sm:inline-flex">
+            <Link href="/vault" className="btn-outline hidden px-5 py-2 text-[0.75rem] sm:inline-flex">
               View All →
             </Link>
           </div>
@@ -129,7 +79,7 @@ export default function HomePage() {
       <NewsletterSection />
 
       {/* ── FOOTER ───────────────────────────────────────── */}
-      <footer className="border-t border-halal-border/30 px-6 py-12">
+      <footer className="border-t border-halal-border/30 bg-halal-forest/75 px-6 py-12 backdrop-blur-md">
         <div className="mx-auto max-w-6xl flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between">
           <div>
             <p className="font-display text-[1.1rem] text-halal-gold tracking-widest">HalalStyle</p>

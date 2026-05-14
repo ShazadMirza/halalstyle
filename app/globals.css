@@ -4,24 +4,36 @@
 
 @layer base {
   :root {
-    --background: 43 47% 97%;
-    --foreground: 150 30% 8%;
-    --muted: 150 12% 50%;
-    --border: 150 20% 85%;
-    --ring: 45 52% 54%;
+    --background: 0 0% 5%;
+    --foreground: 43 20% 97%;
+    --muted: 0 0% 55%;
+    --border: 0 0% 18%;
+    --ring: 43 65% 52%;
   }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
-    @apply bg-halal-forest text-halal-cream antialiased;
+    @apply bg-halal-obsidian text-halal-cream antialiased;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 
-  ::selection { background: rgba(201,168,76,0.25); color: #FAF7F2; }
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #0B2218; }
-  ::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 2px; }
+  ::selection {
+    background: rgba(212, 175, 55, 0.28);
+    color: #faf7f2;
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0c0c0c;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 2px;
+  }
 }
 
 @layer components {
@@ -29,8 +41,12 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5
            font-sans text-[0.875rem] font-semibold tracking-wide text-halal-forest
            shadow-gold transition-all duration-300 ease-luxury
-           hover:shadow-[0_6px_32px_-4px_rgba(201,168,76,0.5)] hover:-translate-y-0.5
+           hover:shadow-[0_6px_32px_-4px_rgba(212,175,55,0.45)] hover:-translate-y-0.5
            active:translate-y-0 active:shadow-gold;
+  }
+
+  .btn-shop-glow {
+    @apply transition-shadow duration-300 ease-luxury hover:shadow-shop-glow;
   }
 
   .btn-outline {
@@ -40,10 +56,16 @@
            hover:border-halal-gold hover:bg-halal-gold/10 hover:-translate-y-0.5;
   }
 
+  .btn-result-shop {
+    @apply block w-full rounded-[10px] bg-halal-forest py-3 text-center text-[0.875rem] font-medium text-white
+           transition duration-300 ease-luxury
+           hover:bg-[#2a2a28] hover:shadow-shop-glow;
+  }
+
   .card-luxury {
     @apply rounded-2xl border border-halal-border/50 bg-card-gradient shadow-card
            transition-all duration-500 ease-luxury
-           hover:shadow-card-hover hover:-translate-y-1 hover:border-halal-gold/20;
+           hover:shadow-card-hover hover:-translate-y-1 hover:border-halal-gold/25;
   }
 
   .badge-halal {
@@ -67,6 +89,6 @@
   }
 
   .pattern-bg {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M30 0l8.66 5v10L30 20l-8.66-5V5zM0 20l8.66 5v10L0 40l-8.66-5V25zM60 20l8.66 5v10L60 40l-8.66-5V25z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M30 0l8.66 5v10L30 20l-8.66-5V5zM0 20l8.66 5v10L0 40l-8.66-5V25zM60 20l8.66 5v10L60 40l-8.66-5V25z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }

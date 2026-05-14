@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
@@ -8,8 +9,34 @@ import {
   BUDGET_OPTIONS, CATEGORY_OPTIONS, OCCASION_OPTIONS, STYLE_OPTIONS,
 } from "@/lib/quiz-options";
 import type { HalalPickItem } from "@/lib/types";
+import { sanitizeRemoteImageUrl } from "@/lib/utils";
 
 type Screen = "quiz" | "email-gate" | "loading" | "results";
+
+function QuizPickImage({ url, title }: { url?: string; title: string }) {
+  const safe = sanitizeRemoteImageUrl(url);
+  const [show, setShow] = useState(!!safe);
+  if (!safe || !show) {
+    return (
+      <div
+        className="h-44 w-full bg-gradient-to-br from-[#D4AF37]/35 via-[#0C0C0C] to-[#1a1a1a]"
+        aria-hidden
+      />
+    );
+  }
+  return (
+    <div className="relative h-44 w-full">
+      <Image
+        src={safe}
+        alt={title}
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, 400px"
+        onError={() => setShow(false)}
+      />
+    </div>
+  );
+}
 
 export function HalalStyleApp() {
   const [screen, setScreen] = useState<Screen>("quiz");
@@ -175,7 +202,7 @@ export function HalalStyleApp() {
               </Field>
             </div>
             <button type="button" onClick={showEmailGate}
-              className="mt-8 w-full rounded-xl bg-halal-gold py-4 font-sans text-[1rem] font-semibold tracking-[0.01em] text-halal-forest transition hover:bg-halal-gold-light hover:-translate-y-px active:translate-y-0">
+              className="btn-shop-glow mt-8 w-full rounded-xl bg-halal-gold py-4 font-sans text-[1rem] font-semibold tracking-[0.01em] text-halal-forest shadow-gold transition hover:scale-105 hover:bg-halal-gold-light hover:-translate-y-px active:translate-y-0">
               Get My Halal Style Picks →
             </button>
             {error && (
@@ -209,7 +236,7 @@ export function HalalStyleApp() {
               </Field>
             </div>
             <button type="button" onClick={() => void submitEmail(false)}
-              className="mt-6 w-full rounded-xl bg-halal-gold py-4 font-sans text-[1rem] font-semibold text-halal-forest transition hover:bg-halal-gold-light hover:-translate-y-px">
+              className="btn-shop-glow mt-6 w-full rounded-xl bg-halal-gold py-4 font-sans text-[1rem] font-semibold text-halal-forest shadow-gold transition hover:scale-105 hover:bg-halal-gold-light hover:-translate-y-px">
               See My Picks →
             </button>
             <p className="mt-3 text-center text-[0.7rem] leading-relaxed text-halal-muted">
@@ -246,12 +273,7 @@ export function HalalStyleApp() {
             {items.map((item, i) => (
               <article key={`${item.title}-${i}`}
                 className="flex flex-col overflow-hidden rounded-2xl border border-halal-border bg-white shadow-[0_2px_20px_rgba(27,58,45,0.06)] transition hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(27,58,45,0.12)]">
-                {item.image_url && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={item.image_url} alt={item.title}
-                    className="h-44 w-full object-cover"
-                    onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
-                )}
+                <QuizPickImage url={item.image_url} title={item.title} />
                 <div className="flex flex-1 flex-col p-6">
                   <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-halal-gold">Pick #{i + 1}</p>
                   <h3 className="font-display text-[1.1rem] leading-snug text-halal-forest">{item.title}</h3>
@@ -261,7 +283,7 @@ export function HalalStyleApp() {
                     <span className="rounded-full bg-[rgba(201,168,76,0.15)] px-2.5 py-1 text-[0.72rem] font-medium text-[#8a6a1a]">💰 {item.price_range}</span>
                   </div>
                   <a href={item.buy_link} target="_blank" rel="noopener noreferrer"
-                    className="block w-full rounded-[10px] bg-halal-forest py-3 text-center text-[0.875rem] font-medium text-white transition hover:bg-[#2a5243]">
+                    className="btn-result-shop">
                     Shop on Amazon.ca →
                   </a>
                 </div>
@@ -271,7 +293,7 @@ export function HalalStyleApp() {
 
           <div className="mx-auto flex max-w-[400px] flex-col gap-3">
             <button type="button" onClick={shareResults}
-              className="w-full rounded-xl bg-halal-gold py-4 text-center font-sans text-[1rem] font-semibold text-halal-forest transition hover:bg-halal-gold-light hover:-translate-y-px">
+              className="btn-shop-glow w-full rounded-xl bg-halal-gold py-4 text-center font-sans text-[1rem] font-semibold text-halal-forest shadow-gold transition hover:scale-105 hover:bg-halal-gold-light hover:-translate-y-px">
               Share My Picks ✦
             </button>
             <button type="button" onClick={startOver}

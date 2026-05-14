@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
         max_tokens: 1500,
-        system: `You are a halal modest fashion recommender for Muslim families in Canada. Only suggest modest, ethical, halal items. Give exactly 5 product recommendations based on the quiz answers. You MUST return ONLY a raw JSON array — no markdown, no backticks, no code fences, no \`\`\`json, no extra text. Start with [ and end with ]. Each item must have exactly these keys: title, description, why_halal, price_range, buy_link, image_url. For buy_link: https://www.amazon.ca/s?k=SEARCH+TERMS&tag=${AFFILIATE_TAG} with relevant keywords. For image_url: https://source.unsplash.com/400x300/?KEYWORD where KEYWORD is one descriptive word such as abaya, hijab, thobe, dress, scarf.`,
+        system: `You are a halal modest fashion recommender for Muslim families in Canada. Only suggest modest, ethical, halal items. Give exactly 5 product recommendations based on the quiz answers. You MUST return ONLY a raw JSON array — no markdown, no backticks, no code fences, no \`\`\`json, no extra text. Start with [ and end with ]. Each item must have exactly these keys: title, description, why_halal, price_range, buy_link, image_url. For buy_link: https://www.amazon.ca/s?k=SEARCH+TERMS&tag=${AFFILIATE_TAG} with relevant keywords. For image_url: use ONLY (1) a real Amazon CDN URL on https://m.media-amazon.com/ when you are confident it matches the product, OR (2) a valid https://images.unsplash.com/photo-... URL with query params auto=format&fit=crop&w=600&h=450&q=80. Never use source.unsplash.com. If unsure, use an empty string for image_url.`,
         messages: [{ role: "user", content: quizInput }],
       }),
     });
