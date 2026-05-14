@@ -15,11 +15,25 @@
     scroll-behavior: smooth;
   }
 
+  /* Emerald field + Girih / arabesque mosaic (Sprint 4: “set the background of” the viewport) */
   body {
     @apply min-h-dvh text-halal-cream antialiased;
-    background: radial-gradient(circle at top, #0a4d32 0%, #062c1d 100%);
+    background-color: #062c1d;
+    background-image: radial-gradient(circle at top, #0a4d32 0%, #062c1d 100%);
     background-attachment: fixed;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("/mosaic-pattern.svg");
+    background-size: 120px 120px;
+    background-repeat: repeat;
   }
 
   ::selection {
@@ -39,6 +53,7 @@
 }
 
 @layer components {
+  /* Optional: extra mosaic on a section (same Girih asset as body::before) */
   .mosaic-overlay,
   .islamic-mosaic-overlay {
     background-image: url("/mosaic-pattern.svg");
