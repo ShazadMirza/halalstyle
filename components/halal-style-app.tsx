@@ -153,38 +153,6 @@ export function HalalStyleApp() {
         </div>
       )}
 
-      {/* HEADER */}
-      <header className="bg-halal-forest px-6 pb-6 pt-8 text-center">
-        <p className="mb-3 inline-block rounded-full border border-halal-gold/25 bg-halal-gold/10 px-4 py-1.5 text-[0.65rem] font-medium tracking-[0.15em] text-halal-gold uppercase">
-          AI-Powered Modest Fashion
-        </p>
-        <h1 className="font-brand text-[2.25rem] leading-tight tracking-[0.06em] text-white sm:text-[2.75rem]">
-          The <em className="not-italic text-halal-gold">Excellence Filter</em>
-          <br />for Modest Fashion
-        </h1>
-        <p className="mx-auto mt-4 max-w-[480px] text-[0.95rem] font-light leading-relaxed text-white/60">
-          We&apos;ve already vetted the world&apos;s best products for both quality
-          and Islamic values — so you don&apos;t have to.
-        </p>
-        <div className="mt-6 flex justify-center gap-8">
-          {[["100%", "Halal verified"], ["60s", "To your picks"], ["5", "Curated items"]].map(([num, lbl]) => (
-            <div key={lbl} className="text-center">
-              <span className="font-brand block text-[1.6rem] text-halal-gold">{num}</span>
-              <span className="block text-[0.6rem] uppercase tracking-[0.15em] text-white/40 mt-0.5">{lbl}</span>
-            </div>
-          ))}
-        </div>
-      </header>
-
-      {/* TRUST BAR */}
-      <div className="flex flex-wrap justify-center gap-6 border-t border-halal-gold/10 bg-halal-forest/95 px-6 py-3 trust-bar-shimmer">
-        {["100% Halal Verified", "Ships to Canada", "Amazon Trusted", "Built by Deen, age 14"].map((t) => (
-          <span key={t} className="flex items-center gap-1.5 text-[0.7rem] text-white/40">
-            <span className="text-halal-gold/50">✦</span>{t}
-          </span>
-        ))}
-      </div>
-
       {/* QUIZ */}
       {screen === "quiz" && (
         <div className="mx-auto max-w-[600px] px-6 py-10">
