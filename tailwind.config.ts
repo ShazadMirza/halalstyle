@@ -12,11 +12,17 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
         display: ["var(--font-playfair)", "Georgia", "serif"],
+        /** Logo + section headings — Playfair with strong Georgia fallbacks */
+        brand: ["var(--font-playfair)", "Georgia", "Cambria", "Times New Roman", "serif"],
         mono: ["var(--font-dm-mono)", "monospace"],
       },
       colors: {
         obsidian: "#062C1D",
         gold: "#D4AF37",
+        emerald: {
+          700: "#0A4D32",
+          900: "#062C1D",
+        },
         halal: {
           obsidian: "#062C1D",
           forest: "#062C1D",

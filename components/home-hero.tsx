@@ -42,7 +42,7 @@ export function HomeHero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="mb-6 font-display text-[clamp(2.5rem,7vw,5rem)] font-medium leading-[1.05] tracking-[-0.01em] text-halal-cream"
+          className="mb-6 font-brand text-[clamp(2.5rem,7vw,5rem)] font-medium leading-[1.05] tracking-[-0.01em] text-halal-cream"
         >
           The{" "}
           <span className="italic text-halal-gold">Excellence</span>

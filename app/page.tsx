@@ -82,7 +82,7 @@ export default function HomePage() {
       <footer className="border-t border-halal-border/30 bg-halal-forest/75 px-6 py-12 backdrop-blur-md">
         <div className="mx-auto max-w-6xl flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between">
           <div>
-            <p className="font-display text-[1.1rem] text-halal-gold tracking-widest">HalalStyle</p>
+            <p className="font-brand text-[1.1rem] text-halal-gold tracking-widest">HalalStyle</p>
             <p className="text-[0.65rem] text-halal-muted mt-0.5">The Excellence Filter · Built by Deen Ali Mirza, age 14 · Shelburne, Ontario</p>
           </div>
           <p className="text-[0.65rem] text-halal-muted">

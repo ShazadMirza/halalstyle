@@ -52,7 +52,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Loose modest cut, covers ankles, men's Islamic dress code",
     imageKeyword: "thobe",
     imageUrl:
-      "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1624378515193-4bdffd9c6ade?auto=format&fit=crop&w=800&q=80",
     affiliateUrl: `https://www.amazon.ca/s?k=premium+men+thobe+linen&tag=halalstyle50d-20`,
     badge: "Editor's Pick", rating: 4.7,
   },

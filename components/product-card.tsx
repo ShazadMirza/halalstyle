@@ -31,7 +31,7 @@ export function ProductCard({ item }: { item: VaultItem }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
-      className="group flex flex-col overflow-hidden rounded-2xl border-[0.5px] border-gold/30 bg-card-gradient shadow-card transition-all duration-500 ease-luxury hover:-translate-y-1 hover:border-gold/80 hover:shadow-card-hover"
+      className="group flex flex-col overflow-hidden rounded-2xl border-[0.5px] border-gold/30 bg-card-gradient shadow-card transition-all duration-500 ease-luxury hover:-translate-y-1 hover:border-gold/80 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.48),0_0_22px_rgba(212,175,55,0.5)]"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-halal-surface">
         {showImage ? (
