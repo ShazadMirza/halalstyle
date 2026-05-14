@@ -3,7 +3,17 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Our Story — HalalStyle",
-  description: "Meet Deen Ali Mirza, the 14-year-old founder of HalalStyle — The Excellence Filter for Modest Fashion.",
+  description:
+    "Meet Deen Ali Mirza, the 14-year-old founder of HalalStyle — The Excellence Filter for Modest Fashion.",
+  openGraph: {
+    title: "Our Story — HalalStyle | Built by Deen, Age 14",
+    description:
+      "The story behind The Excellence Filter. Built in Shelburne, Ontario to bring excellence and barakah to modest fashion.",
+    url: "https://halalstyle.vercel.app/about",
+    siteName: "HalalStyle",
+    locale: "en_CA",
+    type: "website",
+  },
 };
 
 export default function AboutPage() {
@@ -61,7 +71,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {[
               { icon: "✦", title: "Halal First", body: "Every product is verified against Islamic modesty standards before it enters the vault." },
-              { icon: "◈", title: "Quality Always", body: "We only feature items we'd buy ourselves. Cheap fast fashion has no place here." },
+              { icon: "◈", title: "Quality Always", body: "We only feature items we\'d buy ourselves. Cheap fast fashion has no place here." },
               { icon: "◇", title: "Community", body: "HalalStyle is built for the global Muslim community, from Canada to the world." },
             ].map(({ icon, title, body }) => (
               <div key={title} className="rounded-xl border border-halal-border/40 bg-halal-forest-2/30 p-5 text-center">
