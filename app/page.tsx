@@ -6,11 +6,11 @@ import { NewsletterSection } from "@/components/newsletter-section";
 import { HomeHero } from "@/components/home-hero";
 
 const CATEGORIES = [
-  { label: "Fashion", icon: "✦", href: "/vault?cat=Fashion", desc: "Abayas, dresses & modest wear" },
-  { label: "Hijabs", icon: "◈", href: "/vault?cat=Hijabs", desc: "Scarves, caps & accessories" },
+  { label: "Fashion",  icon: "✦", href: "/vault?cat=Fashion",  desc: "Abayas, dresses & modest wear" },
+  { label: "Hijabs",   icon: "◈", href: "/vault?cat=Hijabs",   desc: "Scarves, caps & accessories" },
   { label: "Menswear", icon: "◇", href: "/vault?cat=Menswear", desc: "Thobes, kufis & essentials" },
-  { label: "Home", icon: "⌂", href: "/vault?cat=Home", desc: "Prayer rugs, décor & gifts" },
-  { label: "Gifts", icon: "✧", href: "/vault?cat=Gifts", desc: "Faith-forward tech, books & more" },
+  { label: "Home",     icon: "⌂", href: "/vault?cat=Home",     desc: "Prayer rugs, décor & gifts" },
+  { label: "Gifts",    icon: "✧", href: "/vault?cat=Gifts",    desc: "Faith-forward tech, books & more" },
 ];
 
 export default function HomePage() {
@@ -94,12 +94,10 @@ export default function HomePage() {
             <p className="text-[0.65rem] text-halal-muted mt-0.5">The Excellence Filter · Built by Deen Ali Mirza, age 14 · Shelburne, Ontario</p>
           </div>
           <p className="text-[0.65rem] text-halal-muted">
-            © 2025 HalalStyle. Amazon affiliate links — we earn a small commission at no extra cost to you.
+            © 2026 HalalStyle. Amazon affiliate links — we earn a small commission at no extra cost to you.
           </p>
         </div>
       </footer>
     </main>
   );
 }
-
-
