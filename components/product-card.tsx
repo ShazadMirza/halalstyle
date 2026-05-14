@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import type { VaultItem } from "@/lib/vault-items";
@@ -12,16 +13,33 @@ const BADGE_STYLES: Record<string, string> = {
   "Bestseller": "bg-amber-900/30 text-amber-300 border-amber-700/30",
 };
 
-function ImagePlaceholder() {
+function ImageFallback({ shopUrl }: { shopUrl: string }) {
   return (
-    <div
-      className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/35 via-[#062C1D] to-[#0A3D28]"
-      aria-hidden
-    />
+    <Link
+      href={shopUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#D4AF37]/40 via-[#062C1D] to-[#0A3D28] px-4 text-center transition hover:from-[#D4AF37]/50"
+    >
+      <span className="font-brand text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-halal-cream">
+        Image unavailable
+      </span>
+      <span className="rounded-full bg-halal-gold/90 px-4 py-2 font-sans text-[0.8rem] font-semibold text-halal-forest shadow-gold">
+        Shop on Amazon →
+      </span>
+    </Link>
   );
 }
 
-export function ProductCard({ item }: { item: VaultItem }) {
+export type ProductCardProps = {
+  item: VaultItem;
+  /** LCP: first featured row on home */
+  priority?: boolean;
+  /** Bypass optimizer on first cards while debugging CDN */
+  bypassOptimizer?: boolean;
+};
+
+export function ProductCard({ item, priority = false, bypassOptimizer = false }: ProductCardProps) {
   const stars = "★".repeat(Math.round(item.rating)) + "☆".repeat(5 - Math.round(item.rating));
   const [showImage, setShowImage] = useState(true);
 
@@ -31,7 +49,11 @@ export function ProductCard({ item }: { item: VaultItem }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
-      className="group flex flex-col overflow-hidden rounded-2xl border-[0.5px] border-gold/30 bg-card-gradient shadow-card transition-all duration-500 ease-luxury hover:-translate-y-1 hover:border-gold/80 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.48),0_0_22px_rgba(212,175,55,0.5)]"
+      whileHover={{
+        scale: 1.04,
+        boxShadow: "0 0 30px rgba(212,175,55,0.5), 0 20px 50px -12px rgba(0,0,0,0.45)",
+      }}
+      className="group flex flex-col overflow-hidden rounded-2xl border-[0.5px] border-gold/30 bg-card-gradient shadow-card transition-colors duration-500 ease-luxury hover:border-gold/80"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-halal-surface">
         {showImage ? (
@@ -39,29 +61,30 @@ export function ProductCard({ item }: { item: VaultItem }) {
             src={item.imageUrl}
             alt={item.title}
             fill
-            unoptimized={true}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            priority={priority}
+            unoptimized={bypassOptimizer}
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover transition-transform duration-700 ease-luxury group-hover:scale-105"
-            loading="lazy"
+            loading={priority ? "eager" : "lazy"}
             onError={() => setShowImage(false)}
           />
         ) : (
-          <ImagePlaceholder />
+          <ImageFallback shopUrl={item.affiliateUrl} />
         )}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-halal-forest/60 via-transparent to-transparent" />
         {item.badge && (
           <span
-            className={`absolute left-3 top-3 rounded-full border px-2.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider ${BADGE_STYLES[item.badge]}`}
+            className={`absolute left-3 top-3 z-[5] rounded-full border px-2.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider ${BADGE_STYLES[item.badge]}`}
           >
             {item.badge}
           </span>
         )}
-        <span className="badge-halal absolute bottom-3 right-3 text-[0.55rem]">✦ Halal Verified</span>
+        <span className="badge-halal absolute bottom-3 right-3 z-[5] text-[0.55rem]">✦ Halal Verified</span>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
         <p className="mb-1 text-[0.6rem] uppercase tracking-[0.15em] text-halal-gold/60">{item.brand}</p>
-        <h3 className="mb-2 font-display text-[1rem] leading-snug text-halal-cream">{item.title}</h3>
+        <h3 className="mb-2 font-brand text-[1rem] leading-snug tracking-[0.075em] text-halal-cream">{item.title}</h3>
         <p className="mb-3 line-clamp-2 flex-1 text-[0.78rem] leading-relaxed text-halal-muted">
           {item.description}
         </p>
@@ -70,7 +93,9 @@ export function ProductCard({ item }: { item: VaultItem }) {
         </p>
         <div className="flex items-center justify-between border-t border-halal-border/30 pt-3">
           <div>
-            <span className="font-display text-[1.1rem] font-medium text-halal-gold">{item.priceRange}</span>
+            <span className="font-brand text-[1.1rem] font-medium tracking-[0.06em] text-halal-gold">
+              {item.priceRange}
+            </span>
             <p className="mt-0.5 text-[0.65rem] text-amber-400/70">
               {stars} ({item.rating})
             </p>
@@ -79,7 +104,7 @@ export function ProductCard({ item }: { item: VaultItem }) {
             href={item.affiliateUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gold btn-shop-glow px-4 py-2 font-display text-[0.72rem] font-medium capitalize tracking-[0.2em]"
+            className="btn-gold btn-shop-glow px-4 py-2 font-brand text-[0.72rem] font-medium capitalize tracking-[0.2em]"
           >
             Shop Now →
           </a>

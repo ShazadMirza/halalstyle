@@ -10,6 +10,7 @@ const CATEGORIES = [
   { label: "Hijabs", icon: "◈", href: "/vault?cat=Hijabs", desc: "Scarves, caps & accessories" },
   { label: "Menswear", icon: "◇", href: "/vault?cat=Menswear", desc: "Thobes, kufis & essentials" },
   { label: "Home", icon: "⌂", href: "/vault?cat=Home", desc: "Prayer rugs, décor & gifts" },
+  { label: "Gifts", icon: "✧", href: "/vault?cat=Gifts", desc: "Faith-forward tech, books & more" },
 ];
 
 export default function HomePage() {
@@ -28,7 +29,7 @@ export default function HomePage() {
             <p className="section-eyebrow mb-3">Curated Collections</p>
             <h2 className="section-title">Shop by Category</h2>
           </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {CATEGORIES.map(({ label, icon, href, desc }) => (
               <Link key={label} href={href}
                 className="group flex flex-col items-center gap-3 rounded-2xl border border-halal-border/40
@@ -58,7 +59,14 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map(item => <ProductCard key={item.id} item={item} />)}
+            {featured.map((item, i) => (
+              <ProductCard
+                key={item.id}
+                item={item}
+                priority={i < 3}
+                bypassOptimizer={i < 2}
+              />
+            ))}
           </div>
         </div>
       </section>

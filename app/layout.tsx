@@ -30,7 +30,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${dmSans.variable} ${playfair.variable} font-sans antialiased`}>
-        <div className="relative z-10">
+        <div className="mosaic-overlay islamic-mosaic-overlay" aria-hidden />
+        <div className="relative z-10 min-h-dvh">
           <Nav />
           {children}
         </div>

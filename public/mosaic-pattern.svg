@@ -1,18 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
-  <g fill="none" stroke="#D4AF37" stroke-width="0.38" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Central girih-style octagram + rings -->
-    <g transform="translate(60,60)">
-      <path d="M0,-52 L12,-20 L46,-16 L20,6 L28,40 L0,22 L-28,40 L-20,6 L-46,-16 L-12,-20 Z"/>
-      <path d="M0,52 L-12,20 L-46,16 L-20,-6 L-28,-40 L0,-22 L28,-40 L20,-6 L46,16 L12,20 Z"/>
-      <circle r="8"/>
-      <circle r="18"/>
-      <circle r="28"/>
-      <path d="M-60,-60 L60,60 M60,-60 L-60,60"/>
-      <path d="M0,-60 Q18,-18 60,0 Q18,18 0,60 Q-18,18 -60,0 Q-18,-18 0,-60"/>
-      <path d="M-60,0 Q-18,-18 0,-60 Q18,-18 60,0 Q18,18 0,60 Q-18,18 -60,0"/>
-    </g>
-    <!-- Tile seams: subtle arabesque arcs at edges for seamless repeat -->
-    <path d="M0,60 Q30,30 60,0 Q90,30 120,60 Q90,90 60,120 Q30,90 0,60"/>
-    <path d="M60,0 Q90,30 120,60 Q90,90 60,120 Q30,90 0,60 Q30,30 60,0"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" fill="none">
+  <g stroke="#D4AF37" stroke-width="0.55" stroke-linecap="round" stroke-linejoin="round" opacity="1">
+    <path d="M200 0 C260 40 340 60 400 120 C340 180 260 200 200 240 C140 200 60 180 0 120 C60 60 140 40 200 0Z"/>
+    <path d="M200 160 C260 200 340 220 400 280 C340 340 260 360 200 400 C140 360 60 340 0 280 C60 220 140 200 200 160Z"/>
+    <path d="M0 200 Q100 80 200 200 T400 200"/>
+    <path d="M200 0 Q320 100 200 200 T200 400"/>
+    <path d="M0 0 Q200 120 400 0"/>
+    <path d="M0 400 Q200 280 400 400"/>
+    <ellipse cx="200" cy="200" rx="140" ry="90" transform="rotate(35 200 200)"/>
+    <ellipse cx="200" cy="200" rx="90" ry="140" transform="rotate(-35 200 200)"/>
+    <path d="M60 60 Q200 20 340 60 Q360 200 340 340 Q200 380 60 340 Q40 200 60 60"/>
+    <circle cx="200" cy="200" r="28"/>
+    <circle cx="200" cy="200" r="12"/>
+    <path d="M200 40 L220 180 L360 200 L220 220 L200 360 L180 220 L40 200 L180 180 Z"/>
   </g>
 </svg>

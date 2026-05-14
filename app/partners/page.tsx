@@ -2,6 +2,30 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const BENEFITS = [
+  {
+    title: "10–15% high-ticket commissions",
+    body: "Earn on curated modest luxury SKUs with strong AOV — Amazon.ca affiliate programme with our optimised tagging.",
+  },
+  {
+    title: "Verified Excellence Badge",
+    body: "Eligible partners receive a HalalStyle trust mark for your bio, link-in-bio, and newsletter footers.",
+  },
+  {
+    title: "Early Vault drops",
+    body: "First access to new categories and seasonal capsules before public launch — perfect for planning content.",
+  },
+  {
+    title: "Dedicated promo assets",
+    body: "Gold/emerald story frames, quote cards, and quiz deep-links sized for Reels, Shorts, and Pinterest.",
+  },
+  {
+    title: "Revenue dashboard (coming soon)",
+    body: "We’re building a lightweight partner hub for clicks, conversions, and payout milestones — you’ll be first in line.",
+  },
+];
 
 export default function PartnersPage() {
   const [name, setName] = useState("");
@@ -19,11 +43,7 @@ export default function PartnersPage() {
       const res = await fetch("/api/partners", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          social_handle: socialHandle,
-          email,
-        }),
+        body: JSON.stringify({ name, social_handle: socialHandle, email }),
       });
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok) throw new Error(data.error || "Request failed");
@@ -36,24 +56,37 @@ export default function PartnersPage() {
   }
 
   return (
-    <main className="min-h-dvh bg-halal-obsidian pt-24 pb-16">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.08),transparent_55%)]" />
+    <main className="min-h-dvh bg-halal-obsidian pb-20 pt-24">
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.1),transparent_55%)]" />
 
-      <div className="relative z-10 mx-auto max-w-lg px-6">
+      <div className="relative z-10 mx-auto max-w-3xl px-6">
         <p className="section-eyebrow mb-4 text-center">Affiliate Programme</p>
-        <h1 className="font-display text-center text-[clamp(2rem,5vw,2.75rem)] font-medium leading-tight text-halal-cream">
+        <h1 className="text-center font-brand text-[clamp(2rem,5vw,2.85rem)] font-medium leading-tight tracking-[0.06em] text-halal-cream">
           Join the <span className="text-halal-gold">Excellence Circle</span>
         </h1>
-        <p className="mx-auto mt-4 max-w-md text-center text-[0.95rem] leading-relaxed text-halal-muted">
-          Partner with HalalStyle — align your audience with curated, halal-conscious modest fashion. Limited
-          collaborations each season.
+        <p className="mx-auto mt-4 max-w-xl text-center text-[0.95rem] leading-relaxed text-halal-muted">
+          Partner with HalalStyle — Canada’s AI-curated modest luxury filter. Limited collaborations each season for
+          aligned creators and brands.
         </p>
+
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2">
+          {BENEFITS.map(({ title, body }) => (
+            <li
+              key={title}
+              className="rounded-2xl border border-halal-border/50 bg-card-gradient p-5 shadow-card transition hover:border-halal-gold/30"
+            >
+              <p className="font-brand text-[0.95rem] font-medium tracking-[0.06em] text-halal-gold">{title}</p>
+              <p className="mt-2 text-[0.8rem] leading-relaxed text-halal-muted">{body}</p>
+            </li>
+          ))}
+        </ul>
 
         {!done ? (
           <form
             onSubmit={(e) => void onSubmit(e)}
-            className="mt-12 rounded-2xl border border-halal-border/50 bg-card-gradient p-8 shadow-card"
+            className="mt-12 rounded-2xl border border-halal-border/50 bg-card-gradient p-8 shadow-card sm:p-10"
           >
+            <h2 className="mb-6 text-center font-brand text-xl tracking-[0.06em] text-halal-cream">Apply in 60 seconds</h2>
             <div className="space-y-5">
               <div>
                 <label htmlFor="p-name" className="mb-2 block text-[0.85rem] font-medium text-halal-cream">
@@ -112,28 +145,36 @@ export default function PartnersPage() {
               disabled={loading}
               className="btn-gold btn-shop-glow mt-8 w-full justify-center py-4 text-[0.95rem] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {loading ? "Sending…" : "Request partnership"}
+              {loading ? "Sending…" : "Request partnership ✦"}
             </button>
           </form>
         ) : (
-          <div
-            className="mt-12 rounded-2xl border border-halal-gold/25 bg-halal-surface/80 p-10 text-center shadow-[0_0_40px_-8px_rgba(212,175,55,0.15)] backdrop-blur-sm"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 320, damping: 22 }}
+            className="mt-12 rounded-2xl border border-halal-gold/30 bg-halal-surface/90 p-10 text-center shadow-[0_0_48px_-10px_rgba(212,175,55,0.35)] backdrop-blur-sm"
             role="status"
           >
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border-2 border-halal-gold bg-halal-gold/10">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.08 }}
+              className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border-2 border-halal-gold bg-halal-gold/15"
+            >
               <span className="text-3xl text-halal-gold" aria-hidden>
                 ✓
               </span>
-            </div>
-            <h2 className="font-display text-xl text-halal-cream">Application received</h2>
+            </motion.div>
+            <h2 className="font-brand text-xl tracking-[0.06em] text-halal-cream">Application received</h2>
             <p className="mt-3 text-[0.9rem] leading-relaxed text-halal-muted">
-              Thank you, {name.split(" ")[0] || "friend"}. Our team will review your profile and reply by email
-              within a few business days.
+              Thank you, {name.split(" ")[0] || "friend"}. Our partnerships team will reply within a few business
+              days with next steps and commission tiers.
             </p>
-            <Link href="/" className="btn-outline mt-8 inline-flex">
+            <Link href="/" className="btn-outline btn-shop-glow mt-8 inline-flex">
               ← Back to HalalStyle
             </Link>
-          </div>
+          </motion.div>
         )}
 
         <p className="mt-10 text-center text-[0.7rem] text-halal-muted/80">

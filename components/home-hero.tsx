@@ -11,11 +11,11 @@ const TRUST_ITEMS = [
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.65, ease: [0.23, 1, 0.32, 1] as const },
+    transition: { delay: i * 0.1, duration: 0.8, ease: [0.23, 1, 0.32, 1] as const },
   }),
 };
 
@@ -30,7 +30,8 @@ export function HomeHero() {
         <motion.span
           custom={0}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
           className="section-eyebrow mb-6 block"
         >
@@ -40,9 +41,10 @@ export function HomeHero() {
         <motion.h1
           custom={1}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
-          className="mb-6 font-brand text-[clamp(2.5rem,7vw,5rem)] font-medium leading-[1.05] tracking-[-0.01em] text-halal-cream"
+          className="mb-6 font-brand text-[clamp(2.5rem,7vw,5rem)] font-medium leading-[1.05] tracking-[0.06em] text-halal-cream"
         >
           The{" "}
           <span className="italic text-halal-gold">Excellence</span>
@@ -55,7 +57,8 @@ export function HomeHero() {
         <motion.p
           custom={2}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
           className="mx-auto mb-10 max-w-[520px] text-[1rem] leading-relaxed text-halal-cream/55"
         >
@@ -66,7 +69,8 @@ export function HomeHero() {
         <motion.div
           custom={3}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
           className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
@@ -81,14 +85,17 @@ export function HomeHero() {
 
       <div className="absolute inset-x-0 bottom-0 border-t border-halal-border/30 bg-halal-forest/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-6 px-6 py-4">
-          {TRUST_ITEMS.map(({ icon, label }) => (
-            <span
+          {TRUST_ITEMS.map(({ icon, label }, idx) => (
+            <motion.span
               key={label}
-              className="flex items-center gap-2 text-[0.7rem] font-medium uppercase tracking-wider text-halal-cream/40"
+              initial={{ opacity: 0.4 }}
+              animate={{ opacity: [0.45, 1, 0.45] }}
+              transition={{ duration: 5, repeat: Infinity, delay: idx * 0.35, ease: "easeInOut" }}
+              className="flex items-center gap-2 text-[0.7rem] font-medium uppercase tracking-wider text-halal-cream/50"
             >
               <span className="text-halal-gold/50">{icon}</span>
               {label}
-            </span>
+            </motion.span>
           ))}
         </div>
       </div>
