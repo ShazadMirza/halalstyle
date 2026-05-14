@@ -19,6 +19,7 @@ export interface VaultItem {
 }
 
 export const VAULT_ITEMS: VaultItem[] = [
+  // ── FASHION (5) ──────────────────────────────────────────────────────────
   {
     id: "v1",
     title: "Luxury Crepe Abaya",
@@ -36,42 +37,6 @@ export const VAULT_ITEMS: VaultItem[] = [
     affiliateUrl: "https://www.amazon.ca/s?k=luxury+crepe+abaya+women&tag=halalstyle50d-20",
     badge: "Editor's Pick",
     rating: 4.8,
-  },
-  {
-    id: "v2",
-    title: "Viscose Jersey Hijab Set",
-    brand: "Modanisa",
-    category: "Hijabs",
-    occasion: ["Everyday", "Work", "Prayer"],
-    priceCAD: 34,
-    priceRange: "$30–$40 CAD",
-    description:
-      "Soft viscose jersey hijab with matching undercap. Breathable, non-slip, available in 20+ neutrals.",
-    whyHalal: "Full head and neck coverage, opaque non-transparent material",
-    imageKeyword: "hijab",
-    imageUrl:
-      "https://images.unsplash.com/photo-1583292650773-4a70031048b7?auto=format&fit=crop&w=900&q=85",
-    affiliateUrl: "https://www.amazon.ca/s?k=viscose+jersey+hijab+set&tag=halalstyle50d-20",
-    badge: "Bestseller",
-    rating: 4.9,
-  },
-  {
-    id: "v3",
-    title: "Premium Thobe — Linen Blend",
-    brand: "Nabeel & Sons",
-    category: "Menswear",
-    occasion: ["Everyday", "Eid", "Prayer"],
-    priceCAD: 119,
-    priceRange: "$110–$130 CAD",
-    description:
-      "Tailored linen-blend thobe with mandarin collar. Modern cut, breathable for Canadian climate.",
-    whyHalal: "Loose modest cut, covers ankles, men's Islamic dress code",
-    imageKeyword: "thobe",
-    imageUrl:
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=85",
-    affiliateUrl: "https://www.amazon.ca/s?k=premium+men+thobe+linen&tag=halalstyle50d-20",
-    badge: "Editor's Pick",
-    rating: 4.7,
   },
   {
     id: "v4",
@@ -92,6 +57,174 @@ export const VAULT_ITEMS: VaultItem[] = [
     rating: 4.6,
   },
   {
+    id: "v10",
+    title: "Open-Front Kimono Cardigan",
+    brand: "Covered Couture",
+    category: "Fashion",
+    occasion: ["Everyday", "Work"],
+    priceCAD: 54,
+    priceRange: "$50–$60 CAD",
+    description:
+      "Lightweight open-front kimono in woven viscose. Layers beautifully over dresses and wide-leg trousers.",
+    whyHalal: "Loose silhouette, full arm coverage, modest layering piece",
+    imageKeyword: "kimono+cardigan+modest",
+    imageUrl:
+      "https://images.unsplash.com/photo-1564859228273-274232fdb516?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=open+front+kimono+cardigan+modest&tag=halalstyle50d-20",
+    badge: "Best Value",
+    rating: 4.5,
+  },
+  {
+    id: "v11",
+    title: "Modest Palazzo Suit Set",
+    brand: "Mirra Modest",
+    category: "Fashion",
+    occasion: ["Work", "Wedding", "Eid"],
+    priceCAD: 105,
+    priceRange: "$95–$115 CAD",
+    description:
+      "Two-piece palazzo suit in stretch crepe. Tailored blazer, wide-leg trousers — boardroom to gala.",
+    whyHalal: "Full coverage, non-sheer, loose wide-leg silhouette meeting modest dress code",
+    imageKeyword: "modest+palazzo+suit+women",
+    imageUrl:
+      "https://images.unsplash.com/photo-1551803091-e20673f15770?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=modest+palazzo+suit+women&tag=halalstyle50d-20",
+    badge: "Editor's Pick",
+    rating: 4.7,
+  },
+  {
+    id: "v12",
+    title: "Satin Pleated Skirt — Midi",
+    brand: "Veilkini",
+    category: "Fashion",
+    occasion: ["Everyday", "Eid", "Wedding"],
+    priceCAD: 44,
+    priceRange: "$40–$50 CAD",
+    description:
+      "Fluid satin midi skirt with pleated front panel. Sits at the waist — pairs with tunics and blouses.",
+    whyHalal: "Midi length to mid-calf, fully lined, non-transparent satin",
+    imageKeyword: "satin+midi+skirt+modest",
+    imageUrl:
+      "https://images.unsplash.com/photo-1505022610485-0249ba5b3675?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=satin+pleated+midi+skirt+modest&tag=halalstyle50d-20",
+    badge: "New",
+    rating: 4.6,
+  },
+
+  // ── HIJABS (3) ────────────────────────────────────────────────────────────
+  {
+    id: "v2",
+    title: "Viscose Jersey Hijab Set",
+    brand: "Modanisa",
+    category: "Hijabs",
+    occasion: ["Everyday", "Work", "Prayer"],
+    priceCAD: 34,
+    priceRange: "$30–$40 CAD",
+    description:
+      "Soft viscose jersey hijab with matching undercap. Breathable, non-slip, available in 20+ neutrals.",
+    whyHalal: "Full head and neck coverage, opaque non-transparent material",
+    imageKeyword: "hijab",
+    imageUrl:
+      "https://images.unsplash.com/photo-1583292650773-4a70031048b7?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=viscose+jersey+hijab+set&tag=halalstyle50d-20",
+    badge: "Bestseller",
+    rating: 4.9,
+  },
+  {
+    id: "v13",
+    title: "Chiffon Instant Hijab — Pleated",
+    brand: "HijabHouse",
+    category: "Hijabs",
+    occasion: ["Everyday", "Eid", "Wedding"],
+    priceCAD: 28,
+    priceRange: "$25–$32 CAD",
+    description:
+      "Pre-sewn pleated chiffon hijab — no pinning required. Elegant drape for special occasions in 15+ shades.",
+    whyHalal: "Full coverage pre-formed cut, opaque double-layer chiffon",
+    imageKeyword: "chiffon+hijab+pleated",
+    imageUrl:
+      "https://images.unsplash.com/photo-1611601322175-ef8ec8c85f01?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=chiffon+instant+hijab+pleated&tag=halalstyle50d-20",
+    badge: "Best Value",
+    rating: 4.7,
+  },
+  {
+    id: "v14",
+    title: "Bamboo Jersey Undercap 3-Pack",
+    brand: "Al-Amira",
+    category: "Hijabs",
+    occasion: ["Everyday", "Prayer"],
+    priceCAD: 22,
+    priceRange: "$20–$25 CAD",
+    description:
+      "Buttery-soft bamboo jersey undercaps. Non-slip grip, moisture-wicking, minimal seams for all-day wear.",
+    whyHalal: "Foundation layer for full head coverage, breathable modest base",
+    imageKeyword: "hijab+undercap+women",
+    imageUrl:
+      "https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=bamboo+jersey+hijab+undercap&tag=halalstyle50d-20",
+    badge: "Bestseller",
+    rating: 4.8,
+  },
+
+  // ── MENSWEAR (3) ─────────────────────────────────────────────────────────
+  {
+    id: "v3",
+    title: "Premium Thobe — Linen Blend",
+    brand: "Nabeel & Sons",
+    category: "Menswear",
+    occasion: ["Everyday", "Eid", "Prayer"],
+    priceCAD: 119,
+    priceRange: "$110–$130 CAD",
+    description:
+      "Tailored linen-blend thobe with mandarin collar. Modern cut, breathable for Canadian climate.",
+    whyHalal: "Loose modest cut, covers ankles, men's Islamic dress code",
+    imageKeyword: "thobe",
+    imageUrl:
+      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=premium+men+thobe+linen&tag=halalstyle50d-20",
+    badge: "Editor's Pick",
+    rating: 4.7,
+  },
+  {
+    id: "v15",
+    title: "Embroidered Kufi Cap",
+    brand: "Dar al-Sunnah",
+    category: "Menswear",
+    occasion: ["Everyday", "Prayer", "Eid"],
+    priceCAD: 24,
+    priceRange: "$20–$28 CAD",
+    description:
+      "Hand-stitched geometric embroidery on structured cotton kufi. Neutral ivory — pairs with any thobe.",
+    whyHalal: "Traditional Islamic headwear for men, faith-affirming dress",
+    imageKeyword: "kufi+cap+men+islamic",
+    imageUrl:
+      "https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=embroidered+kufi+cap+men&tag=halalstyle50d-20",
+    badge: "Bestseller",
+    rating: 4.8,
+  },
+  {
+    id: "v16",
+    title: "Linen Qamis — Short Sleeve",
+    brand: "Nabeel & Sons",
+    category: "Menswear",
+    occasion: ["Everyday", "Prayer"],
+    priceCAD: 68,
+    priceRange: "$60–$75 CAD",
+    description:
+      "Relaxed linen qamis, short-sleeved for warm weather. Clean mandarin collar, available in white and sand.",
+    whyHalal: "Loose modest cut per Sunnah guidelines, breathable modest daily wear",
+    imageKeyword: "linen+qamis+men+modest",
+    imageUrl:
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=linen+qamis+men+short+sleeve&tag=halalstyle50d-20",
+    badge: "New",
+    rating: 4.6,
+  },
+
+  // ── HOME (4) ──────────────────────────────────────────────────────────────
+  {
     id: "v5",
     title: "Prayer Rug — Luxury Velvet",
     brand: "Al-Noor",
@@ -108,23 +241,6 @@ export const VAULT_ITEMS: VaultItem[] = [
     affiliateUrl: "https://www.amazon.ca/s?k=luxury+velvet+prayer+rug+compass&tag=halalstyle50d-20",
     badge: "Bestseller",
     rating: 4.9,
-  },
-  {
-    id: "v6",
-    title: "Kids Modest Dress Set",
-    brand: "Little Amirah",
-    category: "Kids",
-    occasion: ["Eid", "Everyday"],
-    priceCAD: 44,
-    priceRange: "$40–$50 CAD",
-    description: "Adorable modest dress set for girls ages 2–10. Soft cotton, fun patterns, easy care.",
-    whyHalal: "Age-appropriate full coverage, comfortable modest design for children",
-    imageKeyword: "kids+dress",
-    imageUrl:
-      "https://images.unsplash.com/photo-1514097348689-198333d32188?auto=format&fit=crop&w=900&q=85",
-    affiliateUrl: "https://www.amazon.ca/s?k=modest+kids+dress+girls+islamic&tag=halalstyle50d-20",
-    badge: "Best Value",
-    rating: 4.7,
   },
   {
     id: "v7",
@@ -163,6 +279,63 @@ export const VAULT_ITEMS: VaultItem[] = [
     rating: 4.7,
   },
   {
+    id: "v17",
+    title: "Ayatul Kursi Calligraphy Frame",
+    brand: "Makkah Atelier",
+    category: "Home",
+    occasion: ["Everyday", "Eid"],
+    priceCAD: 78,
+    priceRange: "$70–$85 CAD",
+    description:
+      "Laser-engraved Ayatul Kursi on brushed gold aluminium. Museum-quality glass, ready to hang.",
+    whyHalal: "Quranic verse for the home — promotes dhikr and Islamic decor",
+    imageKeyword: "ayatul+kursi+frame+islamic",
+    imageUrl:
+      "https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=ayatul+kursi+calligraphy+frame+gold&tag=halalstyle50d-20",
+    badge: "Bestseller",
+    rating: 4.9,
+  },
+
+  // ── KIDS (2) ──────────────────────────────────────────────────────────────
+  {
+    id: "v6",
+    title: "Kids Modest Dress Set",
+    brand: "Little Amirah",
+    category: "Kids",
+    occasion: ["Eid", "Everyday"],
+    priceCAD: 44,
+    priceRange: "$40–$50 CAD",
+    description: "Adorable modest dress set for girls ages 2–10. Soft cotton, fun patterns, easy care.",
+    whyHalal: "Age-appropriate full coverage, comfortable modest design for children",
+    imageKeyword: "kids+dress",
+    imageUrl:
+      "https://images.unsplash.com/photo-1514097348689-198333d32188?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=modest+kids+dress+girls+islamic&tag=halalstyle50d-20",
+    badge: "Best Value",
+    rating: 4.7,
+  },
+  {
+    id: "v18",
+    title: "Boys Thobe & Kufi Set",
+    brand: "Little Amirah",
+    category: "Kids",
+    occasion: ["Eid", "Prayer", "Everyday"],
+    priceCAD: 52,
+    priceRange: "$48–$58 CAD",
+    description:
+      "Matching thobe and kufi set for boys ages 3–12. Soft cotton blend — Jummah ready in minutes.",
+    whyHalal: "Full-length boys thobe per Islamic dress, modest children's sunnah style",
+    imageKeyword: "boys+thobe+set+kids",
+    imageUrl:
+      "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=boys+thobe+kufi+set+kids&tag=halalstyle50d-20",
+    badge: "New",
+    rating: 4.7,
+  },
+
+  // ── GIFTS (4) ─────────────────────────────────────────────────────────────
+  {
     id: "v9",
     title: "Quran Speaker with Azan & LED Lamp",
     brand: "NoorTech",
@@ -179,5 +352,59 @@ export const VAULT_ITEMS: VaultItem[] = [
     affiliateUrl: "https://www.amazon.ca/s?k=quran+speaker+azan+clock+led&tag=halalstyle50d-20",
     badge: "Bestseller",
     rating: 4.8,
+  },
+  {
+    id: "v19",
+    title: "Tasbeeh Counter — Stainless Steel",
+    brand: "Dar al-Sunnah",
+    category: "Gifts",
+    occasion: ["Everyday", "Prayer"],
+    priceCAD: 34,
+    priceRange: "$30–$38 CAD",
+    description:
+      "Elegant stainless steel mechanical tasbeeh counter. Resets at 33 and 99 — gift-boxed for Eid.",
+    whyHalal: "Supports dhikr practice, Islamic devotional tool",
+    imageKeyword: "tasbeeh+counter+steel",
+    imageUrl:
+      "https://images.unsplash.com/photo-1567789884554-0b844b7f6a58?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=stainless+steel+tasbeeh+counter&tag=halalstyle50d-20",
+    badge: "Best Value",
+    rating: 4.8,
+  },
+  {
+    id: "v20",
+    title: "Illustrated Quran Stories for Kids",
+    brand: "Kube Publishing",
+    category: "Gifts",
+    occasion: ["Everyday", "Eid"],
+    priceCAD: 29,
+    priceRange: "$26–$32 CAD",
+    description:
+      "Beautifully illustrated hardcover collection of Quranic stories. Ages 4–10 — perfect Eid gift.",
+    whyHalal: "Faith-based children's education, age-appropriate Islamic values",
+    imageKeyword: "islamic+book+children+illustrated",
+    imageUrl:
+      "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=illustrated+quran+stories+kids+book&tag=halalstyle50d-20",
+    badge: "Bestseller",
+    rating: 4.9,
+  },
+  {
+    id: "v21",
+    title: "Ramadan Countdown Lantern Set",
+    brand: "NoorTech",
+    category: "Gifts",
+    occasion: ["Eid", "Everyday"],
+    priceCAD: 45,
+    priceRange: "$42–$50 CAD",
+    description:
+      "30-day LED lantern calendar with Islamic art panels. Battery-powered, folds flat — family tradition made easy.",
+    whyHalal: "Celebrates Islamic calendar, non-figurative design, family-friendly faith practice",
+    imageKeyword: "ramadan+lantern+countdown",
+    imageUrl:
+      "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=ramadan+countdown+lantern+calendar&tag=halalstyle50d-20",
+    badge: "Editor's Pick",
+    rating: 4.7,
   },
 ];
