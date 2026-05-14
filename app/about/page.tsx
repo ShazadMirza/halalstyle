@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Our Story — HalalStyle",
-  description: "Meet Deen Ali Mirza, the 13-year-old founder of HalalStyle — The Excellence Filter for Modest Fashion.",
+  description: "Meet Deen Ali Mirza, the 14-year-old founder of HalalStyle — The Excellence Filter for Modest Fashion.",
 };
 
 export default function AboutPage() {
@@ -14,7 +14,7 @@ export default function AboutPage() {
       <section className="border-b border-halal-border/30 bg-halal-surface px-6 py-20 text-center pattern-bg">
         <p className="section-eyebrow mb-4">The Story Behind the Filter</p>
         <h1 className="section-title mb-6 max-w-2xl mx-auto">
-          Built by a 13-Year-Old.<br />
+          Built by a 14-Year-Old.<br />
           <span className="italic text-halal-gold">Inspired by Faith.</span>
         </h1>
         <p className="mx-auto max-w-lg text-[1rem] text-halal-muted leading-relaxed">
@@ -29,7 +29,7 @@ export default function AboutPage() {
             <p className="section-eyebrow mb-4">The Founder</p>
             <h2 className="font-display text-[1.5rem] text-halal-cream mb-4">Deen Ali Mirza</h2>
             <p className="text-[0.9rem] text-halal-muted leading-relaxed mb-4">
-              I&apos;m Deen — I built HalalStyle when I was 13 years old in Shelburne, Ontario.
+              I&apos;m Deen — I built HalalStyle when I was 14 years old in Shelburne, Ontario.
               I grew up watching my family struggle to find fashion that was both high-quality and
               aligned with our values. Everything was either cheap and modest, or beautiful and immodest.
               Nothing in between.

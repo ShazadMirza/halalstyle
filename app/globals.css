@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    --background: 0 0% 5%;
+    --background: 158 76% 9%;
     --foreground: 43 20% 97%;
-    --muted: 0 0% 55%;
-    --border: 0 0% 18%;
+    --muted: 150 18% 58%;
+    --border: 158 40% 22%;
     --ring: 43 65% 52%;
   }
 
@@ -16,7 +16,9 @@
   }
 
   body {
-    @apply bg-halal-obsidian text-halal-cream antialiased;
+    @apply min-h-dvh text-halal-cream antialiased;
+    background: radial-gradient(circle at top, #0a4d32 0%, #062c1d 100%);
+    background-attachment: fixed;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 
@@ -28,7 +30,7 @@
     width: 4px;
   }
   ::-webkit-scrollbar-track {
-    background: #0c0c0c;
+    background: #062c1d;
   }
   ::-webkit-scrollbar-thumb {
     background: #d4af37;
@@ -37,6 +39,13 @@
 }
 
 @layer components {
+  /* Subtle Islamic geometric mosaic — felt at ~5% opacity via layout wrapper */
+  .islamic-mosaic-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='0.55'%3E%3Cpath d='M28 0v56M0 28h56M14 0l14 28-14 28M42 0L28 28l14 28M0 14l28 14 28-14M0 42l28-14 28 14'/%3E%3Ccircle cx='28' cy='28' r='9'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 56px 56px;
+    background-repeat: repeat;
+  }
+
   .btn-gold {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5
            font-sans text-[0.875rem] font-semibold tracking-wide text-halal-forest
@@ -59,7 +68,7 @@
   .btn-result-shop {
     @apply block w-full rounded-[10px] bg-halal-forest py-3 text-center text-[0.875rem] font-medium text-white
            transition duration-300 ease-luxury
-           hover:bg-[#2a2a28] hover:shadow-shop-glow;
+           hover:bg-halal-forest-3 hover:shadow-shop-glow;
   }
 
   .card-luxury {
@@ -89,6 +98,6 @@
   }
 
   .pattern-bg {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M30 0l8.66 5v10L30 20l-8.66-5V5zM0 20l8.66 5v10L0 40l-8.66-5V25zM60 20l8.66 5v10L60 40l-8.66-5V25z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.06'%3E%3Cpath d='M30 0l8.66 5v10L30 20l-8.66-5V5zM0 20l8.66 5v10L0 40l-8.66-5V25zM60 20l8.66 5v10L60 40l-8.66-5V25z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }

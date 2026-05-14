@@ -83,7 +83,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between">
           <div>
             <p className="font-display text-[1.1rem] text-halal-gold tracking-widest">HalalStyle</p>
-            <p className="text-[0.65rem] text-halal-muted mt-0.5">The Excellence Filter · Built by Deen Ali Mirza, age 13 · Shelburne, Ontario</p>
+            <p className="text-[0.65rem] text-halal-muted mt-0.5">The Excellence Filter · Built by Deen Ali Mirza, age 14 · Shelburne, Ontario</p>
           </div>
           <p className="text-[0.65rem] text-halal-muted">
             © 2025 HalalStyle. Amazon affiliate links — we earn a small commission at no extra cost to you.

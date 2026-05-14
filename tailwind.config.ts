@@ -15,11 +15,13 @@ const config: Config = {
         mono: ["var(--font-dm-mono)", "monospace"],
       },
       colors: {
+        obsidian: "#062C1D",
+        gold: "#D4AF37",
         halal: {
-          obsidian: "#0C0C0C",
-          forest: "#0C0C0C",
-          "forest-2": "#141414",
-          "forest-3": "#242424",
+          obsidian: "#062C1D",
+          forest: "#062C1D",
+          "forest-2": "#0A3D28",
+          "forest-3": "#0E4A32",
           gold: "#D4AF37",
           "gold-2": "#E4C76A",
           "gold-3": "#F0E6C8",
@@ -27,11 +29,11 @@ const config: Config = {
           cream: "#FAF7F2",
           "cream-2": "#F0EBE0",
           "cream-3": "#E5DDD0",
-          muted: "#9A9A95",
-          border: "#2A2A28",
-          "border-light": "#3A3A36",
-          surface: "#121212",
-          "surface-2": "#181818",
+          muted: "#8BA99A",
+          border: "#145239",
+          "border-light": "#1E6B45",
+          surface: "#071F15",
+          "surface-2": "#0A2E1F",
         },
       },
       boxShadow: {
@@ -43,10 +45,12 @@ const config: Config = {
       },
       backgroundImage: {
         "gold-gradient": "linear-gradient(135deg, #D4AF37 0%, #E4C76A 45%, #C9A54A 100%)",
-        "forest-gradient": "linear-gradient(160deg, #0C0C0C 0%, #141414 100%)",
-        "hero-gradient": "linear-gradient(180deg, rgba(12,12,12,0.95) 0%, rgba(12,12,12,0.75) 60%, rgba(12,12,12,0.95) 100%)",
-        "card-gradient": "linear-gradient(160deg, #181818 0%, #121212 100%)",
-        "placeholder-luxury": "linear-gradient(135deg, rgba(212,175,55,0.35) 0%, #0C0C0C 48%, #1a1a18 100%)",
+        "forest-gradient": "linear-gradient(160deg, #062C1D 0%, #0A3D28 100%)",
+        "hero-gradient":
+          "linear-gradient(180deg, rgba(6,44,29,0.96) 0%, rgba(6,44,29,0.78) 60%, rgba(6,44,29,0.96) 100%)",
+        "card-gradient": "linear-gradient(160deg, #0A2E1F 0%, #071F15 100%)",
+        "placeholder-luxury":
+          "linear-gradient(135deg, rgba(212,175,55,0.35) 0%, #062C1D 48%, #0A3D28 100%)",
       },
       animation: {
         "fade-up": "fadeUp 0.6s ease both",

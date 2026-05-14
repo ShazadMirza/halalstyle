@@ -21,8 +21,7 @@ export function Nav() {
 
         {/* Logo */}
         <Link href="/" className="flex flex-col leading-none group">
-          <span className="font-display text-[1.4rem] font-medium tracking-[0.06em] text-halal-gold
-                           group-hover:text-halal-gold-2 transition-colors duration-300">
+          <span className="font-display text-[1.35rem] font-medium tracking-[0.2em] text-halal-gold group-hover:text-halal-gold-2 transition-colors duration-300">
             HalalStyle
           </span>
           <span className="text-[0.5rem] uppercase tracking-[0.3em] text-halal-gold/40 mt-0.5">

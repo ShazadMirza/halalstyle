@@ -15,7 +15,7 @@ const BADGE_STYLES: Record<string, string> = {
 function ImagePlaceholder() {
   return (
     <div
-      className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/35 via-[#0C0C0C] to-[#1a1a1a]"
+      className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/35 via-[#062C1D] to-[#0A3D28]"
       aria-hidden
     />
   );
@@ -31,7 +31,7 @@ export function ProductCard({ item }: { item: VaultItem }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
-      className="card-luxury group flex flex-col overflow-hidden"
+      className="group flex flex-col overflow-hidden rounded-2xl border-[0.5px] border-gold/30 bg-card-gradient shadow-card transition-all duration-500 ease-luxury hover:-translate-y-1 hover:border-gold/80 hover:shadow-card-hover"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-halal-surface">
         {showImage ? (
@@ -78,7 +78,7 @@ export function ProductCard({ item }: { item: VaultItem }) {
             href={item.affiliateUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gold btn-shop-glow text-[0.75rem] px-4 py-2"
+            className="btn-gold btn-shop-glow px-4 py-2 font-display text-[0.72rem] font-medium capitalize tracking-[0.2em]"
           >
             Shop Now →
           </a>

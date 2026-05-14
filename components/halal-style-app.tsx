@@ -143,7 +143,7 @@ export function HalalStyleApp() {
 
       {/* TRUST BAR */}
       <div className="flex flex-wrap justify-center gap-6 bg-halal-forest/95 px-6 py-3 border-t border-halal-gold/10">
-        {["Modest quality guaranteed", "Ships to Canada", "Amazon verified", "Built by Deen, age 13"].map((t) => (
+        {["Modest quality guaranteed", "Ships to Canada", "Amazon verified", "Built by Deen, age 14"].map((t) => (
           <span key={t} className="flex items-center gap-1.5 text-[0.7rem] text-white/40">
             <span className="text-halal-gold/50">✦</span>{t}
           </span>
