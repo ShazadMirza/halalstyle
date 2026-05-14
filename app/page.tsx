@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
 import { VAULT_ITEMS } from "@/lib/vault-items";
 import { HalalStyleApp } from "@/components/halal-style-app";
+import { NewsletterSection } from "@/components/newsletter-section";
 
 const TRUST_ITEMS = [
   { icon: "✦", label: "100% Halal Verified" },
@@ -143,29 +144,4 @@ export default function HomePage() {
   );
 }
 
-function NewsletterSection() {
-  return (
-    <section className="px-6 py-20 pattern-bg">
-      <div className="mx-auto max-w-xl text-center">
-        <span className="section-eyebrow mb-4 block">Free Lead Magnet</span>
-        <h2 className="section-title mb-4">The Excellence Guide</h2>
-        <p className="mb-8 text-[0.95rem] text-halal-muted leading-relaxed">
-          Get our free 2026 Modest Luxury Style Guide — 20+ curated picks, style tips, and the Muslim high-achiever&apos;s essential wardrobe. Delivered to your inbox.
-        </p>
-        <form
-          action="/api/subscribe" method="POST"
-          onSubmit={(e) => e.preventDefault()}
-          className="flex flex-col gap-3 sm:flex-row">
-          <input type="email" placeholder="your@email.com" required
-            className="input-luxury flex-1" />
-          <button type="submit" className="btn-gold whitespace-nowrap">
-            Get the Guide ✦
-          </button>
-        </form>
-        <p className="mt-4 text-[0.65rem] text-halal-muted">
-          No spam. Unsubscribe anytime. We respect your inbox like your values.
-        </p>
-      </div>
-    </section>
-  );
-}
+
