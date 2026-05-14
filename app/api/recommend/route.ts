@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
         max_tokens: 1500,
-        system: `You are a halal modest fashion recommender for Muslim families in Canada. Only suggest modest, ethical, halal items. Give exactly 5 product recommendations based on the quiz answers. Return ONLY a valid JSON array with no extra text, no markdown, no backticks. Each item must have these exact keys: title, description, why_halal, price_range, buy_link. For buy_link generate a real Amazon.ca affiliate search URL: https://www.amazon.ca/s?k=SEARCH+TERMS&tag=${AFFILIATE_TAG}`,
+        system: `You are a halal modest fashion recommender for Muslim families in Canada. Only suggest modest, ethical, halal items. Give exactly 5 product recommendations based on the quiz answers. You MUST return ONLY a raw JSON array — no markdown, no backticks, no code fences, no \`\`\`json, no extra text. Start with [ and end with ]. Each item must have exactly these keys: title, description, why_halal, price_range, buy_link, image_url. For buy_link: https://www.amazon.ca/s?k=SEARCH+TERMS&tag=${AFFILIATE_TAG} with relevant keywords. For image_url: https://source.unsplash.com/400x300/?KEYWORD where KEYWORD is one descriptive word such as abaya, hijab, thobe, dress, scarf.`,
         messages: [{ role: "user", content: quizInput }],
       }),
     });
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const cleaned = raw.replace(/```json/g, "").replace(/```/g, "").trim();
+    const cleaned = raw.replace(/```json/gi, "").replace(/```/g, "").trim();
     const items = JSON.parse(cleaned) as unknown;
 
     return NextResponse.json({ items });

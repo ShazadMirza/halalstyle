@@ -4,4 +4,5 @@ export type HalalPickItem = {
   why_halal: string;
   price_range: string;
   buy_link: string;
+  image_url?: string;
 };
