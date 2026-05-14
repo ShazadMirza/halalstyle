@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Partners",
-  description: "Join the HalalStyle Excellence Circle — affiliate and brand partnerships.",
+  title: "Partners — Excellence Circle | HalalStyle",
+  description:
+    "Join the HalalStyle Excellence Circle. 10–15% commissions, verified trust badge, and early vault drops for aligned Muslim creators and brands.",
+  openGraph: {
+    title: "HalalStyle Excellence Circle — Partner With Us",
+    description:
+      "Affiliate and brand partnerships for modest fashion creators. Canada-focused, values-aligned.",
+    url: "https://halalstyle.vercel.app/partners",
+    siteName: "HalalStyle",
+    locale: "en_CA",
+    type: "website",
+  },
 };
 
 export default function PartnersLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return <>{children}</>;
 }
