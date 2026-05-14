@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 43 47% 97%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --muted: 215 14% 46%;
+    --border: 38 24% 88%;
+    --ring: 142 45% 28%;
+  }
+
+  body {
+    @apply bg-halal-cream text-[#1a1a1a];
+  }
+}
