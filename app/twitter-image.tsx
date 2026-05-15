@@ -23,13 +23,13 @@ export default function TwitterImage() {
           position: "relative",
         }}
       >
+        {/* Gold wash overlay — using linear-gradient (Satori-safe, no repeating-linear-gradient) */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            opacity: 0.1,
-            backgroundImage:
-              "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 1px, transparent 48px)",
+            opacity: 0.08,
+            background: "linear-gradient(135deg, #D4AF37 0%, transparent 50%, #D4AF37 100%)",
           }}
         />
         <div
