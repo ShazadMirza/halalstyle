@@ -2,27 +2,39 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
     setStatus("loading");
+    setErrorMessage(null);
     try {
-      await fetch("/api/subscribe", {
+      const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, tags: ["excellence-guide"] }),
+        body: JSON.stringify({ email }),
       });
+      const data = (await res.json()) as { success?: boolean; error?: string };
+
+      if (!res.ok || data.error) {
+        setStatus("error");
+        setErrorMessage(data.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
       setStatus("done");
       setModalOpen(true);
     } catch {
       setStatus("error");
+      setErrorMessage("Something went wrong. Please try again.");
     }
   }
 
@@ -36,7 +48,7 @@ export function NewsletterSection() {
           high-achiever&apos;s essential wardrobe. Delivered to your inbox.
         </p>
 
-        {status !== "done" && status !== "error" ? (
+        {status !== "done" ? (
           <form onSubmit={(e) => void handleSubmit(e)} className="flex flex-col gap-3 sm:flex-row">
             <input
               type="email"
@@ -46,17 +58,33 @@ export function NewsletterSection() {
               onChange={(e) => setEmail(e.target.value)}
               className="input-luxury flex-1"
             />
-            <button type="submit" disabled={status === "loading"} className="btn-gold btn-shop-glow whitespace-nowrap">
-              {status === "loading" ? "Sending..." : "Get the Guide ✦"}
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="btn-gold btn-shop-glow inline-flex min-h-[2.75rem] items-center justify-center gap-2 whitespace-nowrap px-5 disabled:opacity-70"
+            >
+              {status === "loading" ? (
+                <>
+                  <Loader2 className="h-4 w-4 shrink-0 animate-spin" aria-hidden />
+                  <span>Sending…</span>
+                </>
+              ) : (
+                "Get the Guide ✦"
+              )}
             </button>
           </form>
-        ) : status === "error" ? (
-          <p className="text-sm text-red-400">Something went wrong. Please try again in a moment.</p>
         ) : (
           <p className="rounded-xl border border-halal-gold/30 bg-halal-gold/10 px-6 py-4 font-medium text-halal-gold">
-            ✦ You&apos;re in — check your inbox for the guide.
+            You&apos;re in! Check your inbox ✦
           </p>
         )}
+
+        {status === "error" && errorMessage && (
+          <p className="mt-4 text-sm text-red-400" role="alert">
+            {errorMessage}
+          </p>
+        )}
+
         <p className="mt-4 text-[0.65rem] text-halal-muted">
           No spam. Unsubscribe anytime. We respect your inbox like your values.
         </p>
@@ -104,7 +132,11 @@ export function NewsletterSection() {
                 >
                   Open PDF ↗
                 </a>
-                <Link href="/vault" className="btn-outline inline-flex justify-center text-[0.85rem]" onClick={() => setModalOpen(false)}>
+                <Link
+                  href="/vault"
+                  className="btn-outline inline-flex justify-center text-[0.85rem]"
+                  onClick={() => setModalOpen(false)}
+                >
                   Browse The Vault
                 </Link>
               </div>
