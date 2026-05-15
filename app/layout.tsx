@@ -4,6 +4,12 @@ import { FaqPageJsonLd } from "@/components/faq-page-json-ld";
 import { JsonLd } from "@/components/json-ld";
 import { Nav } from "@/components/nav";
 import { VaultBackground } from "@/components/vault-background";
+import {
+  SOCIAL_DESCRIPTION,
+  SOCIAL_TITLE,
+  socialOpenGraph,
+  socialTwitter,
+} from "@/lib/social-metadata";
 import "./globals.css";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
@@ -11,36 +17,18 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.halalstyles55.com"),
-  title: "HalalStyle — Halal Modest Fashion Canada | The Excellence Filter",
-  description:
-    "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families. Free style quiz. Ships via Amazon.ca.",
+  title: SOCIAL_TITLE,
+  description: SOCIAL_DESCRIPTION,
   keywords: [
     "halal fashion canada",
     "modest fashion canada",
-    "abaya canada",
-    "hijab canada",
-    "islamic clothing canada",
-    "modest fashion ontario",
-    "halal clothing",
-    "muslim fashion canada",
-    "halal fashion",
+    "modest luxury",
     "halal verified",
+    "muslim fashion canada",
+    "islamic lifestyle",
   ],
-  openGraph: {
-    title: "HalalStyle — Halal Modest Fashion Canada | The Excellence Filter",
-    description:
-      "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families. Free style quiz. Ships via Amazon.ca.",
-    url: "/",
-    siteName: "HalalStyle",
-    locale: "en_CA",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HalalStyle — Halal Modest Fashion Canada | The Excellence Filter",
-    description:
-      "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families.",
-  },
+  openGraph: { ...socialOpenGraph, url: "/" },
+  twitter: socialTwitter,
   robots: { index: true, follow: true },
   icons: {
     other: [

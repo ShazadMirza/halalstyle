@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { isValidEmail } from "@/lib/email";
 
 const BENEFITS = [
   {
@@ -34,10 +35,19 @@ export default function PartnersPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const [persistenceMode, setPersistenceMode] = useState<"database" | "email_only" | "demo" | null>(null);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+    if (!name.trim()) {
+      setError("Please enter your name.");
+      return;
+    }
+    if (!isValidEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
     setLoading(true);
     try {
       const res = await fetch("/api/partners", {
@@ -45,8 +55,13 @@ export default function PartnersPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, social_handle: socialHandle, email }),
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
+      const data = (await res.json()) as {
+        ok?: boolean;
+        error?: string;
+        persistence?: "database" | "email_only" | "demo";
+      };
       if (!res.ok) throw new Error(data.error || "Request failed");
+      setPersistenceMode(data.persistence ?? "demo");
       setDone(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
@@ -171,6 +186,19 @@ export default function PartnersPage() {
               Thank you, {name.split(" ")[0] || "friend"}. Our partnerships team will reply within a few business
               days with next steps and commission tiers.
             </p>
+            {persistenceMode === "demo" && (
+              <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-950/30 px-4 py-3 text-[0.78rem] leading-relaxed text-amber-200/90">
+                <strong className="text-amber-100">Demo mode:</strong> Supabase is not connected in this
+                environment. Deen can still see your application in server logs — connect{" "}
+                <code className="text-amber-100/80">NEXT_PUBLIC_SUPABASE_URL</code> and{" "}
+                <code className="text-amber-100/80">SUPABASE_SERVICE_ROLE_KEY</code> on Vercel for live storage.
+              </p>
+            )}
+            {persistenceMode === "email_only" && (
+              <p className="mt-4 rounded-lg border border-halal-gold/25 bg-halal-gold/10 px-4 py-3 text-[0.78rem] text-halal-gold/90">
+                Saved via email notification. Database sync will activate when Supabase is configured.
+              </p>
+            )}
             <Link href="/" className="btn-outline btn-shop-glow mt-8 inline-flex">
               ← Back to HalalStyle
             </Link>

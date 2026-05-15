@@ -19,18 +19,27 @@ export default function TwitterImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(155deg, #041a12 0%, #0A4D32 42%, #062C1D 100%)",
+          background: "radial-gradient(ellipse 90% 70% at 50% 28%, #0b5234 0%, #022c22 55%, #03160f 100%)",
+          position: "relative",
         }}
       >
         <div
           style={{
             position: "absolute",
-            right: 100,
-            bottom: 60,
-            width: 360,
-            height: 360,
+            inset: 0,
+            opacity: 0.1,
+            backgroundImage:
+              "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 1px, transparent 48px)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: 100,
+            width: 480,
+            height: 480,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(212,175,55,0.28) 0%, transparent 68%)",
+            background: "radial-gradient(circle, rgba(212,175,55,0.25) 0%, transparent 70%)",
           }}
         />
         <div
@@ -38,37 +47,34 @@ export default function TwitterImage() {
             fontSize: 86,
             fontWeight: 600,
             color: "#D4AF37",
-            letterSpacing: "0.1em",
-            fontFamily: "Georgia, 'Times New Roman', serif",
-            textShadow: "0 4px 24px rgba(0,0,0,0.35)",
+            letterSpacing: "0.08em",
+            fontFamily: "Georgia, serif",
           }}
         >
           HalalStyle
         </div>
         <div
           style={{
-            marginTop: 28,
-            fontSize: 26,
-            color: "rgba(255,248,240,0.9)",
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            fontFamily: "system-ui, sans-serif",
+            marginTop: 20,
+            fontSize: 32,
+            color: "rgba(255,248,240,0.92)",
+            fontFamily: "Georgia, serif",
+            fontStyle: "italic",
           }}
         >
-          The Excellence Filter
+          The Excellence Filter for Modest Fashion
         </div>
         <div
           style={{
             marginTop: 36,
-            fontSize: 24,
-            color: "rgba(255,248,240,0.72)",
+            fontSize: 22,
+            color: "rgba(255,248,240,0.68)",
             maxWidth: 880,
             textAlign: "center",
-            lineHeight: 1.45,
             fontFamily: "system-ui, sans-serif",
           }}
         >
-          Modest luxury · Halal-verified picks · Muslim families in Canada
+          Curated modest luxury · 100% Halal-verified
         </div>
       </div>
     ),

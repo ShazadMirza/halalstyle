@@ -53,7 +53,7 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
   const [showImage, setShowImage] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const effectivePriority = priority || cardIndex === 0;
+  const effectivePriority = priority || (cardIndex !== undefined && cardIndex < 3);
   const loading: "eager" | "lazy" | undefined =
     cardIndex !== undefined ? (cardIndex < 3 ? "eager" : "lazy") : priority ? "eager" : "lazy";
 

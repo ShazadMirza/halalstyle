@@ -23,6 +23,8 @@ export async function POST(req: Request) {
     // ── 1. Supabase (optional) ───────────────────────────────────────────────
     const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
     const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+    let persistence: "database" | "email_only" | "demo" = "demo";
+
     if (sbUrl && sbKey) {
       const res = await fetch(`${sbUrl}/rest/v1/partners`, {
         method: "POST",
@@ -38,6 +40,7 @@ export async function POST(req: Request) {
         const detail = await res.text();
         return NextResponse.json({ error: detail || "Could not save application." }, { status: 502 });
       }
+      persistence = "database";
     }
 
     // ── 2. Resend email notification ─────────────────────────────────────────
@@ -69,12 +72,13 @@ export async function POST(req: Request) {
       }).catch(() => { /* non-fatal */ });
     }
 
-    // ── 3. Console fallback ──────────────────────────────────────────────────
-    if (!sbUrl && !resendKey) {
-      console.log("[partners] application (no integrations configured):", { name, social_handle, email });
+    // ── 3. Console fallback (demo / local) ─────────────────────────────────────
+    if (!sbUrl || !sbKey) {
+      if (resendKey) persistence = "email_only";
+      console.log("[partners] demo mode — application logged for Deen:", { name, social_handle, email });
     }
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, persistence });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: message }, { status: 500 });

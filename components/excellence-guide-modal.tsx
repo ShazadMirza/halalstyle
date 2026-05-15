@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { isValidEmail } from "@/lib/email";
 
 const GUIDE_HEADLINE =
   "Download the 2026 Excellence Guide: The Definitive List for the Modern Muslim High-Achiever.";
@@ -20,14 +21,19 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.trim()) return;
+    const trimmed = email.trim();
+    if (!isValidEmail(trimmed)) {
+      setStatus("error");
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
     setStatus("loading");
     setErrorMessage(null);
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
+        body: JSON.stringify({ email: trimmed }),
       });
       const data = (await res.json()) as { success?: boolean; error?: string };
       if (!res.ok || data.error) {
@@ -83,12 +89,29 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
             </button>
 
             {status === "done" ? (
-              <>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ type: "spring", stiffness: 340, damping: 22 }}
+                className="text-center"
+                role="status"
+                aria-live="polite"
+              >
+                <motion.div
+                  initial={{ scale: 0, rotate: -20 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 420, damping: 14, delay: 0.05 }}
+                  className="excellence-success-badge mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border-2 border-halal-gold bg-halal-gold/20"
+                >
+                  <span className="text-3xl text-halal-gold" aria-hidden>
+                    ✦
+                  </span>
+                </motion.div>
                 <h3
                   id="excellence-guide-modal-title"
-                  className="font-brand pr-8 text-xl tracking-[0.06em] text-halal-cream"
+                  className="font-brand text-xl tracking-[0.06em] text-halal-gold"
                 >
-                  Welcome to the Excellence Circle
+                  You&apos;re in the Excellence Circle
                 </h3>
                 <p className="mt-3 text-[0.9rem] leading-relaxed text-halal-muted">
                   Your guide is ready. Open the PDF below or check your inbox for the same curated list.
@@ -96,6 +119,7 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
                   className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center"
                 >
                   <a
@@ -114,7 +138,7 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
                     Browse The Vault
                   </Link>
                 </motion.div>
-              </>
+              </motion.div>
             ) : (
               <>
                 <p className="section-eyebrow mb-3">Free Lead Magnet</p>
@@ -124,7 +148,7 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
                 >
                   {GUIDE_HEADLINE}
                 </h3>
-                <form method="post" onSubmit={(e) => void handleSubmit(e)} className="mt-6 space-y-3">
+                <form method="post" onSubmit={(e) => void handleSubmit(e)} className="mt-6 space-y-3" noValidate>
                   <input
                     type="email"
                     name="email"
@@ -132,10 +156,17 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
                     placeholder="your@email.com"
                     required
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="input-luxury"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (status === "error") {
+                        setStatus("idle");
+                        setErrorMessage(null);
+                      }
+                    }}
+                    className={`input-luxury ${status === "error" ? "border-red-400/50 focus:border-red-400/60" : ""}`}
                     disabled={status === "loading"}
                     aria-busy={status === "loading"}
+                    aria-invalid={status === "error"}
                   />
                   <button
                     type="submit"

@@ -7,30 +7,10 @@ import { NewsletterSection } from "@/components/newsletter-section";
 import { ProductCard } from "@/components/product-card";
 import { VAULT_ITEMS } from "@/lib/vault-items";
 import { vaultCategoryToSlug } from "@/lib/vault-category-seo";
+import { buildHomeMetadata } from "@/lib/social-metadata";
 import { absoluteUrl } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "HalalStyle — Halal Modest Fashion Canada | The Excellence Filter",
-  description:
-    "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families. Free style quiz. Ships via Amazon.ca.",
-  keywords: [
-    "halal fashion canada",
-    "modest fashion canada",
-    "abaya canada",
-    "hijab canada",
-    "islamic clothing canada",
-    "modest fashion ontario",
-    "halal clothing",
-    "muslim fashion canada",
-  ],
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: "HalalStyle — Halal Modest Fashion Canada | The Excellence Filter",
-    description:
-      "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families. Free style quiz. Ships via Amazon.ca.",
-    url: absoluteUrl("/"),
-  },
-};
+export const metadata: Metadata = buildHomeMetadata(absoluteUrl("/"));
 
 const CATEGORIES = [
   { label: "Fashion", icon: "✦", href: `/vault/${vaultCategoryToSlug("Fashion")}`, desc: "Abayas, dresses & modest wear" },
@@ -91,7 +71,7 @@ export default function HomePage() {
               <ProductCard
                 key={item.id}
                 item={item}
-                priority={i < 3}
+                priority
                 cardIndex={i}
               />
             ))}

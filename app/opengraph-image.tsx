@@ -8,6 +8,7 @@ export const size = { width: 1200, height: 630 };
 
 export const contentType = "image/png";
 
+/** Emerald / gold hero — matches live homepage vault aesthetic */
 export default function OpenGraphImage() {
   return new ImageResponse(
     (
@@ -19,57 +20,88 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(155deg, #041a12 0%, #0A4D32 42%, #062C1D 100%)",
+          background: "radial-gradient(ellipse 90% 70% at 50% 28%, #0b5234 0%, #022c22 55%, #03160f 100%)",
+          position: "relative",
         }}
       >
         <div
           style={{
             position: "absolute",
-            left: 80,
-            top: 80,
-            width: 400,
-            height: 400,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(212,175,55,0.35) 0%, transparent 70%)",
-            filter: "blur(2px)",
+            inset: 0,
+            opacity: 0.12,
+            backgroundImage:
+              "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 1px, transparent 48px), repeating-linear-gradient(-45deg, #D4AF37 0, #D4AF37 1px, transparent 1px, transparent 48px)",
           }}
         />
         <div
           style={{
-            fontSize: 86,
+            position: "absolute",
+            top: 120,
+            width: 520,
+            height: 520,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(212,175,55,0.22) 0%, transparent 68%)",
+          }}
+        />
+        <div
+          style={{
+            fontSize: 22,
+            color: "rgba(212,175,55,0.85)",
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            fontFamily: "system-ui, sans-serif",
+            marginBottom: 20,
+          }}
+        >
+          AI-Powered Modest Fashion
+        </div>
+        <div
+          style={{
+            fontSize: 88,
             fontWeight: 600,
             color: "#D4AF37",
-            letterSpacing: "0.1em",
+            letterSpacing: "0.08em",
             fontFamily: "Georgia, 'Times New Roman', serif",
-            textShadow: "0 4px 24px rgba(0,0,0,0.35)",
+            textShadow: "0 4px 32px rgba(0,0,0,0.4)",
           }}
         >
           HalalStyle
         </div>
         <div
           style={{
-            marginTop: 28,
-            fontSize: 26,
-            color: "rgba(255,248,240,0.9)",
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            fontFamily: "system-ui, sans-serif",
+            marginTop: 24,
+            fontSize: 34,
+            color: "rgba(255,248,240,0.95)",
+            letterSpacing: "0.06em",
+            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontStyle: "italic",
           }}
         >
           The Excellence Filter
         </div>
         <div
           style={{
-            marginTop: 36,
-            fontSize: 24,
-            color: "rgba(255,248,240,0.72)",
-            maxWidth: 880,
+            marginTop: 12,
+            fontSize: 28,
+            color: "rgba(255,248,240,0.88)",
+            letterSpacing: "0.04em",
+            fontFamily: "Georgia, 'Times New Roman', serif",
+          }}
+        >
+          for Modest Fashion
+        </div>
+        <div
+          style={{
+            marginTop: 40,
+            fontSize: 22,
+            color: "rgba(255,248,240,0.65)",
+            maxWidth: 900,
             textAlign: "center",
-            lineHeight: 1.45,
+            lineHeight: 1.5,
             fontFamily: "system-ui, sans-serif",
           }}
         >
-          Modest luxury · Halal-verified picks · Muslim families in Canada
+          Curated modest luxury · 100% Halal-verified · Canada
         </div>
       </div>
     ),
