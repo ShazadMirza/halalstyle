@@ -1,4 +1,14 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Quiz results",
+  description: "Your HalalStyle quiz selections — modest fashion preferences summary.",
+  robots: { index: false, follow: true },
+  alternates: { canonical: "/results" },
+  openGraph: { url: absoluteUrl("/results") },
+};
 
 type Props = {
   searchParams: Record<string, string | string[] | undefined>;

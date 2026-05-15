@@ -4,6 +4,16 @@
  * Wildcards follow Next.js rules: * = one label, ** = many subdomains.
  */
 const nextConfig = {
+  async redirects() {
+    return [
+      { source: "/vault", has: [{ type: "query", key: "cat", value: "Fashion" }], destination: "/vault/fashion", permanent: true },
+      { source: "/vault", has: [{ type: "query", key: "cat", value: "Hijabs" }], destination: "/vault/hijabs", permanent: true },
+      { source: "/vault", has: [{ type: "query", key: "cat", value: "Menswear" }], destination: "/vault/menswear", permanent: true },
+      { source: "/vault", has: [{ type: "query", key: "cat", value: "Home" }], destination: "/vault/home", permanent: true },
+      { source: "/vault", has: [{ type: "query", key: "cat", value: "Kids" }], destination: "/vault/kids", permanent: true },
+      { source: "/vault", has: [{ type: "query", key: "cat", value: "Gifts" }], destination: "/vault/gifts", permanent: true },
+    ];
+  },
   images: {
     remotePatterns: [
       /* Amazon product / CDN (CA + global storefronts + media + ssl-images) */

@@ -1,12 +1,34 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+import { VAULT_CATEGORY_SLUGS } from "@/lib/vault-category-seo";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://halalstyle.vercel.app";
-  const now  = new Date();
+  const lastModified = new Date();
+
+  const staticPaths: { path: string; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"]; priority: number }[] = [
+    { path: "", changeFrequency: "daily", priority: 1 },
+    { path: "/vault", changeFrequency: "weekly", priority: 0.9 },
+    { path: "/about", changeFrequency: "monthly", priority: 0.7 },
+    { path: "/partners", changeFrequency: "monthly", priority: 0.65 },
+    { path: "/how-we-earn", changeFrequency: "monthly", priority: 0.65 },
+    { path: "/results", changeFrequency: "weekly", priority: 0.4 },
+    { path: "/docs/excellence-guide-2026.pdf", changeFrequency: "yearly", priority: 0.35 },
+  ];
+
+  const vaultCategories = VAULT_CATEGORY_SLUGS.map((slug) => ({
+    url: `${SITE_URL}/vault/${slug}`,
+    lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
+  }));
+
   return [
-    { url: base,                  lastModified: now, changeFrequency: "weekly",  priority: 1.0 },
-    { url: `${base}/vault`,       lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${base}/about`,       lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${base}/partners`,    lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    ...staticPaths.map(({ path, changeFrequency, priority }) => ({
+      url: `${SITE_URL}${path}`,
+      lastModified,
+      changeFrequency,
+      priority,
+    })),
+    ...vaultCategories,
   ];
 }

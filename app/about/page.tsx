@@ -1,15 +1,18 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import { absoluteUrl } from "@/lib/site";
+
 export const metadata: Metadata = {
   title: "Our Story — HalalStyle",
   description:
     "Meet Deen Ali Mirza, the 14-year-old founder of HalalStyle — The Excellence Filter for Modest Fashion.",
+  alternates: { canonical: "/about" },
   openGraph: {
     title: "Our Story — HalalStyle | Built by Deen, Age 14",
     description:
       "The story behind The Excellence Filter. Built in Shelburne, Ontario to bring excellence and barakah to modest fashion.",
-    url: "https://halalstyle.vercel.app/about",
+    url: absoluteUrl("/about"),
     siteName: "HalalStyle",
     locale: "en_CA",
     type: "website",

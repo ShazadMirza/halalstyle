@@ -1,17 +1,25 @@
 import Link from "next/link";
-import { ProductCard } from "@/components/product-card";
-import { VAULT_ITEMS } from "@/lib/vault-items";
+import type { Metadata } from "next";
+import { HomeHero } from "@/components/home-hero";
 import { HalalStyleApp } from "@/components/halal-style-app";
 import { NewsletterSection } from "@/components/newsletter-section";
-import { HomeHero } from "@/components/home-hero";
+import { ProductCard } from "@/components/product-card";
+import { VAULT_ITEMS } from "@/lib/vault-items";
+import { vaultCategoryToSlug } from "@/lib/vault-category-seo";
+import { absoluteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: absoluteUrl("/") },
+};
 
 const CATEGORIES = [
-  { label: "Fashion",  icon: "✦", href: "/vault?cat=Fashion",  desc: "Abayas, dresses & modest wear" },
-  { label: "Hijabs",   icon: "◈", href: "/vault?cat=Hijabs",   desc: "Scarves, caps & accessories" },
-  { label: "Menswear", icon: "◇", href: "/vault?cat=Menswear", desc: "Thobes, kufis & essentials" },
-  { label: "Home",     icon: "⌂", href: "/vault?cat=Home",     desc: "Prayer rugs, décor & gifts" },
-  { label: "Gifts",    icon: "✧", href: "/vault?cat=Gifts",    desc: "Faith-forward tech, books & more" },
-];
+  { label: "Fashion", icon: "✦", href: `/vault/${vaultCategoryToSlug("Fashion")}`, desc: "Abayas, dresses & modest wear" },
+  { label: "Hijabs", icon: "◈", href: `/vault/${vaultCategoryToSlug("Hijabs")}`, desc: "Scarves, caps & accessories" },
+  { label: "Menswear", icon: "◇", href: `/vault/${vaultCategoryToSlug("Menswear")}`, desc: "Thobes, kufis & essentials" },
+  { label: "Home", icon: "⌂", href: `/vault/${vaultCategoryToSlug("Home")}`, desc: "Prayer rugs, décor & gifts" },
+  { label: "Gifts", icon: "✧", href: `/vault/${vaultCategoryToSlug("Gifts")}`, desc: "Faith-forward tech, books & more" },
+] as const;
 
 export default function HomePage() {
   const featured = VAULT_ITEMS.filter(i => i.badge === "Editor's Pick" || i.badge === "Bestseller").slice(0, 3);
@@ -88,14 +96,36 @@ export default function HomePage() {
 
       {/* ── FOOTER ───────────────────────────────────────── */}
       <footer className="border-t border-halal-border/30 bg-halal-forest/75 px-6 py-12 backdrop-blur-md">
-        <div className="mx-auto max-w-6xl flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between">
-          <div>
-            <p className="font-brand text-[1.1rem] text-halal-gold tracking-widest">HalalStyle</p>
-            <p className="text-[0.65rem] text-halal-muted mt-0.5">The Excellence Filter · Built by Deen Ali Mirza, age 14 · Shelburne, Ontario</p>
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 text-center">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[0.7rem] uppercase tracking-[0.14em] text-halal-muted">
+            <Link href="/how-we-earn" className="hover:text-halal-gold">
+              How we vet &amp; earn
+            </Link>
+            <Link href="/about" className="hover:text-halal-gold">
+              Our story
+            </Link>
+            <Link href="/partners" className="hover:text-halal-gold">
+              Partners
+            </Link>
+            <Link href="/vault" className="hover:text-halal-gold">
+              The Vault
+            </Link>
           </div>
-          <p className="text-[0.65rem] text-halal-muted">
-            © 2026 HalalStyle. Amazon affiliate links — we earn a small commission at no extra cost to you.
-          </p>
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-8 w-full">
+            <div>
+              <p className="font-brand text-[1.1rem] text-halal-gold tracking-widest">HalalStyle</p>
+              <p className="mt-0.5 text-[0.65rem] text-halal-muted">
+                The Excellence Filter · Built by Deen Ali Mirza, age 14 · Shelburne, Ontario
+              </p>
+            </div>
+            <p className="max-w-md text-[0.65rem] text-halal-muted">
+              © 2026 HalalStyle. Amazon affiliate links — we earn a small commission at no extra cost to you.{" "}
+              <Link href="/how-we-earn" className="text-halal-gold/90 underline-offset-2 hover:underline">
+                Read our disclosure
+              </Link>
+              .
+            </p>
+          </div>
         </div>
       </footer>
     </main>
