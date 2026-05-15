@@ -4,14 +4,14 @@ import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Our Story — HalalStyle",
+  title: "Our Story — HalalStyle | Halal Fashion Canada",
   description:
-    "Meet Deen Ali Mirza, the 14-year-old founder of HalalStyle — The Excellence Filter for Modest Fashion.",
+    "HalalStyle was built by Deen Ali Mirza, age 14, from Shelburne Ontario. The Excellence Filter for Canadian Muslim families seeking halal-verified modest fashion.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "Our Story — HalalStyle | Built by Deen, Age 14",
+    title: "Our Story — HalalStyle | Halal Fashion Canada",
     description:
-      "The story behind The Excellence Filter. Built in Shelburne, Ontario to bring excellence and barakah to modest fashion.",
+      "HalalStyle was built by Deen Ali Mirza, age 14, from Shelburne Ontario. The Excellence Filter for Canadian Muslim families seeking halal-verified modest fashion.",
     url: absoluteUrl("/about"),
     siteName: "HalalStyle",
     locale: "en_CA",

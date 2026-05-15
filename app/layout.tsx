@@ -10,12 +10,25 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.halalstyles55.com"),
-  title: { default: "HalalStyle — The Excellence Filter for Modest Fashion", template: "%s — HalalStyle" },
-  description: "AI-curated modest fashion for Muslim families in Canada. Take our style quiz and get 5 halal-verified picks in 60 seconds.",
-  keywords: ["halal fashion", "modest fashion canada", "islamic clothing", "abaya", "hijab", "halal verified"],
+  title: "HalalStyle — Halal Modest Fashion Canada | The Excellence Filter",
+  description:
+    "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families. Free style quiz. Ships via Amazon.ca.",
+  keywords: [
+    "halal fashion canada",
+    "modest fashion canada",
+    "abaya canada",
+    "hijab canada",
+    "islamic clothing canada",
+    "modest fashion ontario",
+    "halal clothing",
+    "muslim fashion canada",
+    "halal fashion",
+    "halal verified",
+  ],
   openGraph: {
-    title: "HalalStyle — The Excellence Filter for Modest Fashion",
-    description: "AI-powered halal modest fashion quiz. Get 5 personalised picks in 60 seconds.",
+    title: "HalalStyle — Halal Modest Fashion Canada | The Excellence Filter",
+    description:
+      "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families. Free style quiz. Ships via Amazon.ca.",
     url: "/",
     siteName: "HalalStyle",
     locale: "en_CA",
@@ -23,8 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "HalalStyle — The Excellence Filter for Modest Fashion",
-    description: "AI-curated modest fashion for Muslim families in Canada.",
+    title: "HalalStyle — Halal Modest Fashion Canada | The Excellence Filter",
+    description:
+      "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families.",
   },
   robots: { index: true, follow: true },
 };

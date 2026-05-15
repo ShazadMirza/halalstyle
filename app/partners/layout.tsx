@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Partners — Excellence Circle | HalalStyle",
+  title: "Partner With HalalStyle — Modest Fashion Brand Placement Canada",
   description:
-    "Join the HalalStyle Excellence Circle. 10–15% commissions, verified trust badge, and early vault drops for aligned Muslim creators and brands.",
+    "Reach thousands of Canadian Muslim shoppers. Apply to feature your modest fashion or Islamic lifestyle brand in the HalalStyle vault.",
   alternates: { canonical: "/partners" },
   openGraph: {
-    title: "HalalStyle Excellence Circle — Partner With Us",
+    title: "Partner With HalalStyle — Modest Fashion Brand Placement Canada",
     description:
-      "Affiliate and brand partnerships for modest fashion creators. Canada-focused, values-aligned.",
+      "Reach thousands of Canadian Muslim shoppers. Apply to feature your modest fashion or Islamic lifestyle brand in the HalalStyle vault.",
     url: absoluteUrl("/partners"),
     siteName: "HalalStyle",
     locale: "en_CA",

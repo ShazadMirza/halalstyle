@@ -20,7 +20,7 @@ export function generateMetadata({ params }: Props): Metadata {
     description: seo.description,
     alternates: { canonical: path },
     openGraph: {
-      title: `${seo.title} — HalalStyle`,
+      title: seo.title,
       description: seo.description,
       url: absoluteUrl(path),
     },

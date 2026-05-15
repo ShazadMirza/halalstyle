@@ -9,8 +9,26 @@ import { vaultCategoryToSlug } from "@/lib/vault-category-seo";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
+  title: "HalalStyle — Halal Modest Fashion Canada | The Excellence Filter",
+  description:
+    "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families. Free style quiz. Ships via Amazon.ca.",
+  keywords: [
+    "halal fashion canada",
+    "modest fashion canada",
+    "abaya canada",
+    "hijab canada",
+    "islamic clothing canada",
+    "modest fashion ontario",
+    "halal clothing",
+    "muslim fashion canada",
+  ],
   alternates: { canonical: "/" },
-  openGraph: { url: absoluteUrl("/") },
+  openGraph: {
+    title: "HalalStyle — Halal Modest Fashion Canada | The Excellence Filter",
+    description:
+      "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families. Free style quiz. Ships via Amazon.ca.",
+    url: absoluteUrl("/"),
+  },
 };
 
 const CATEGORIES = [

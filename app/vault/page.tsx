@@ -3,14 +3,14 @@ import { VaultClient } from "@/components/vault-client";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "The Vault",
+  title: "The Vault — Halal Modest Fashion Canada | HalalStyle",
   description:
-    "HalalStyle’s curated vault — modest fashion, hijabs, menswear, home, kids, and gifts vetted for quality and Islamic values. Shop Amazon.ca picks with confidence.",
+    "21+ halal-verified modest fashion picks for Canadian Muslim families. Abayas, hijabs, thobes, prayer rugs & Islamic gifts. Shop on Amazon.ca with confidence.",
   alternates: { canonical: "/vault" },
   openGraph: {
-    title: "The Vault — HalalStyle",
+    title: "The Vault — Halal Modest Fashion Canada | HalalStyle",
     description:
-      "Editor-vetted modest fashion and lifestyle picks for Muslim families in Canada.",
+      "21+ halal-verified modest fashion picks for Canadian Muslim families. Abayas, hijabs, thobes, prayer rugs & Islamic gifts. Shop on Amazon.ca with confidence.",
     url: absoluteUrl("/vault"),
   },
 };
