@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
+import { ExecutiveBundlesSection } from "@/components/executive-bundles-section";
 import { VaultClient } from "@/components/vault-client";
 import { absoluteUrl } from "@/lib/site";
 
@@ -25,6 +26,7 @@ export default function VaultPage() {
           { name: "The Vault", path: "/vault" },
         ]}
       />
+      <ExecutiveBundlesSection />
       <VaultClient
         title="The Vault"
         subtitle="Every item vetted for quality, modesty, and Islamic values. Zero compromise. Zero noise."

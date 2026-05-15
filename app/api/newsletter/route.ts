@@ -28,7 +28,8 @@ export async function POST(req: Request) {
       process.env.CONVERTKIT_NEWSLETTER_FORM_ID?.trim() || process.env.CONVERTKIT_FORM_ID?.trim();
 
     if (!apiKey || !formId) {
-      return NextResponse.json({ success: true });
+      console.log("[newsletter] lead captured (ConvertKit not configured):", { email, source: "excellence-guide" });
+      return NextResponse.json({ success: true, persistence: "demo" as const });
     }
 
     const subRes = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {

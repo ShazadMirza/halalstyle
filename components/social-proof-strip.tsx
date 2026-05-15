@@ -1,18 +1,21 @@
-const PARTNERS = ["Modanisa", "Saffron Road", "Ethical Finance Partners"] as const;
+const TRUST_BRANDS = ["Modanisa", "Saffron Road", "East Essentials"] as const;
+
+/** Duplicated for seamless CSS marquee loop */
+const MARQUEE_BRANDS = [...TRUST_BRANDS, ...TRUST_BRANDS, ...TRUST_BRANDS] as const;
 
 export function SocialProofStrip() {
   return (
     <section
-      className="border-b border-halal-border/25 bg-halal-forest/40 px-6 py-8 backdrop-blur-sm"
-      aria-label="Trusted by the Circle"
+      className="relative overflow-hidden border-b border-halal-border/20 bg-halal-forest/30 py-6 backdrop-blur-sm"
+      aria-label="Trusted partners"
     >
-      <div className="mx-auto max-w-4xl text-center">
-        <p className="section-eyebrow mb-5">Trusted by the Circle</p>
-        <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {PARTNERS.map((name) => (
+      <p className="section-eyebrow mb-4 text-center">Trusted by the Circle</p>
+      <div className="trust-marquee-mask">
+        <ul className="trust-marquee-track flex items-center gap-16 whitespace-nowrap px-6">
+          {MARQUEE_BRANDS.map((name, i) => (
             <li
-              key={name}
-              className="font-brand text-[clamp(0.95rem,2.5vw,1.25rem)] tracking-[0.12em] text-halal-cream opacity-40 grayscale"
+              key={`${name}-${i}`}
+              className="font-brand shrink-0 text-[clamp(0.9rem,2.2vw,1.15rem)] tracking-[0.14em] text-halal-cream opacity-30 grayscale"
             >
               {name}
             </li>

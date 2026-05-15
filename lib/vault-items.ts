@@ -392,6 +392,24 @@ const VAULT_ITEMS_RAW: Omit<VaultItem, "imageAlt">[] = [
     rating: 4.9,
   },
   {
+    id: "v22",
+    title: "Minimalist Laptop Sleeve — Vegan Leather",
+    brand: "NoorTech",
+    category: "Gifts",
+    occasion: ["Work", "Everyday"],
+    priceCAD: 42,
+    priceRange: "$38–$48 CAD",
+    description:
+      "Slim 13–15\" sleeve in matte vegan leather with magnetic closure. Fits boardroom and coffee-shop commutes.",
+    whyHalal: "Modest professional accessory; no inappropriate branding, ethical material choice",
+    imageKeyword: "laptop+sleeve+minimal",
+    imageUrl:
+      "https://images.unsplash.com/photo-1525547719571-a2d4ac7d6f2f?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=minimalist+laptop+sleeve+vegan+leather&tag=halalstyle50d-20",
+    badge: "New",
+    rating: 4.6,
+  },
+  {
     id: "v21",
     title: "Ramadan Countdown Lantern Set",
     brand: "NoorTech",

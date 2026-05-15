@@ -111,10 +111,13 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
                   id="excellence-guide-modal-title"
                   className="font-brand text-xl tracking-[0.06em] text-halal-gold"
                 >
-                  You&apos;re in the Excellence Circle
+                  Excellent.
                 </h3>
-                <p className="mt-3 text-[0.9rem] leading-relaxed text-halal-muted">
-                  Your guide is ready. Open the PDF below or check your inbox for the same curated list.
+                <p className="mt-3 text-[0.95rem] leading-relaxed text-halal-cream">
+                  Check your inbox for your 2026 Guide.
+                </p>
+                <p className="mt-2 text-[0.8rem] text-halal-muted">
+                  Instant access while you wait — download the PDF or explore The Vault.
                 </p>
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
@@ -126,16 +129,16 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
                     href="/docs/excellence-guide-2026.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-gold btn-shop-glow inline-flex justify-center text-[0.85rem]"
+                    className="btn-outline inline-flex justify-center text-[0.85rem]"
                   >
                     Download PDF ↗
                   </a>
                   <Link
                     href="/vault"
-                    className="btn-outline inline-flex justify-center text-[0.85rem]"
+                    className="btn-gold btn-shop-glow inline-flex justify-center text-[0.85rem]"
                     onClick={handleClose}
                   >
-                    Browse The Vault
+                    Shop Executive Bundles
                   </Link>
                 </motion.div>
               </motion.div>
