@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 /**
- * Sprint 4/5 — Image remote allowlist (Next/Image + Amazon + stock CDNs).
+ * Sprint 4 — Image remote allowlist (Next/Image + Amazon + stock CDNs).
  * Wildcards: `*` = one DNS label, `**` = many subdomains (Next.js rules).
  */
 const nextConfig = {
@@ -49,4 +49,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
