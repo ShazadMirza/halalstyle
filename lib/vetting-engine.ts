@@ -9,13 +9,33 @@ const ASIN_PATTERN = /^B[0-9A-Z]{9}$/i;
 
 /** Suspicious product-name signals — require human review, never auto-"verified" off name alone. */
 const NAME_REVIEW_TRIGGERS = [
-  /alcohol/i,
-  /wine\b/i,
-  /pork/i,
-  /bacon/i,
-  /bikini/i,
-  /lingerie/i,
-  /swim\s*brief/i,
+  // Alcohol & intoxicants
+  /\balcohol\b/i,
+  /\bwine\b/i,
+  /\bbeer\b/i,
+  /\bliquor\b/i,
+  /\bwhiskey\b/i,
+  /\bwhisky\b/i,
+  /\bvodka\b/i,
+  /\brum\b/i,
+  // Non-halal animal products
+  /\bpork\b/i,
+  /\bbacon\b/i,
+  /\bham\b/i,
+  /\bprosciutto\b/i,
+  /\blard\b/i,
+  /\bpepperoni\b/i,
+  /\bgelatin\b/i,
+  // Immodest apparel
+  /\bbikini\b/i,
+  /\blingerie\b/i,
+  /\bswim\s*brief/i,
+  /\bthong\b/i,
+  /\bbralette\b/i,
+  // Gambling / prohibited entertainment
+  /\bcasino\b/i,
+  /\bgambling\b/i,
+  /\blottery\b/i,
 ];
 
 export type HalalStatus = "verified" | "review" | "unknown";
@@ -43,23 +63,31 @@ function findVaultByAsin(asin: string): VaultItem | undefined {
 
 function findVaultByName(name: string): VaultItem | undefined {
   const n = normalize(name);
-  if (n.length < 4) return undefined;
+  if (n.length < 6) return undefined;
 
+  // 1. Exact match
   const exact = VAULT_ITEMS.find((i) => normalize(i.title) === n);
   if (exact) return exact;
 
+  // 2. One string fully contains the other (strong signal)
   const contains = VAULT_ITEMS.find((i) => {
     const t = normalize(i.title);
-    return t.includes(n.slice(0, 16)) || n.includes(t.slice(0, 16));
+    return (t.length > 10 && n.includes(t)) || (n.length > 10 && t.includes(n));
   });
   if (contains) return contains;
 
-  const tokenHit = VAULT_ITEMS.find((i) => {
+  // 3. Multi-token overlap — require ≥2 meaningful tokens to match (≥5 chars each)
+  //    to prevent single-word false positives ("gold", "modest", "wrap", etc.)
+  const queryTokens = n.split(/\s+/).filter((w) => w.length >= 5);
+  if (queryTokens.length === 0) return undefined;
+
+  const multiTokenHit = VAULT_ITEMS.find((i) => {
     const t = normalize(i.title);
-    const words = n.split(/\s+/).filter((w) => w.length > 3);
-    return words.some((w) => t.includes(w));
+    const hits = queryTokens.filter((w) => t.includes(w));
+    // Need at least 2 token hits, or 1 hit if the matched token is long (≥8 chars = highly specific)
+    return hits.length >= 2 || hits.some((w) => w.length >= 8);
   });
-  return tokenHit;
+  return multiTokenHit;
 }
 
 /** Map editorial rating + badge to 1–10 Excellence score (quiz / vault alignment). */

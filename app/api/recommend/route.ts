@@ -6,6 +6,28 @@ const AFFILIATE_TAG = "halalstyle50d-20";
 
 type AnthropicContent = { type: string; text?: string };
 
+type RecommendItem = {
+  title: string;
+  description: string;
+  why_halal: string;
+  price_range: string;
+  buy_link: string;
+  image_url: string;
+};
+
+function isValidItem(x: unknown): x is RecommendItem {
+  if (!x || typeof x !== "object") return false;
+  const o = x as Record<string, unknown>;
+  return (
+    typeof o.title === "string" &&
+    typeof o.description === "string" &&
+    typeof o.why_halal === "string" &&
+    typeof o.price_range === "string" &&
+    typeof o.buy_link === "string" &&
+    typeof o.image_url === "string"
+  );
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -59,7 +81,15 @@ export async function POST(req: Request) {
     }
 
     const cleaned = raw.replace(/```json/gi, "").replace(/```/g, "").trim();
-    const items = JSON.parse(cleaned) as unknown;
+    const parsed = JSON.parse(cleaned) as unknown;
+
+    if (!Array.isArray(parsed)) {
+      return NextResponse.json({ error: "Model returned non-array response" }, { status: 502 });
+    }
+    const items = parsed.filter(isValidItem);
+    if (items.length === 0) {
+      return NextResponse.json({ error: "Model returned no valid items" }, { status: 502 });
+    }
 
     return NextResponse.json({ items });
   } catch (err) {

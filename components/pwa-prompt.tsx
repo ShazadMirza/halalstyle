@@ -1,8 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, Share2, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+}
 
 /** Timestamp (ms) when user dismissed — prompt may show again after 7 days */
 const DISMISS_AT_KEY = "halalstyle-pwa-prompt-dismissed-at";
@@ -48,8 +53,16 @@ function isAndroid(): boolean {
 
 export function PwaPrompt() {
   const [visible, setVisible] = useState(false);
+  const deferredPrompt = useRef<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
+    // Capture Android native install prompt — must be registered early
+    const handleBeforeInstall = (e: Event) => {
+      e.preventDefault();
+      deferredPrompt.current = e as BeforeInstallPromptEvent;
+    };
+    window.addEventListener("beforeinstallprompt", handleBeforeInstall);
+
     if (!isMobileDevice() || isStandalonePwa()) return;
     if (!shouldShowPrompt()) return;
 
@@ -57,7 +70,10 @@ export function PwaPrompt() {
       setVisible(true);
     }, SHOW_DELAY_MS);
 
-    return () => window.clearTimeout(timer);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("beforeinstallprompt", handleBeforeInstall);
+    };
   }, []);
 
   function dismiss() {
@@ -69,8 +85,17 @@ export function PwaPrompt() {
     }
   }
 
+  async function handleAndroidInstall() {
+    if (!deferredPrompt.current) return;
+    await deferredPrompt.current.prompt();
+    const { outcome } = await deferredPrompt.current.userChoice;
+    deferredPrompt.current = null;
+    if (outcome === "accepted") dismiss();
+  }
+
   const showIos = isIos();
   const showAndroid = isAndroid() && !showIos;
+  const canNativeInstall = showAndroid && typeof window !== "undefined";
 
   return (
     <AnimatePresence>
@@ -115,15 +140,28 @@ export function PwaPrompt() {
             )}
 
             {showAndroid && (
-              <p className="mt-2 flex items-start gap-2 text-[0.72rem] leading-relaxed text-halal-muted">
-                <Menu className="mt-0.5 h-3.5 w-3.5 shrink-0 text-halal-gold" aria-hidden />
-                <span>
-                  <strong className="text-halal-gold/90">Android:</strong> Tap the{" "}
-                  <strong className="text-halal-cream/90">⋮ menu</strong> in Chrome, then{" "}
-                  <strong className="text-halal-cream/90">Add to Home screen</strong> or{" "}
-                  <strong className="text-halal-cream/90">Install app</strong>.
-                </span>
-              </p>
+              <div className="mt-2">
+                {canNativeInstall && deferredPrompt.current ? (
+                  <button
+                    type="button"
+                    onClick={handleAndroidInstall}
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-halal-gold px-4 py-2.5 font-brand text-[0.78rem] font-semibold tracking-[0.12em] text-halal-forest shadow-gold transition hover:brightness-105 active:scale-[0.98]"
+                  >
+                    <Menu className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                    Add to Home Screen
+                  </button>
+                ) : (
+                  <p className="flex items-start gap-2 text-[0.72rem] leading-relaxed text-halal-muted">
+                    <Menu className="mt-0.5 h-3.5 w-3.5 shrink-0 text-halal-gold" aria-hidden />
+                    <span>
+                      <strong className="text-halal-gold/90">Android:</strong> Tap the{" "}
+                      <strong className="text-halal-cream/90">⋮ menu</strong> in Chrome, then{" "}
+                      <strong className="text-halal-cream/90">Add to Home screen</strong> or{" "}
+                      <strong className="text-halal-cream/90">Install app</strong>.
+                    </span>
+                  </p>
+                )}
+              </div>
             )}
 
             {!showIos && !showAndroid && (
