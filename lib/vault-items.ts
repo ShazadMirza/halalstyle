@@ -13,6 +13,8 @@ export interface VaultItem {
   whyHalal: string;
   imageKeyword: string;
   imageUrl: string;
+  /** Amazon Standard Identification Number — auto-resolves high-res CDN when `imageUrl` is empty */
+  asin?: string;
   /** SEO / a11y — pattern: "[product name] — halal modest fashion canada" */
   imageAlt: string;
   affiliateUrl: string;

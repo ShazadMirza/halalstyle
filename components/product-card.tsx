@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { getVaultItemImageCandidates } from "@/lib/amazon-utils";
 import { trackAffiliateShopNow } from "@/lib/analytics-events";
 import { isAmazonImageUrl } from "@/lib/image-url";
 import type { VaultItem } from "@/lib/vault-items";
@@ -15,32 +16,20 @@ const BADGE_STYLES: Record<string, string> = {
   "Bestseller": "bg-halal-gold/12 text-halal-gold border-halal-gold/35",
 };
 
-function EmeraldImageShimmer() {
-  return (
-    <div
-      className="absolute inset-0 z-0 bg-gradient-to-br from-[#022c22] via-[#064e3b] to-[#D4AF37]/35"
-      aria-hidden
-    />
-  );
-}
-
-function ImageFallback({
-  shopUrl,
-  onShopClick,
-}: {
-  shopUrl: string;
-  onShopClick: () => void;
-}) {
+function EmeraldPlaceholder({ shopUrl, onShopClick }: { shopUrl: string; onShopClick: () => void }) {
   return (
     <Link
       href={shopUrl}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener noreferrer sponsored"
       onClick={onShopClick}
-      className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#022c22] via-[#064e3b] to-[#D4AF37]/40 px-4 text-center transition hover:to-[#D4AF37]/55"
+      className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#022c22] via-[#064e3b] to-[#D4AF37]/40 px-4 text-center transition hover:to-[#D4AF37]/55"
     >
+      <span className="font-brand text-3xl text-halal-gold/50" aria-hidden>
+        ✦
+      </span>
       <span className="font-brand text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-halal-cream">
-        Image unavailable
+        Excellence Filter
       </span>
       <span className="rounded-full bg-halal-gold px-4 py-2 font-sans text-[0.8rem] font-semibold text-halal-forest shadow-gold">
         Shop on Amazon →
@@ -49,24 +38,41 @@ function ImageFallback({
   );
 }
 
+function LoadingExcellenceShimmer() {
+  return (
+    <div
+      className="absolute inset-0 z-[2] flex flex-col items-center justify-center gap-3"
+      role="status"
+      aria-live="polite"
+      aria-label="Loading product image"
+    >
+      <div className="gold-image-shimmer absolute inset-0" aria-hidden />
+      <span className="relative font-brand text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-halal-gold animate-pulse">
+        Loading Excellence…
+      </span>
+    </div>
+  );
+}
+
 export type ProductCardProps = {
   item: VaultItem;
-  /** LCP: parent can mark above-the-fold rows (e.g. home featured) */
   priority?: boolean;
-  /** Grid index: first card gets `priority`; first three get `loading="eager"` */
   cardIndex?: number;
 };
 
 export function ProductCard({ item, priority = false, cardIndex }: ProductCardProps) {
   const stars = "★".repeat(Math.round(item.rating)) + "☆".repeat(5 - Math.round(item.rating));
-  const [showImage, setShowImage] = useState(true);
+  const candidates = useMemo(() => getVaultItemImageCandidates(item), [item]);
+  const [candidateIndex, setCandidateIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  const currentSrc = candidates[candidateIndex] ?? null;
 
   const effectivePriority = priority || (cardIndex !== undefined && cardIndex < 3);
   const loading: "eager" | "lazy" | undefined =
     cardIndex !== undefined ? (cardIndex < 3 ? "eager" : "lazy") : priority ? "eager" : "lazy";
 
-  const useUnoptimizedImage = isAmazonImageUrl(item.imageUrl);
+  const useUnoptimizedImage = currentSrc ? isAmazonImageUrl(currentSrc) : Boolean(item.asin?.trim());
 
   function handleShopNowClick() {
     trackAffiliateShopNow({
@@ -76,6 +82,17 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
       priceCAD: item.priceCAD,
     });
   }
+
+  function handleImageError() {
+    setImageLoaded(false);
+    if (candidateIndex < candidates.length - 1) {
+      setCandidateIndex((i) => i + 1);
+    } else {
+      setCandidateIndex(candidates.length);
+    }
+  }
+
+  const displayImage = currentSrc && candidateIndex < candidates.length;
 
   return (
     <motion.article
@@ -90,29 +107,32 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
       }}
       className="group flex flex-col overflow-hidden rounded-2xl border border-halal-gold/20 bg-gradient-to-br from-halal-surface/78 via-halal-forest-2/74 to-halal-surface/78 shadow-card backdrop-blur-[8px] transition-[border-color,box-shadow] duration-500 ease-luxury hover:border-halal-gold/60"
     >
-      <motion.div className="relative aspect-[4/3] overflow-hidden bg-halal-surface">
-        {showImage && !imageLoaded && (
-          <div className="gold-image-shimmer absolute inset-0 z-[1]" aria-hidden />
-        )}
-        {!showImage && <EmeraldImageShimmer />}
-        {showImage ? (
-          <Image
-            src={item.imageUrl}
-            alt={item.imageAlt}
-            fill
-            priority={effectivePriority}
-            unoptimized={useUnoptimizedImage}
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className={`object-cover transition-all duration-700 ease-luxury group-hover:scale-105 ${
-              imageLoaded ? "opacity-100" : "opacity-0"
-            }`}
-            loading={loading}
-            onLoad={() => setImageLoaded(true)}
-            onError={() => setShowImage(false)}
-          />
+      <div className="relative aspect-[4/3] overflow-hidden bg-halal-surface">
+        {!displayImage && <div className="vault-card-image-fallback absolute inset-0 z-0" aria-hidden />}
+
+        {displayImage ? (
+          <>
+            {!imageLoaded && <LoadingExcellenceShimmer />}
+            <Image
+              key={currentSrc}
+              src={currentSrc}
+              alt={item.imageAlt}
+              fill
+              priority={effectivePriority}
+              unoptimized={useUnoptimizedImage}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className={`object-cover transition-all duration-700 ease-luxury group-hover:scale-105 ${
+                imageLoaded ? "opacity-100" : "opacity-0"
+              }`}
+              loading={loading}
+              onLoad={() => setImageLoaded(true)}
+              onError={handleImageError}
+            />
+          </>
         ) : (
-          <ImageFallback shopUrl={item.affiliateUrl} onShopClick={handleShopNowClick} />
+          <EmeraldPlaceholder shopUrl={item.affiliateUrl} onShopClick={handleShopNowClick} />
         )}
+
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-halal-forest/60 via-transparent to-transparent" />
         {item.badge && (
           <span
@@ -122,7 +142,7 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
           </span>
         )}
         <span className="badge-halal absolute bottom-3 right-3 z-[5] text-[0.55rem]">✦ Halal Verified</span>
-      </motion.div>
+      </div>
 
       <div className="flex flex-1 flex-col p-5">
         <p className="mb-1 text-[0.6rem] uppercase tracking-[0.15em] text-halal-gold/60">{item.brand}</p>
