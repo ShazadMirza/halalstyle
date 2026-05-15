@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import { JsonLd } from "@/components/json-ld";
 import { Nav } from "@/components/nav";
+import { VaultBackground } from "@/components/vault-background";
 import "./globals.css";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className="scroll-smooth">
       <body className={`${dmSans.variable} ${playfair.variable} font-sans antialiased`}>
         <JsonLd />
-        <div className="mosaic-overlay islamic-mosaic-overlay" aria-hidden />
+        <VaultBackground />
         <div className="relative z-10 min-h-dvh">
           <Nav />
           {children}

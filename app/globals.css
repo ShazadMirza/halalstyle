@@ -9,17 +9,18 @@
     --muted: 150 18% 58%;
     --border: 158 40% 22%;
     --ring: 43 65% 52%;
+    --emerald-deep: #022c22; /* vault base */
+    --gold-leaf: #d4af37; /* subtle highlights */
   }
 
   html {
     scroll-behavior: smooth;
   }
 
-  /* Sprint 5 — Emerald field (radial fixed) + mosaic on separate fixed layer */
+  /* Solid base matches fixed vault (avoids flash under .vault-bg-container) */
   body {
     @apply min-h-dvh text-halal-cream antialiased;
-    background-color: #062c1d;
-    background: radial-gradient(circle at top, #0a4d32 0%, #062c1d 100%) fixed;
+    background-color: var(--emerald-deep);
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 
@@ -31,30 +32,75 @@
     width: 4px;
   }
   ::-webkit-scrollbar-track {
-    background: #062c1d;
+    background: var(--emerald-deep);
   }
   ::-webkit-scrollbar-thumb {
-    background: #d4af37;
+    background: var(--gold-leaf);
     border-radius: 2px;
   }
 }
 
 @layer components {
-  /* Girih / arabesque — fixed viewport; SVG tile is high-fidelity strapwork + swishes */
-  .mosaic-overlay,
-  .islamic-mosaic-overlay {
+  /* Fixed vault stack — pattern + atmosphere; never scrolls with document */
+  .vault-bg-wrap {
     position: fixed;
     inset: 0;
-    z-index: 1;
+    z-index: 0;
+    width: 100vw;
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
     pointer-events: none;
+    overflow: hidden;
+    background-color: var(--emerald-deep);
+  }
+
+  .vault-bg-girih {
+    position: absolute;
+    inset: -6%;
     background-color: transparent;
     background-image: url("/mosaic-pattern.svg");
     background-repeat: repeat;
-    background-size: 400px 400px;
-    background-attachment: fixed;
-    background-position: center top;
-    opacity: 0.072;
-    mix-blend-mode: screen;
+    background-size: min(520px, 92vw) min(520px, 92vw);
+    background-position: center center;
+    opacity: 0.22;
+    mix-blend-mode: soft-light;
+  }
+
+  /* Center spotlight + edge falloff (vault focus); gold trace only in core brand hue */
+  .vault-bg-atmosphere {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 55% 48% at 50% 32%, rgba(212, 175, 55, 0.055) 0%, transparent 62%),
+      radial-gradient(ellipse 90% 78% at 50% 38%, rgba(10, 100, 65, 0.38) 0%, rgba(2, 44, 34, 0.12) 48%, rgba(1, 18, 14, 0.92) 100%);
+  }
+
+  @keyframes vault-card-shimmer {
+    0%,
+    100% {
+      background-position: 0% 50%;
+      opacity: 0.92;
+    }
+    50% {
+      background-position: 100% 50%;
+      opacity: 1;
+    }
+  }
+
+  .vault-card-image-fallback {
+    background: linear-gradient(
+      118deg,
+      #022c22 0%,
+      #064e3b 22%,
+      #0a3d28 50%,
+      #064e3b 78%,
+      #022c22 100%
+    );
+    background-size: 220% 220%;
+    animation: vault-card-shimmer 7s ease-in-out infinite;
   }
 
   .btn-gold {

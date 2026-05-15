@@ -8,10 +8,14 @@ import type { VaultItem } from "@/lib/vault-items";
 
 const BADGE_STYLES: Record<string, string> = {
   "Editor's Pick": "bg-halal-gold/15 text-halal-gold border-halal-gold/30",
-  "Best Value": "bg-emerald-900/40 text-emerald-300 border-emerald-700/40",
+  "Best Value": "bg-halal-forest-2/70 text-halal-gold/90 border-halal-gold/25",
   "New": "bg-halal-forest-2/80 text-halal-cream/80 border-halal-border/40",
-  "Bestseller": "bg-amber-900/30 text-amber-300 border-amber-700/30",
+  "Bestseller": "bg-halal-gold/12 text-halal-gold border-halal-gold/35",
 };
+
+function EmeraldImageShimmer() {
+  return <div className="vault-card-image-fallback absolute inset-0 z-0" aria-hidden />;
+}
 
 function ImageFallback({ shopUrl }: { shopUrl: string }) {
   return (
@@ -19,12 +23,12 @@ function ImageFallback({ shopUrl }: { shopUrl: string }) {
       href={shopUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#D4AF37]/40 via-[#062C1D] to-[#0A3D28] px-4 text-center transition hover:from-[#D4AF37]/50"
+      className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-halal-gold/20 via-halal-forest-2/92 to-halal-surface/95 px-4 text-center backdrop-blur-[2px] transition hover:from-halal-gold/30"
     >
       <span className="font-brand text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-halal-cream">
         Image unavailable
       </span>
-      <span className="rounded-full bg-halal-gold/90 px-4 py-2 font-sans text-[0.8rem] font-semibold text-halal-forest shadow-gold">
+      <span className="rounded-full bg-halal-gold px-4 py-2 font-sans text-[0.8rem] font-semibold text-halal-forest shadow-gold">
         Shop on Amazon →
       </span>
     </Link>
@@ -48,12 +52,14 @@ export function ProductCard({ item, priority = false }: ProductCardProps) {
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
       whileHover={{
-        scale: 1.04,
-        boxShadow: "0 0 30px rgba(212,175,55,0.5), 0 20px 50px -12px rgba(0,0,0,0.45)",
+        scale: 1.03,
+        boxShadow:
+          "0 0 32px rgba(212,175,55,0.42), 0 20px 50px -12px rgba(0,0,0,0.45), inset 0 1px 0 rgba(212,175,55,0.12)",
       }}
-      className="group flex flex-col overflow-hidden rounded-2xl border-[0.5px] border-gold/30 bg-card-gradient shadow-card transition-colors duration-500 ease-luxury hover:border-gold/80"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-halal-gold/20 bg-gradient-to-br from-halal-surface/78 via-halal-forest-2/74 to-halal-surface/78 shadow-card backdrop-blur-[8px] transition-[border-color,box-shadow] duration-500 ease-luxury hover:border-halal-gold/60"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-halal-surface">
+        {!showImage && <EmeraldImageShimmer />}
         {showImage ? (
           <Image
             src={item.imageUrl}
@@ -86,15 +92,15 @@ export function ProductCard({ item, priority = false }: ProductCardProps) {
         <p className="mb-3 line-clamp-2 flex-1 text-[0.78rem] leading-relaxed text-halal-muted">
           {item.description}
         </p>
-        <p className="mb-4 rounded-lg bg-halal-forest-2/60 px-3 py-2 text-[0.7rem] leading-relaxed text-halal-cream/60">
+        <p className="mb-4 rounded-lg border border-halal-border/25 bg-halal-forest-2/50 px-3 py-2 text-[0.7rem] leading-relaxed text-halal-cream/60">
           🌿 {item.whyHalal}
         </p>
-        <div className="flex items-center justify-between border-t border-halal-border/30 pt-3">
+        <div className="flex items-center justify-between border-t border-halal-border/35 pt-3">
           <div>
             <span className="font-brand text-[1.1rem] font-medium tracking-[0.06em] text-halal-gold">
               {item.priceRange}
             </span>
-            <p className="mt-0.5 text-[0.65rem] text-amber-400/70">
+            <p className="mt-0.5 text-[0.65rem] text-halal-gold/65">
               {stars} ({item.rating})
             </p>
           </div>
