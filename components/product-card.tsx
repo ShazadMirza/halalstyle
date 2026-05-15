@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { trackAffiliateShopNow } from "@/lib/analytics-events";
 import type { VaultItem } from "@/lib/vault-items";
 
 const BADGE_STYLES: Record<string, string> = {
@@ -22,12 +23,19 @@ function EmeraldImageShimmer() {
   );
 }
 
-function ImageFallback({ shopUrl }: { shopUrl: string }) {
+function ImageFallback({
+  shopUrl,
+  onShopClick,
+}: {
+  shopUrl: string;
+  onShopClick: () => void;
+}) {
   return (
     <Link
       href={shopUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={onShopClick}
       className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#022c22] via-[#064e3b] to-[#D4AF37]/40 px-4 text-center transition hover:to-[#D4AF37]/55"
     >
       <span className="font-brand text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-halal-cream">
@@ -56,6 +64,15 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
   const effectivePriority = priority || (cardIndex !== undefined && cardIndex < 3);
   const loading: "eager" | "lazy" | undefined =
     cardIndex !== undefined ? (cardIndex < 3 ? "eager" : "lazy") : priority ? "eager" : "lazy";
+
+  function handleShopNowClick() {
+    trackAffiliateShopNow({
+      productId: item.id,
+      productTitle: item.title,
+      category: item.category,
+      priceCAD: item.priceCAD,
+    });
+  }
 
   return (
     <motion.article
@@ -90,7 +107,7 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
             onError={() => setShowImage(false)}
           />
         ) : (
-          <ImageFallback shopUrl={item.affiliateUrl} />
+          <ImageFallback shopUrl={item.affiliateUrl} onShopClick={handleShopNowClick} />
         )}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-halal-forest/60 via-transparent to-transparent" />
         {item.badge && (
@@ -124,7 +141,8 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
           <a
             href={item.affiliateUrl}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer sponsored"
+            onClick={handleShopNowClick}
             className="btn-gold btn-shop-glow px-4 py-2 font-brand text-[0.72rem] font-medium capitalize tracking-[0.2em]"
           >
             Shop Now →

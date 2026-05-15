@@ -1,15 +1,21 @@
 import type { MetadataRoute } from "next";
 
+const SITE = "https://www.halalstyles55.com";
+
+/**
+ * Crawl policy: index editorial (/journal) and commerce hubs (/vault);
+ * block API and internal-only routes.
+ */
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
-        allow: "/",
-        disallow: ["/api/", "/results"],
+        allow: ["/", "/journal", "/journal/", "/vault", "/vault/"],
+        disallow: ["/api", "/api/", "/results"],
       },
     ],
-    sitemap: "https://www.halalstyles55.com/sitemap.xml",
-    host: "https://www.halalstyles55.com",
+    sitemap: `${SITE}/sitemap.xml`,
+    host: SITE,
   };
 }

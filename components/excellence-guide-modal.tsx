@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { trackGuideDownload } from "@/lib/analytics-events";
 import { isValidEmail } from "@/lib/email";
 
 const GUIDE_HEADLINE =
@@ -42,6 +43,7 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
         return;
       }
       setStatus("done");
+      trackGuideDownload("modal_success");
     } catch {
       setStatus("error");
       setErrorMessage("Something went wrong. Please try again.");
@@ -129,6 +131,7 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
                     href="/docs/excellence-guide-2026.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackGuideDownload("pdf_download")}
                     className="btn-outline inline-flex justify-center text-[0.85rem]"
                   >
                     Download PDF ↗

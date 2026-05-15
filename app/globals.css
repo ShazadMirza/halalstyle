@@ -228,8 +228,15 @@
   }
 
   .gold-toast {
-    @apply fixed bottom-28 left-1/2 z-[110] -translate-x-1/2 rounded-full border border-halal-gold/50
+    @apply fixed bottom-28 left-1/2 z-[50] -translate-x-1/2 rounded-full border border-halal-gold/50
            bg-halal-forest/95 px-6 py-3 text-halal-gold shadow-gold backdrop-blur-md;
+  }
+
+  /* Below nav (z-60); above page content */
+  @media (max-width: 767px) {
+    .journal-sticky-lead {
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
   }
 
   .input-luxury {

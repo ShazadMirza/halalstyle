@@ -155,7 +155,7 @@ export function JournalArticleView({ post }: JournalArticleViewProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 32 }}
             transition={{ type: "spring", stiffness: 380, damping: 30 }}
-            className="fixed inset-x-0 bottom-0 z-[90] border-t-2 border-halal-gold/55 bg-halal-forest/95 px-4 py-4 shadow-[0_-8px_40px_rgba(212,175,55,0.15)] backdrop-blur-md sm:px-6"
+            className="journal-sticky-lead fixed inset-x-0 bottom-0 z-40 border-t-2 border-halal-gold/55 bg-halal-forest/95 px-4 py-4 shadow-[0_-8px_40px_rgba(212,175,55,0.15)] backdrop-blur-md sm:px-6"
             aria-label="Excellence Guide offer"
           >
             <div className="mx-auto flex max-w-3xl items-center gap-4">
