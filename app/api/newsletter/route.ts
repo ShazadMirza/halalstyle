@@ -24,7 +24,8 @@ export async function POST(req: Request) {
     }
 
     const apiKey = process.env.CONVERTKIT_API_KEY?.trim();
-    const formId = process.env.CONVERTKIT_NEWSLETTER_FORM_ID?.trim();
+    const formId =
+      process.env.CONVERTKIT_NEWSLETTER_FORM_ID?.trim() || process.env.CONVERTKIT_FORM_ID?.trim();
 
     if (!apiKey || !formId) {
       return NextResponse.json({ success: true });
