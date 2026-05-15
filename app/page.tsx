@@ -110,6 +110,9 @@ export default function HomePage() {
             <Link href="/vault" className="hover:text-halal-gold">
               The Vault
             </Link>
+            <Link href="/journal" className="hover:text-halal-gold">
+              Journal
+            </Link>
           </div>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-8 w-full">
             <div>

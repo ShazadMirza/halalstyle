@@ -199,6 +199,14 @@
     @apply font-brand text-3xl font-medium leading-tight tracking-[0.08em] text-halal-cream sm:text-4xl;
   }
 
+  .journal-prose .journal-paragraph {
+    @apply mb-7 font-brand text-[1.08rem] leading-[1.85] tracking-[0.015em] text-halal-cream/90;
+  }
+
+  .journal-prose .journal-paragraph:first-of-type::first-letter {
+    @apply float-left mr-3 mt-1 font-brand text-5xl font-medium leading-none text-halal-gold;
+  }
+
   .input-luxury {
     @apply w-full rounded-xl border border-halal-border/60 bg-halal-surface/60 px-4 py-3
            text-[0.9rem] text-halal-cream placeholder:text-halal-muted
