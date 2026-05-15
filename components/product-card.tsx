@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import type { VaultItem } from "@/lib/vault-items";
+import { getVaultCardImageUrl } from "@/lib/vault-card-images";
 
 const BADGE_STYLES: Record<string, string> = {
   "Editor's Pick": "bg-halal-gold/15 text-halal-gold border-halal-gold/30",
@@ -58,8 +59,8 @@ export function ProductCard({ item, priority = false, bypassOptimizer = false }:
       <div className="relative aspect-[4/3] overflow-hidden bg-halal-surface">
         {showImage ? (
           <Image
-            src={item.imageUrl}
-            alt={item.title}
+            src={getVaultCardImageUrl(item)}
+            alt={`Editorial preview: ${item.title}`}
             fill
             priority={priority}
             unoptimized={bypassOptimizer}
@@ -80,6 +81,9 @@ export function ProductCard({ item, priority = false, bypassOptimizer = false }:
           </span>
         )}
         <span className="badge-halal absolute bottom-3 right-3 z-[5] text-[0.55rem]">✦ Halal Verified</span>
+        <span className="pointer-events-none absolute left-3 top-14 z-[4] rounded-md bg-black/45 px-2 py-0.5 text-[0.55rem] font-medium uppercase tracking-[0.14em] text-white/95 backdrop-blur-sm">
+          Editorial preview
+        </span>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
