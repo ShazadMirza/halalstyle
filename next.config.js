@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 /**
  * Sprint 5 — Image remote allowlist (Next/Image + high traffic).
+ * Vault cards use Unsplash — `images.unsplash.com` is allowlisted below (plus wildcards).
  * Wildcards follow Next.js rules: * = one label, ** = many subdomains.
  */
 const nextConfig = {
@@ -46,4 +47,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

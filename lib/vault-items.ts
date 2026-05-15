@@ -69,7 +69,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Loose silhouette, full arm coverage, modest layering piece",
     imageKeyword: "kimono+cardigan+modest",
     imageUrl:
-      "https://images.unsplash.com/photo-1564859228273-274232fdb516?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1594938298603-c8148c8dae94?auto=format&fit=crop&w=900&q=85",
     affiliateUrl: "https://www.amazon.ca/s?k=open+front+kimono+cardigan+modest&tag=halalstyle50d-20",
     badge: "Best Value",
     rating: 4.5,
@@ -87,7 +87,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Full coverage, non-sheer, loose wide-leg silhouette meeting modest dress code",
     imageKeyword: "modest+palazzo+suit+women",
     imageUrl:
-      "https://images.unsplash.com/photo-1551803091-e20673f15770?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1441986300917-647bde3668e8?auto=format&fit=crop&w=900&q=85",
     affiliateUrl: "https://www.amazon.ca/s?k=modest+palazzo+suit+women&tag=halalstyle50d-20",
     badge: "Editor's Pick",
     rating: 4.7,
@@ -105,7 +105,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Midi length to mid-calf, fully lined, non-transparent satin",
     imageKeyword: "satin+midi+skirt+modest",
     imageUrl:
-      "https://images.unsplash.com/photo-1505022610485-0249ba5b3675?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1532453288672-3a27f9c49000?auto=format&fit=crop&w=900&q=85",
     affiliateUrl: "https://www.amazon.ca/s?k=satin+pleated+midi+skirt+modest&tag=halalstyle50d-20",
     badge: "New",
     rating: 4.6,
@@ -161,7 +161,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Foundation layer for full head coverage, breathable modest base",
     imageKeyword: "hijab+undercap+women",
     imageUrl:
-      "https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&w=900&q=85",
     affiliateUrl: "https://www.amazon.ca/s?k=bamboo+jersey+hijab+undercap&tag=halalstyle50d-20",
     badge: "Bestseller",
     rating: 4.8,
@@ -181,7 +181,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Loose modest cut, covers ankles, men's Islamic dress code",
     imageKeyword: "thobe",
     imageUrl:
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1593030767217-7f768dee6ebb?auto=format&fit=crop&w=900&q=85",
     affiliateUrl: "https://www.amazon.ca/s?k=premium+men+thobe+linen&tag=halalstyle50d-20",
     badge: "Editor's Pick",
     rating: 4.7,
@@ -199,7 +199,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Traditional Islamic headwear for men, faith-affirming dress",
     imageKeyword: "kufi+cap+men+islamic",
     imageUrl:
-      "https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=85",
     affiliateUrl: "https://www.amazon.ca/s?k=embroidered+kufi+cap+men&tag=halalstyle50d-20",
     badge: "Bestseller",
     rating: 4.8,
@@ -291,7 +291,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Quranic verse for the home — promotes dhikr and Islamic decor",
     imageKeyword: "ayatul+kursi+frame+islamic",
     imageUrl:
-      "https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=900&q=85",
     affiliateUrl: "https://www.amazon.ca/s?k=ayatul+kursi+calligraphy+frame+gold&tag=halalstyle50d-20",
     badge: "Bestseller",
     rating: 4.9,
@@ -310,7 +310,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Age-appropriate full coverage, comfortable modest design for children",
     imageKeyword: "kids+dress",
     imageUrl:
-      "https://images.unsplash.com/photo-1514097348689-198333d32188?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1516627141067-369eea32b28d?auto=format&fit=crop&w=900&q=85",
     affiliateUrl: "https://www.amazon.ca/s?k=modest+kids+dress+girls+islamic&tag=halalstyle50d-20",
     badge: "Best Value",
     rating: 4.7,
@@ -348,7 +348,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Faith-forward utility; supports salah and learning without inappropriate content",
     imageKeyword: "quran+speaker",
     imageUrl:
-      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1505740420920-5e560c06d30e?auto=format&fit=crop&w=900&q=85",
     affiliateUrl: "https://www.amazon.ca/s?k=quran+speaker+azan+clock+led&tag=halalstyle50d-20",
     badge: "Bestseller",
     rating: 4.8,
@@ -366,7 +366,7 @@ export const VAULT_ITEMS: VaultItem[] = [
     whyHalal: "Supports dhikr practice, Islamic devotional tool",
     imageKeyword: "tasbeeh+counter+steel",
     imageUrl:
-      "https://images.unsplash.com/photo-1567789884554-0b844b7f6a58?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1594736797933-d0401ba2fe01?auto=format&fit=crop&w=900&q=85",
     affiliateUrl: "https://www.amazon.ca/s?k=stainless+steel+tasbeeh+counter&tag=halalstyle50d-20",
     badge: "Best Value",
     rating: 4.8,

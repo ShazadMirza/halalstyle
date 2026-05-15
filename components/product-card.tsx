@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import type { VaultItem } from "@/lib/vault-items";
-import { getVaultCardImageUrl, isVaultVectorPreview } from "@/lib/vault-card-images";
 
 const BADGE_STYLES: Record<string, string> = {
   "Editor's Pick": "bg-halal-gold/15 text-halal-gold border-halal-gold/30",
@@ -43,8 +42,6 @@ export type ProductCardProps = {
 export function ProductCard({ item, priority = false, bypassOptimizer = false }: ProductCardProps) {
   const stars = "★".repeat(Math.round(item.rating)) + "☆".repeat(5 - Math.round(item.rating));
   const [showImage, setShowImage] = useState(true);
-  const previewSrc = getVaultCardImageUrl(item);
-  const isVector = isVaultVectorPreview(previewSrc);
 
   return (
     <motion.article
@@ -61,17 +58,13 @@ export function ProductCard({ item, priority = false, bypassOptimizer = false }:
       <div className="relative aspect-[4/3] overflow-hidden bg-halal-surface">
         {showImage ? (
           <Image
-            src={previewSrc}
-            alt={`Category preview: ${item.title}`}
+            src={item.imageUrl}
+            alt={item.title}
             fill
             priority={priority}
-            unoptimized={bypassOptimizer || isVector}
+            unoptimized={bypassOptimizer}
             sizes="(max-width: 768px) 100vw, 50vw"
-            className={
-              isVector
-                ? "object-contain p-6 transition-transform duration-700 ease-luxury group-hover:scale-[1.03]"
-                : "object-cover transition-transform duration-700 ease-luxury group-hover:scale-105"
-            }
+            className="object-cover transition-transform duration-700 ease-luxury group-hover:scale-105"
             loading={priority ? "eager" : "lazy"}
             onError={() => setShowImage(false)}
           />
@@ -87,9 +80,6 @@ export function ProductCard({ item, priority = false, bypassOptimizer = false }:
           </span>
         )}
         <span className="badge-halal absolute bottom-3 right-3 z-[5] text-[0.55rem]">✦ Halal Verified</span>
-        <span className="pointer-events-none absolute left-3 top-14 z-[4] rounded-md bg-black/45 px-2 py-0.5 text-[0.55rem] font-medium uppercase tracking-[0.14em] text-white/95 backdrop-blur-sm">
-          Illustration preview
-        </span>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
