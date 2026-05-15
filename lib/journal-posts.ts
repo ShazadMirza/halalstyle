@@ -8,6 +8,8 @@ export type JournalPost = {
   tags: string[];
   /** Body copy — one string per paragraph */
   body: string[];
+  /** Vault item IDs for "Featured in this Article" (high-ticket / editorial picks) */
+  featuredItemIds?: string[];
 };
 
 export const JOURNAL_POSTS: JournalPost[] = [
@@ -20,6 +22,7 @@ export const JOURNAL_POSTS: JournalPost[] = [
     author: "HalalStyle Editorial",
     readMinutes: 6,
     tags: ["Modest Fashion", "Executive Style", "Halal Luxury"],
+    featuredItemIds: ["v3", "v1", "v4", "v10", "v22", "v2"],
     body: [
       "For decades, modest fashion was framed as a trade-off: cover more, expect less. Fabric that pilled after three wears. Silhouettes that whispered “good enough” instead of commanding the room. In 2026, that narrative is finished.",
       "The modest executive does not dress to disappear. She—and he—dresses to lead. Quality has become the new modesty: garments that meet Islamic standards for coverage and looseness while rivaling any luxury house in drape, stitch, and longevity.",

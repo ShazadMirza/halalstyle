@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import { FaqPageJsonLd } from "@/components/faq-page-json-ld";
 import { JsonLd } from "@/components/json-ld";
@@ -50,6 +52,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Nav />
           {children}
         </div>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
