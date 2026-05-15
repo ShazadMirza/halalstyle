@@ -5,6 +5,7 @@ import { DM_Sans, Playfair_Display } from "next/font/google";
 import { FaqPageJsonLd } from "@/components/faq-page-json-ld";
 import { JsonLd } from "@/components/json-ld";
 import { Nav } from "@/components/nav";
+import { PwaPrompt } from "@/components/pwa-prompt";
 import { VaultBackground } from "@/components/vault-background";
 import {
   SOCIAL_DESCRIPTION,
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Nav />
           {children}
         </div>
+        <PwaPrompt />
         <Analytics />
         <SpeedInsights />
       </body>

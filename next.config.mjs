@@ -20,14 +20,15 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
+      { protocol: "https", hostname: "m.media-amazon.com", pathname: "/**" },
+      { protocol: "https", hostname: "images-na.ssl-images-amazon.com", pathname: "/**" },
       { protocol: "https", hostname: "**.media-amazon.com", pathname: "/**" },
+      { protocol: "https", hostname: "**.ssl-images-amazon.com", pathname: "/**" },
       { protocol: "https", hostname: "**.unsplash.com", pathname: "/**" },
       { protocol: "https", hostname: "**.pexels.com", pathname: "/**" },
       { protocol: "https", hostname: "media-amazon.com", pathname: "/**" },
       { protocol: "https", hostname: "unsplash.com", pathname: "/**" },
       { protocol: "https", hostname: "pexels.com", pathname: "/**" },
-      /* Legacy Amazon product image stacks (regional hostnames) */
-      { protocol: "https", hostname: "**.ssl-images-amazon.com", pathname: "/**" },
     ],
   },
 };

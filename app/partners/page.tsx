@@ -7,26 +7,31 @@ import { isValidEmail } from "@/lib/email";
 
 const BENEFITS = [
   {
+    icon: "✦",
     title: "10–15% high-ticket commissions",
     body: "Earn on curated modest luxury SKUs with strong AOV — Amazon.ca affiliate programme with our optimised tagging.",
   },
   {
+    icon: "◈",
     title: "Verified Excellence Badge",
     body: "Eligible partners receive a HalalStyle trust mark for your bio, link-in-bio, and newsletter footers.",
   },
   {
+    icon: "◇",
     title: "Early Vault drops",
     body: "First access to new categories and seasonal capsules before public launch — perfect for planning content.",
   },
   {
+    icon: "✧",
     title: "Dedicated promo assets",
     body: "Gold/emerald story frames, quote cards, and quiz deep-links sized for Reels, Shorts, and Pinterest.",
   },
   {
+    icon: "⌂",
     title: "Revenue dashboard (coming soon)",
     body: "We’re building a lightweight partner hub for clicks, conversions, and payout milestones — you’ll be first in line.",
   },
-];
+] as const;
 
 export default function PartnersPage() {
   const [name, setName] = useState("");
@@ -84,14 +89,38 @@ export default function PartnersPage() {
           aligned creators and brands.
         </p>
 
+        {/* Swiss-luxury hero surface — no stock/AI imagery until partner assets ship */}
+        <div
+          className="partner-hero-surface relative mt-10 overflow-hidden rounded-2xl border border-halal-gold/25 p-8 text-center shadow-card"
+          aria-hidden
+        >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(212,175,55,0.14),transparent_55%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-halal-forest via-[#0a3d28] to-[#03160f]" />
+          <p className="relative font-brand text-[2.5rem] leading-none tracking-[0.2em] text-halal-gold/30">✦</p>
+          <p className="relative mt-3 font-brand text-sm tracking-[0.25em] text-halal-gold/80">
+            EXCELLENCE CIRCLE
+          </p>
+          <p className="relative mt-2 text-[0.75rem] uppercase tracking-[0.2em] text-halal-muted">
+            Partner assets coming soon
+          </p>
+        </div>
+
         <ul className="mt-12 grid gap-4 sm:grid-cols-2">
-          {BENEFITS.map(({ title, body }) => (
+          {BENEFITS.map(({ icon, title, body }) => (
             <li
               key={title}
-              className="rounded-2xl border border-halal-border/50 bg-card-gradient p-5 shadow-card transition hover:border-halal-gold/30"
+              className="overflow-hidden rounded-2xl border border-halal-border/50 bg-card-gradient shadow-card transition hover:border-halal-gold/30"
             >
-              <p className="font-brand text-[0.95rem] font-medium tracking-[0.06em] text-halal-gold">{title}</p>
-              <p className="mt-2 text-[0.8rem] leading-relaxed text-halal-muted">{body}</p>
+              <div className="partner-benefit-header flex items-center gap-3 border-b border-halal-border/30 bg-gradient-to-r from-halal-forest-2 via-[#0a3d28] to-halal-forest px-5 py-4">
+                <span
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-halal-gold/35 bg-halal-gold/10 font-display text-lg text-halal-gold"
+                  aria-hidden
+                >
+                  {icon}
+                </span>
+                <p className="font-brand text-[0.95rem] font-medium tracking-[0.06em] text-halal-gold">{title}</p>
+              </div>
+              <p className="p-5 text-[0.8rem] leading-relaxed text-halal-muted">{body}</p>
             </li>
           ))}
         </ul>
@@ -212,3 +241,4 @@ export default function PartnersPage() {
     </main>
   );
 }
+

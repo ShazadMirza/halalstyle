@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { trackAffiliateShopNow } from "@/lib/analytics-events";
+import { isAmazonImageUrl } from "@/lib/image-url";
 import type { VaultItem } from "@/lib/vault-items";
 
 const BADGE_STYLES: Record<string, string> = {
@@ -65,6 +66,8 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
   const loading: "eager" | "lazy" | undefined =
     cardIndex !== undefined ? (cardIndex < 3 ? "eager" : "lazy") : priority ? "eager" : "lazy";
 
+  const useUnoptimizedImage = isAmazonImageUrl(item.imageUrl);
+
   function handleShopNowClick() {
     trackAffiliateShopNow({
       productId: item.id,
@@ -98,6 +101,7 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
             alt={item.imageAlt}
             fill
             priority={effectivePriority}
+            unoptimized={useUnoptimizedImage}
             sizes="(max-width: 768px) 100vw, 50vw"
             className={`object-cover transition-all duration-700 ease-luxury group-hover:scale-105 ${
               imageLoaded ? "opacity-100" : "opacity-0"
