@@ -58,9 +58,11 @@ export type ProductCardProps = {
   item: VaultItem;
   priority?: boolean;
   cardIndex?: number;
+  /** The Vault: show Elite Guard sparkle + tooltip beside Shop Now */
+  showExcellenceGuard?: boolean;
 };
 
-export function ProductCard({ item, priority = false, cardIndex }: ProductCardProps) {
+export function ProductCard({ item, priority = false, cardIndex, showExcellenceGuard = false }: ProductCardProps) {
   const stars = "★".repeat(Math.round(item.rating)) + "☆".repeat(5 - Math.round(item.rating));
   const candidates = useMemo(() => getVaultItemImageCandidates(item), [item]);
   const [candidateIndex, setCandidateIndex] = useState(0);
@@ -153,7 +155,7 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
         <p className="mb-4 rounded-lg border border-halal-border/25 bg-halal-forest-2/50 px-3 py-2 text-[0.7rem] leading-relaxed text-halal-cream/60">
           🌿 {item.whyHalal}
         </p>
-        <div className="flex items-center justify-between border-t border-halal-border/35 pt-3">
+        <div className="flex items-center justify-between gap-2 border-t border-halal-border/35 pt-3">
           <div>
             <span className="font-brand text-[1.1rem] font-medium tracking-[0.06em] text-halal-gold">
               {item.priceRange}
@@ -162,15 +164,26 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
               {stars} ({item.rating})
             </p>
           </div>
-          <a
-            href={item.affiliateUrl}
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            onClick={handleShopNowClick}
-            className="btn-gold btn-shop-glow px-4 py-2 font-brand text-[0.72rem] font-medium capitalize tracking-[0.2em]"
-          >
-            Shop Now →
-          </a>
+          <div className="flex shrink-0 items-center gap-1.5">
+            {showExcellenceGuard && (
+              <span
+                className="elite-guard-sparkle inline-flex select-none items-center justify-center font-brand text-lg leading-none text-emerald-400/90"
+                title="Verified by the Excellence Filter."
+                aria-label="Verified by the Excellence Filter."
+              >
+                ✦
+              </span>
+            )}
+            <a
+              href={item.affiliateUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={handleShopNowClick}
+              className="btn-gold btn-shop-glow px-4 py-2 font-brand text-[0.72rem] font-medium capitalize tracking-[0.2em]"
+            >
+              Shop Now →
+            </a>
+          </div>
         </div>
       </div>
     </motion.article>

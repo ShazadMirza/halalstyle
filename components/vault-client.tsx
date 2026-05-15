@@ -149,7 +149,7 @@ export function VaultClient({ title, subtitle, initialCategory = "All", intro, f
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filtered.map((item, i) => (
-                <ProductCard key={item.id} item={item} cardIndex={i} />
+                <ProductCard key={item.id} item={item} cardIndex={i} showExcellenceGuard />
               ))}
             </div>
           ) : (

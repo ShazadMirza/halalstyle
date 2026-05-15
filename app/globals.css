@@ -237,16 +237,22 @@
     .journal-sticky-lead {
       padding-bottom: max(1rem, env(safe-area-inset-bottom));
     }
+  }
 
-    .pwa-install-prompt {
-      bottom: max(5.5rem, calc(env(safe-area-inset-bottom) + 4.5rem));
+  @keyframes elite-guard-shimmer {
+    0%,
+    100% {
+      opacity: 0.55;
+      filter: drop-shadow(0 0 1px rgba(52, 211, 153, 0.35));
+    }
+    50% {
+      opacity: 1;
+      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.55));
     }
   }
 
-  @media (min-width: 768px) {
-    .pwa-install-prompt {
-      bottom: 1.5rem;
-    }
+  .elite-guard-sparkle {
+    animation: elite-guard-shimmer 2.4s ease-in-out infinite;
   }
 
   .input-luxury {
