@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 import { VaultClient } from "@/components/vault-client";
 import { CATEGORY_SEO, slugToVaultCategory, VAULT_CATEGORY_SLUGS } from "@/lib/vault-category-seo";
 import { absoluteUrl } from "@/lib/site";
@@ -40,12 +41,23 @@ export default function VaultCategoryPage({ params }: Props) {
     </div>
   );
 
+  const path = `/vault/${params.category}`;
+
   return (
-    <VaultClient
-      title={`${cat} · The Vault`}
-      subtitle={seo.tagline}
-      initialCategory={cat}
-      intro={intro}
-    />
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "The Vault", path: "/vault" },
+          { name: cat, path },
+        ]}
+      />
+      <VaultClient
+        title={`${cat} · The Vault`}
+        subtitle={seo.tagline}
+        initialCategory={cat}
+        intro={intro}
+      />
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 import { VaultClient } from "@/components/vault-client";
 import { absoluteUrl } from "@/lib/site";
 
@@ -17,10 +18,18 @@ export const metadata: Metadata = {
 
 export default function VaultPage() {
   return (
-    <VaultClient
-      title="The Vault"
-      subtitle="Every item vetted for quality, modesty, and Islamic values. Zero compromise. Zero noise."
-      initialCategory="All"
-    />
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "The Vault", path: "/vault" },
+        ]}
+      />
+      <VaultClient
+        title="The Vault"
+        subtitle="Every item vetted for quality, modesty, and Islamic values. Zero compromise. Zero noise."
+        initialCategory="All"
+      />
+    </>
   );
 }
