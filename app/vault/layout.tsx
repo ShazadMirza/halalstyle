@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "The Vault — Halal-Verified Modest Fashion",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
     title: "The Vault — HalalStyle | Modest Fashion Canada",
     description:
       "Abayas, hijabs, thobes, home décor — every item vetted for quality and Islamic values.",
-    url: "https://halalstyle.vercel.app/vault",
+    url: absoluteUrl("/vault"),
     siteName: "HalalStyle",
     locale: "en_CA",
     type: "website",

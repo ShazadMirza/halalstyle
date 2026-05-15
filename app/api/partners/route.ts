@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { SITE_URL } from "@/lib/site";
 
 export const runtime = "nodejs";
 
@@ -61,7 +62,7 @@ export async function POST(req: Request) {
                 <tr><td style="padding:8px 0;color:#666">Email</td><td style="padding:8px 0"><a href="mailto:${email}">${email}</a></td></tr>
               </table>
               <hr style="border:none;border-top:1px solid #eee;margin:20px 0"/>
-              <p style="color:#aaa;font-size:12px">Submitted via halalstyle.vercel.app/partners</p>
+              <p style="color:#aaa;font-size:12px">Submitted via ${SITE_URL}/partners</p>
             </div>
           `,
         }),
