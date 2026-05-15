@@ -92,6 +92,29 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <section className="border-t border-halal-border/30 bg-halal-forest-2/25 px-6 py-16">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="section-title mb-8">Explore the Vault</h2>
+          <nav className="flex flex-col items-center gap-4 text-[0.95rem] leading-relaxed" aria-label="Vault collections">
+            <Link href="/vault/fashion" className="text-halal-gold underline underline-offset-4 hover:text-halal-gold-2">
+              Shop Modest Fashion &amp; Abayas
+            </Link>
+            <Link href="/vault/hijabs" className="text-halal-gold underline underline-offset-4 hover:text-halal-gold-2">
+              Browse Hijabs &amp; Headscarves
+            </Link>
+            <Link href="/vault/menswear" className="text-halal-gold underline underline-offset-4 hover:text-halal-gold-2">
+              Islamic Menswear for Men
+            </Link>
+            <Link href="/vault/home" className="text-halal-gold underline underline-offset-4 hover:text-halal-gold-2">
+              Islamic Home Decor
+            </Link>
+            <Link href="/vault/gifts" className="text-halal-gold underline underline-offset-4 hover:text-halal-gold-2">
+              Halal Gifts for Eid &amp; Ramadan
+            </Link>
+          </nav>
+        </div>
+      </section>
     </main>
   );
 }

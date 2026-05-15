@@ -21,9 +21,11 @@ type VaultClientProps = {
   initialCategory?: VaultCategory | "All";
   /** Extra indexable copy (rendered above filters on category hubs) */
   intro?: ReactNode;
+  /** Optional block below product grid (e.g. related category links) */
+  footer?: ReactNode;
 };
 
-export function VaultClient({ title, subtitle, initialCategory = "All", intro }: VaultClientProps) {
+export function VaultClient({ title, subtitle, initialCategory = "All", intro, footer }: VaultClientProps) {
   const [cat, setCat] = useState<VaultCategory | "All">(initialCategory);
   const [occ, setOcc] = useState("All");
   const [budgetIdx, setBudgetIdx] = useState(0);
@@ -158,6 +160,12 @@ export function VaultClient({ title, subtitle, initialCategory = "All", intro }:
           )}
         </div>
       </section>
+
+      {footer && (
+        <section className="border-t border-halal-border/30 bg-halal-surface/40 px-6 py-14">
+          <div className="mx-auto max-w-6xl">{footer}</div>
+        </section>
+      )}
     </main>
   );
 }

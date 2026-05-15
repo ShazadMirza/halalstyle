@@ -13,12 +13,14 @@ export interface VaultItem {
   whyHalal: string;
   imageKeyword: string;
   imageUrl: string;
+  /** SEO / a11y — pattern: "[product name] — halal modest fashion canada" */
+  imageAlt: string;
   affiliateUrl: string;
   badge?: "Editor's Pick" | "Best Value" | "New" | "Bestseller";
   rating: number;
 }
 
-export const VAULT_ITEMS: VaultItem[] = [
+const VAULT_ITEMS_RAW: Omit<VaultItem, "imageAlt">[] = [
   // ── FASHION (5) ──────────────────────────────────────────────────────────
   {
     id: "v1",
@@ -408,3 +410,8 @@ export const VAULT_ITEMS: VaultItem[] = [
     rating: 4.7,
   },
 ];
+
+export const VAULT_ITEMS: VaultItem[] = VAULT_ITEMS_RAW.map((item) => ({
+  ...item,
+  imageAlt: `${item.title} — halal modest fashion canada`,
+}));

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BreadcrumbJsonLd } from "@/components/breadcrumb-json-ld";
 import { VaultClient } from "@/components/vault-client";
@@ -43,6 +44,36 @@ export default function VaultCategoryPage({ params }: Props) {
 
   const path = `/vault/${params.category}`;
 
+  const relatedSlugs = VAULT_CATEGORY_SLUGS.filter((s) => s !== params.category);
+  const relatedFooter = (
+    <div>
+      <h2 className="font-brand text-center text-2xl font-medium tracking-[0.08em] text-halal-cream sm:text-3xl">
+        Related Categories
+      </h2>
+      <p className="mx-auto mt-3 max-w-xl text-center text-[0.85rem] text-halal-muted">
+        Explore more halal-verified collections on Amazon.ca.
+      </p>
+      <nav
+        className="mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-[0.9rem]"
+        aria-label="Related vault categories"
+      >
+        {relatedSlugs.map((slug) => {
+          const label = slugToVaultCategory(slug);
+          if (!label) return null;
+          return (
+            <Link
+              key={slug}
+              href={`/vault/${slug}`}
+              className="rounded-full border border-halal-border/40 px-4 py-2 text-halal-cream transition hover:border-halal-gold/50 hover:text-halal-gold"
+            >
+              {label}
+            </Link>
+          );
+        })}
+      </nav>
+    </div>
+  );
+
   return (
     <>
       <BreadcrumbJsonLd
@@ -57,6 +88,7 @@ export default function VaultCategoryPage({ params }: Props) {
         subtitle={seo.tagline}
         initialCategory={cat}
         intro={intro}
+        footer={relatedFooter}
       />
     </>
   );

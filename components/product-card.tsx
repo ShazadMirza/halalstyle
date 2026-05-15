@@ -63,7 +63,7 @@ export function ProductCard({ item, priority = false }: ProductCardProps) {
         {showImage ? (
           <Image
             src={item.imageUrl}
-            alt={item.title}
+            alt={item.imageAlt}
             fill
             priority={priority}
             unoptimized={true}
