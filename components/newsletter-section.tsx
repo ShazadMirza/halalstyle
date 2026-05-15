@@ -107,7 +107,7 @@ export function NewsletterSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-6 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-6 backdrop-blur-lg"
             role="dialog"
             aria-modal="true"
             aria-labelledby="guide-modal-title"
@@ -117,7 +117,7 @@ export function NewsletterSection() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 16, scale: 0.96 }}
               transition={{ type: "spring", stiffness: 380, damping: 28 }}
-              className="relative max-w-md rounded-2xl border border-halal-gold/30 bg-card-gradient p-8 shadow-[0_0_40px_rgba(212,175,55,0.2)]"
+              className="relative max-w-md rounded-2xl border border-halal-gold/50 bg-card-gradient p-8 shadow-[0_0_48px_rgba(212,175,55,0.22)] backdrop-blur-md"
             >
               <button
                 type="button"

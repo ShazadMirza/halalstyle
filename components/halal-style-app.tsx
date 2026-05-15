@@ -24,6 +24,7 @@ const LOADING_LINES = [
 function QuizPickImage({ url, title, buyLink }: { url?: string; title: string; buyLink: string }) {
   const safe = sanitizeRemoteImageUrl(url);
   const [show, setShow] = useState(!!safe);
+  const [loaded, setLoaded] = useState(false);
   if (!safe || !show) {
     return (
       <Link
@@ -42,14 +43,15 @@ function QuizPickImage({ url, title, buyLink }: { url?: string; title: string; b
     );
   }
   return (
-    <div className="relative h-44 w-full">
+    <div className="relative h-44 w-full overflow-hidden">
+      {!loaded && <div className="gold-image-shimmer absolute inset-0 z-[1]" aria-hidden />}
       <Image
         src={safe}
         alt={title}
         fill
-        unoptimized={true}
-        className="object-cover"
+        className={`object-cover transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
         sizes="(max-width: 768px) 100vw, 50vw"
+        onLoad={() => setLoaded(true)}
         onError={() => setShow(false)}
       />
     </div>

@@ -103,6 +103,31 @@
     animation: vault-card-shimmer 7s ease-in-out infinite;
   }
 
+  @keyframes gold-image-shimmer {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .gold-image-shimmer {
+    background: linear-gradient(
+      110deg,
+      #022c22 0%,
+      #064e3b 18%,
+      rgba(212, 175, 55, 0.35) 42%,
+      rgba(212, 175, 55, 0.55) 50%,
+      rgba(212, 175, 55, 0.35) 58%,
+      #064e3b 82%,
+      #022c22 100%
+    );
+    background-size: 240% 240%;
+    animation: gold-image-shimmer 2.2s ease-in-out infinite;
+  }
+
   .btn-gold {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5
            font-sans text-[0.875rem] font-semibold tracking-wide text-halal-forest

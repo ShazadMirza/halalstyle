@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/home-hero";
+import { SocialProofStrip } from "@/components/social-proof-strip";
 import { HalalStyleApp } from "@/components/halal-style-app";
 import { NewsletterSection } from "@/components/newsletter-section";
 import { ProductCard } from "@/components/product-card";
@@ -47,6 +48,7 @@ export default function HomePage() {
 
       {/* ── HERO ─────────────────────────────────────────── */}
       <HomeHero />
+      <SocialProofStrip />
 
       {/* ── CATEGORIES ───────────────────────────────────── */}
       <section className="border-y border-halal-border/30 bg-halal-surface px-6 py-16">

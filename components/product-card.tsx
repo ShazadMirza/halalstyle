@@ -51,6 +51,7 @@ export type ProductCardProps = {
 export function ProductCard({ item, priority = false, cardIndex }: ProductCardProps) {
   const stars = "★".repeat(Math.round(item.rating)) + "☆".repeat(5 - Math.round(item.rating));
   const [showImage, setShowImage] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const effectivePriority = priority || cardIndex === 0;
   const loading: "eager" | "lazy" | undefined =
@@ -69,7 +70,10 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
       }}
       className="group flex flex-col overflow-hidden rounded-2xl border border-halal-gold/20 bg-gradient-to-br from-halal-surface/78 via-halal-forest-2/74 to-halal-surface/78 shadow-card backdrop-blur-[8px] transition-[border-color,box-shadow] duration-500 ease-luxury hover:border-halal-gold/60"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-halal-surface">
+      <motion.div className="relative aspect-[4/3] overflow-hidden bg-halal-surface">
+        {showImage && !imageLoaded && (
+          <div className="gold-image-shimmer absolute inset-0 z-[1]" aria-hidden />
+        )}
         {!showImage && <EmeraldImageShimmer />}
         {showImage ? (
           <Image
@@ -78,8 +82,11 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
             fill
             priority={effectivePriority}
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover transition-transform duration-700 ease-luxury group-hover:scale-105"
+            className={`object-cover transition-all duration-700 ease-luxury group-hover:scale-105 ${
+              imageLoaded ? "opacity-100" : "opacity-0"
+            }`}
             loading={loading}
+            onLoad={() => setImageLoaded(true)}
             onError={() => setShowImage(false)}
           />
         ) : (
@@ -94,7 +101,7 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
           </span>
         )}
         <span className="badge-halal absolute bottom-3 right-3 z-[5] text-[0.55rem]">✦ Halal Verified</span>
-      </div>
+      </motion.div>
 
       <div className="flex flex-1 flex-col p-5">
         <p className="mb-1 text-[0.6rem] uppercase tracking-[0.15em] text-halal-gold/60">{item.brand}</p>
