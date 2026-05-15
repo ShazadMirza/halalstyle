@@ -11,16 +11,15 @@ export function NewsletterSection() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email) return;
+  async function submitNewsletter() {
+    if (!email.trim()) return;
     setStatus("loading");
     setErrorMessage(null);
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: email.trim() }),
       });
       const data = (await res.json()) as { success?: boolean; error?: string };
 
@@ -38,6 +37,11 @@ export function NewsletterSection() {
     }
   }
 
+  function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    void submitNewsletter();
+  }
+
   return (
     <section className="relative px-6 py-20 pattern-bg">
       <div className="mx-auto max-w-xl text-center">
@@ -49,14 +53,18 @@ export function NewsletterSection() {
         </p>
 
         {status !== "done" ? (
-          <form onSubmit={(e) => void handleSubmit(e)} className="flex flex-col gap-3 sm:flex-row">
+          <form method="post" onSubmit={onFormSubmit} className="flex flex-col flex-wrap gap-3 sm:flex-row">
             <input
               type="email"
+              name="email"
+              autoComplete="email"
               placeholder="your@email.com"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="input-luxury flex-1"
+              disabled={status === "loading"}
+              aria-busy={status === "loading"}
             />
             <button
               type="submit"
@@ -72,16 +80,19 @@ export function NewsletterSection() {
                 "Get the Guide ✦"
               )}
             </button>
+            {status === "error" && errorMessage ? (
+              <p className="basis-full text-left text-sm text-red-400 sm:text-center" role="alert" aria-live="polite">
+                {errorMessage}
+              </p>
+            ) : null}
           </form>
         ) : (
-          <p className="rounded-xl border border-halal-gold/30 bg-halal-gold/10 px-6 py-4 font-medium text-halal-gold">
+          <p
+            className="rounded-xl border border-halal-gold/30 bg-halal-gold/10 px-6 py-4 font-medium text-halal-gold"
+            role="status"
+            aria-live="polite"
+          >
             You&apos;re in! Check your inbox ✦
-          </p>
-        )}
-
-        {status === "error" && errorMessage && (
-          <p className="mt-4 text-sm text-red-400" role="alert">
-            {errorMessage}
           </p>
         )}
 
