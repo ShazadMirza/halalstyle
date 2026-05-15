@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 /**
- * Sprint 5 — Image remote allowlist (Next/Image + high traffic).
- * Vault cards use Unsplash — `images.unsplash.com` is allowlisted below (plus wildcards).
- * Wildcards follow Next.js rules: * = one label, ** = many subdomains.
+ * Sprint 4/5 — Image remote allowlist (Next/Image + Amazon + stock CDNs).
+ * Wildcards: `*` = one DNS label, `**` = many subdomains (Next.js rules).
  */
 const nextConfig = {
   async redirects() {
@@ -17,8 +16,11 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
-      /* Amazon product / CDN (CA + global storefronts + media + ssl-images) */
+      /* Amazon — explicit media host + single-label and multi-subdomain wildcards */
       { protocol: "https", hostname: "m.media-amazon.com", pathname: "/**" },
+      { protocol: "https", hostname: "*.amazon.com", pathname: "/**" },
+      { protocol: "https", hostname: "*.amazon.ca", pathname: "/**" },
+      { protocol: "https", hostname: "*.media-amazon.com", pathname: "/**" },
       { protocol: "https", hostname: "**.amazon.com", pathname: "/**" },
       { protocol: "https", hostname: "**.amazon.ca", pathname: "/**" },
       { protocol: "https", hostname: "**.amazon.co.uk", pathname: "/**" },

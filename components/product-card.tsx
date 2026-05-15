@@ -35,11 +35,9 @@ export type ProductCardProps = {
   item: VaultItem;
   /** LCP: first featured row on home */
   priority?: boolean;
-  /** Bypass optimizer on first cards while debugging CDN */
-  bypassOptimizer?: boolean;
 };
 
-export function ProductCard({ item, priority = false, bypassOptimizer = false }: ProductCardProps) {
+export function ProductCard({ item, priority = false }: ProductCardProps) {
   const stars = "★".repeat(Math.round(item.rating)) + "☆".repeat(5 - Math.round(item.rating));
   const [showImage, setShowImage] = useState(true);
 
@@ -62,7 +60,7 @@ export function ProductCard({ item, priority = false, bypassOptimizer = false }:
             alt={item.title}
             fill
             priority={priority}
-            unoptimized={bypassOptimizer}
+            unoptimized
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover transition-transform duration-700 ease-luxury group-hover:scale-105"
             loading={priority ? "eager" : "lazy"}

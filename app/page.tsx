@@ -72,7 +72,6 @@ export default function HomePage() {
                 key={item.id}
                 item={item}
                 priority={i < 3}
-                bypassOptimizer={i < 2}
               />
             ))}
           </div>

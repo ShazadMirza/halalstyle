@@ -40,18 +40,20 @@
 }
 
 @layer components {
-  /* Girih / arabesque — fixed viewport, does not scroll with content */
+  /* Girih / arabesque — fixed viewport; SVG tile is high-fidelity strapwork + swishes */
   .mosaic-overlay,
   .islamic-mosaic-overlay {
     position: fixed;
     inset: 0;
     z-index: 1;
     pointer-events: none;
+    background-color: transparent;
     background-image: url("/mosaic-pattern.svg");
     background-repeat: repeat;
     background-size: 400px 400px;
     background-attachment: fixed;
-    opacity: 0.065;
+    background-position: center top;
+    opacity: 0.072;
     mix-blend-mode: screen;
   }
 
