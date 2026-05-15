@@ -49,6 +49,10 @@ export default function PartnersPage() {
       setError("Please enter your name.");
       return;
     }
+    if (!socialHandle.trim()) {
+      setError("Please enter your social handle (@username or profile URL).");
+      return;
+    }
     if (!isValidEmail(email)) {
       setError("Please enter a valid email address.");
       return;
@@ -164,11 +168,12 @@ export default function PartnersPage() {
               </div>
               <div>
                 <label htmlFor="p-social" className="mb-2 block text-[0.85rem] font-medium text-halal-cream">
-                  Social Handle (@username)
+                  Social Handle (@username) <span className="text-halal-gold">*</span>
                 </label>
                 <input
                   id="p-social"
                   name="social_handle"
+                  required
                   value={socialHandle}
                   onChange={(e) => setSocialHandle(e.target.value)}
                   className="input-luxury"
@@ -226,10 +231,8 @@ export default function PartnersPage() {
                 ✓
               </span>
             </motion.div>
-            <h2 className="font-brand text-xl tracking-[0.06em] text-halal-gold">Partner Success</h2>
-            <p className="mt-4 text-[0.95rem] leading-relaxed text-halal-cream">
-              Application Received. Deen and the team will review your profile and reach out to the Excellence Circle
-              soon.
+            <p className="mt-4 text-[0.95rem] leading-relaxed text-halal-cream sm:text-[1rem]">
+              Welcome to the Circle. Deen and the team will review your profile shortly.
             </p>
             {persistenceMode === "demo" && (
               <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-950/30 px-4 py-3 text-[0.78rem] leading-relaxed text-amber-200/90">

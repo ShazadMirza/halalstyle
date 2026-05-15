@@ -19,6 +19,9 @@ export async function POST(req: Request) {
     if (!name || !email || !email.includes("@")) {
       return NextResponse.json({ error: "Name and a valid email are required." }, { status: 400 });
     }
+    if (!social_handle) {
+      return NextResponse.json({ error: "Social handle (@username or profile URL) is required." }, { status: 400 });
+    }
 
     const partnersInbox = process.env.PARTNERS_NOTIFY_EMAIL?.trim() || "partners@halalstyles55.com";
     console.log("[partners] application received:", {
