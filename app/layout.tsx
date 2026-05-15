@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Playfair_Display } from "next/font/google";
+import { FaqPageJsonLd } from "@/components/faq-page-json-ld";
 import { JsonLd } from "@/components/json-ld";
 import { Nav } from "@/components/nav";
 import { VaultBackground } from "@/components/vault-background";
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className="scroll-smooth">
       <body className={`${dmSans.variable} ${playfair.variable} font-sans antialiased`}>
         <JsonLd />
+        <FaqPageJsonLd />
         <VaultBackground />
         <div className="relative z-10 min-h-dvh">
           <Nav />
