@@ -1,42 +1,37 @@
 import type { VaultItem } from "@/lib/vault-items";
 
 /**
- * Halal-safe editorial previews only (not live Amazon gallery images).
- * Mix: modest hijabi editorial (Pexels), boutique/textile/object shots (Unsplash).
+ * Category-matched **local SVG** previews — always render, no stock-photo roulette.
+ * Replace files in `/public/vault-previews/` when a designer ships final art.
  */
-const P = (id: number) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=900&h=675&fit=crop`;
-
-const CARD_IMAGE_BY_ID: Record<string, string> = {
-  // Fashion
-  v1: P(6311467),
-  v4: P(914668),
-  v10: "https://images.unsplash.com/photo-1594938298603-c8148c8dae94?auto=format&fit=crop&w=900&q=85",
-  v11: "https://images.unsplash.com/photo-1441986300917-647bde3668e8?auto=format&fit=crop&w=900&q=85",
-  v12: "https://images.unsplash.com/photo-1532453288672-3a27f9c49000?auto=format&fit=crop&w=900&q=85",
-  // Hijabs
-  v2: P(6311671),
-  v13: P(6054227),
-  v14: "https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&w=900&q=85",
-  // Menswear
-  v3: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=85",
-  v15: "https://images.unsplash.com/photo-1628926379044-9d68edd80730?auto=format&fit=crop&w=900&q=85",
-  v16: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=85",
-  // Home
-  v5: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=85",
-  v7: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=85",
-  v8: "https://images.unsplash.com/photo-1608571423902-61f887b532cf?auto=format&fit=crop&w=900&q=85",
-  v17: "https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=900&q=85",
-  // Kids
-  v6: P(3662800),
-  v18: P(1620760),
-  // Gifts
-  v9: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=900&q=85",
-  v19: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe01?auto=format&fit=crop&w=900&q=85",
-  v20: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=85",
-  v21: "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=900&q=85",
+const CARD_PREVIEW_BY_ID: Record<string, string> = {
+  v1: "/vault-previews/abaya.svg",
+  v4: "/vault-previews/maxi-dress.svg",
+  v10: "/vault-previews/kimono-layer.svg",
+  v11: "/vault-previews/palazzo-suit.svg",
+  v12: "/vault-previews/pleated-skirt.svg",
+  v2: "/vault-previews/hijab-set.svg",
+  v13: "/vault-previews/hijab-chiffon.svg",
+  v14: "/vault-previews/undercap.svg",
+  v3: "/vault-previews/thobe.svg",
+  v15: "/vault-previews/kufi.svg",
+  v16: "/vault-previews/qamis.svg",
+  v5: "/vault-previews/prayer-rug.svg",
+  v7: "/vault-previews/geometry-brass.svg",
+  v8: "/vault-previews/candles.svg",
+  v17: "/vault-previews/frame-calligraphy.svg",
+  v6: "/vault-previews/kids-dress.svg",
+  v18: "/vault-previews/boys-thobe.svg",
+  v9: "/vault-previews/speaker.svg",
+  v19: "/vault-previews/tasbeeh.svg",
+  v20: "/vault-previews/book-open.svg",
+  v21: "/vault-previews/lantern.svg",
 };
 
 export function getVaultCardImageUrl(item: VaultItem): string {
-  return CARD_IMAGE_BY_ID[item.id] ?? item.imageUrl;
+  return CARD_PREVIEW_BY_ID[item.id] ?? "/vault-previews/abaya.svg";
+}
+
+export function isVaultVectorPreview(url: string): boolean {
+  return url.endsWith(".svg");
 }
