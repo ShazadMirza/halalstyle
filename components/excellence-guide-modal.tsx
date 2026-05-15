@@ -1,12 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { trackGuideDownload } from "@/lib/analytics-events";
 import { isValidEmail } from "@/lib/email";
-import { EXCELLENCE_GUIDE_DOWNLOAD_PATH } from "@/lib/excellence-guide-constants";
+import {
+  EXCELLENCE_GUIDE_DOWNLOAD_PATH,
+  EXCELLENCE_GUIDE_WEB_PATH,
+  EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY,
+} from "@/lib/excellence-guide-constants";
 
 const GUIDE_HEADLINE =
   "Download the 2026 Excellence Guide: The Definitive List for the Modern Muslim High-Achiever.";
@@ -16,11 +21,24 @@ type ExcellenceGuideModalProps = {
   onClose: () => void;
 };
 
+type ModalStatus = "idle" | "loading" | "done" | "error" | "redirect";
+
 export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProps) {
+  const router = useRouter();
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [status, setStatus] = useState<ModalStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [downloadUrl, setDownloadUrl] = useState(EXCELLENCE_GUIDE_DOWNLOAD_PATH);
+  const redirectTargetRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (status !== "redirect" || !redirectTargetRef.current) return;
+    const to = redirectTargetRef.current;
+    const id = window.setTimeout(() => {
+      router.push(to);
+    }, 900);
+    return () => window.clearTimeout(id);
+  }, [status, router]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -32,13 +50,19 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
     }
     setStatus("loading");
     setErrorMessage(null);
+    redirectTargetRef.current = null;
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: trimmed }),
       });
-      const data = (await res.json()) as { success?: boolean; error?: string; downloadUrl?: string };
+      const data = (await res.json()) as {
+        success?: boolean;
+        error?: string;
+        downloadUrl?: string;
+        redirectUrl?: string;
+      };
       if (!res.ok || data.error) {
         setStatus("error");
         setErrorMessage(data.error ?? "Something went wrong. Please try again.");
@@ -46,6 +70,19 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
       }
       const url = typeof data.downloadUrl === "string" ? data.downloadUrl : EXCELLENCE_GUIDE_DOWNLOAD_PATH;
       setDownloadUrl(url);
+      const redirect =
+        typeof data.redirectUrl === "string" && data.redirectUrl.startsWith("/") ? data.redirectUrl : null;
+      if (redirect) {
+        try {
+          sessionStorage.setItem(EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY, trimmed);
+        } catch {
+          /* private mode */
+        }
+        redirectTargetRef.current = redirect;
+        setStatus("redirect");
+        trackGuideDownload("modal_success");
+        return;
+      }
       if (typeof window !== "undefined") {
         window.open(url, "_blank", "noopener,noreferrer");
         trackGuideDownload("modal_pdf_auto");
@@ -65,6 +102,7 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
       setStatus("idle");
       setErrorMessage(null);
       setDownloadUrl(EXCELLENCE_GUIDE_DOWNLOAD_PATH);
+      redirectTargetRef.current = null;
     }, 280);
   }
 
@@ -99,7 +137,14 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
               ✕
             </button>
 
-            {status === "done" ? (
+            {status === "redirect" ? (
+              <div className="py-4 text-center" role="status" aria-live="polite">
+                <p id="excellence-guide-modal-title" className="font-serif text-lg text-halal-cream">
+                  Opening your private lookbook…
+                </p>
+                <p className="mt-2 text-[0.8rem] text-halal-muted">You&apos;ll be redirected to {EXCELLENCE_GUIDE_WEB_PATH}</p>
+              </div>
+            ) : status === "done" ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}

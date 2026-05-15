@@ -1,25 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { trackGuideDownload } from "@/lib/analytics-events";
-import { EXCELLENCE_GUIDE_DOWNLOAD_PATH, EXCELLENCE_GUIDE_WEB_PATH } from "@/lib/excellence-guide-constants";
+import {
+  EXCELLENCE_GUIDE_DOWNLOAD_PATH,
+  EXCELLENCE_GUIDE_WEB_PATH,
+  EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY,
+} from "@/lib/excellence-guide-constants";
 
 const FOUNDER_NOTE =
   "Welcome to the Circle. This guide is your first step toward a wardrobe of barakah and excellence.";
 
+type SubmitStatus = "idle" | "loading" | "done" | "error" | "redirect";
+
 export function NewsletterSection() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [downloadUrl, setDownloadUrl] = useState(EXCELLENCE_GUIDE_DOWNLOAD_PATH);
+  const redirectTargetRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (status !== "redirect" || !redirectTargetRef.current) return;
+    const to = redirectTargetRef.current;
+    const id = window.setTimeout(() => {
+      router.push(to);
+    }, 900);
+    return () => window.clearTimeout(id);
+  }, [status, router]);
 
   async function submitNewsletter() {
     if (!email.trim()) return;
     setStatus("loading");
     setErrorMessage(null);
+    redirectTargetRef.current = null;
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",
@@ -30,6 +49,7 @@ export function NewsletterSection() {
         success?: boolean;
         error?: string;
         downloadUrl?: string;
+        redirectUrl?: string;
       };
 
       if (!res.ok || data.error) {
@@ -41,6 +61,20 @@ export function NewsletterSection() {
       const url = typeof data.downloadUrl === "string" ? data.downloadUrl : EXCELLENCE_GUIDE_DOWNLOAD_PATH;
       setDownloadUrl(url);
       trackGuideDownload("newsletter_success");
+
+      const redirect =
+        typeof data.redirectUrl === "string" && data.redirectUrl.startsWith("/") ? data.redirectUrl : null;
+      if (redirect) {
+        try {
+          sessionStorage.setItem(EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY, email.trim());
+        } catch {
+          /* private mode */
+        }
+        redirectTargetRef.current = redirect;
+        setStatus("redirect");
+        return;
+      }
+
       if (typeof window !== "undefined") {
         window.open(url, "_blank", "noopener,noreferrer");
         trackGuideDownload("newsletter_pdf_auto");
@@ -67,7 +101,27 @@ export function NewsletterSection() {
           high-achiever&apos;s essential wardrobe. Delivered to your inbox.
         </p>
 
-        {status !== "done" ? (
+        {status === "redirect" ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 360, damping: 26 }}
+            className="mx-auto max-w-md rounded-2xl border border-halal-gold/35 bg-halal-gold/10 px-8 py-10 text-center"
+            role="status"
+            aria-live="polite"
+          >
+            <motion.div
+              animate={{ rotate: [0, 8, -8, 0] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+              className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border-2 border-halal-gold bg-halal-gold/15"
+              aria-hidden
+            >
+              <span className="text-2xl text-halal-gold">✦</span>
+            </motion.div>
+            <p className="font-serif text-lg text-halal-cream">Your private lookbook is opening…</p>
+            <p className="mt-2 text-[0.8rem] text-halal-muted">You&apos;ll land on the 2026 Excellence guide in a moment.</p>
+          </motion.div>
+        ) : status !== "done" ? (
           <form method="post" onSubmit={onFormSubmit} className="flex flex-col flex-wrap gap-3 sm:flex-row">
             <input
               type="email"

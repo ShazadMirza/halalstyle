@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { EXCELLENCE_GUIDE_DOWNLOAD_PATH } from "@/lib/excellence-guide-constants";
+import { EXCELLENCE_GUIDE_DOWNLOAD_PATH, EXCELLENCE_GUIDE_WEB_PATH } from "@/lib/excellence-guide-constants";
 
 export const runtime = "nodejs";
 
@@ -34,6 +34,7 @@ export async function POST(req: Request) {
         success: true,
         persistence: "demo" as const,
         downloadUrl: EXCELLENCE_GUIDE_DOWNLOAD_PATH,
+        redirectUrl: EXCELLENCE_GUIDE_WEB_PATH,
       });
     }
 
@@ -68,7 +69,11 @@ export async function POST(req: Request) {
       });
     }
 
-    return NextResponse.json({ success: true, downloadUrl: EXCELLENCE_GUIDE_DOWNLOAD_PATH });
+    return NextResponse.json({
+      success: true,
+      downloadUrl: EXCELLENCE_GUIDE_DOWNLOAD_PATH,
+      redirectUrl: EXCELLENCE_GUIDE_WEB_PATH,
+    });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Something went wrong.";
     return NextResponse.json({ error: message }, { status: 500 });

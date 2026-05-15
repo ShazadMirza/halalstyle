@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
+import { withHalalStyleAffiliateTag } from "@/lib/amazon-affiliate";
 import { getVaultItemImageCandidates } from "@/lib/amazon-utils";
 import { trackAffiliateShopNow } from "@/lib/analytics-events";
 import { isAmazonImageUrl } from "@/lib/image-url";
@@ -65,6 +66,7 @@ export type ProductCardProps = {
 export function ProductCard({ item, priority = false, cardIndex, showExcellenceGuard = false }: ProductCardProps) {
   const stars = "★".repeat(Math.round(item.rating)) + "☆".repeat(5 - Math.round(item.rating));
   const candidates = useMemo(() => getVaultItemImageCandidates(item), [item]);
+  const shopUrl = useMemo(() => withHalalStyleAffiliateTag(item.affiliateUrl), [item.affiliateUrl]);
   const [candidateIndex, setCandidateIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -132,7 +134,7 @@ export function ProductCard({ item, priority = false, cardIndex, showExcellenceG
             />
           </>
         ) : (
-          <EmeraldPlaceholder shopUrl={item.affiliateUrl} onShopClick={handleShopNowClick} />
+          <EmeraldPlaceholder shopUrl={shopUrl} onShopClick={handleShopNowClick} />
         )}
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-halal-forest/60 via-transparent to-transparent" />
@@ -175,7 +177,7 @@ export function ProductCard({ item, priority = false, cardIndex, showExcellenceG
               </span>
             )}
             <a
-              href={item.affiliateUrl}
+              href={shopUrl}
               target="_blank"
               rel="noopener noreferrer sponsored"
               onClick={handleShopNowClick}
