@@ -54,11 +54,12 @@ export default function PartnersPage() {
       return;
     }
     setLoading(true);
+    const payload = { name: name.trim(), social_handle: socialHandle.trim(), email: email.trim() };
     try {
       const res = await fetch("/api/partners", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, social_handle: socialHandle, email }),
+        body: JSON.stringify(payload),
       });
       const data = (await res.json()) as {
         ok?: boolean;
@@ -66,6 +67,7 @@ export default function PartnersPage() {
         persistence?: "database" | "email_only" | "demo";
       };
       if (!res.ok) throw new Error(data.error || "Request failed");
+      console.log("[partners] application submitted", payload);
       setPersistenceMode(data.persistence ?? "demo");
       setDone(true);
     } catch (err) {
@@ -162,7 +164,7 @@ export default function PartnersPage() {
               </div>
               <div>
                 <label htmlFor="p-social" className="mb-2 block text-[0.85rem] font-medium text-halal-cream">
-                  Social handle
+                  Social Handle (@username)
                 </label>
                 <input
                   id="p-social"
@@ -170,7 +172,8 @@ export default function PartnersPage() {
                   value={socialHandle}
                   onChange={(e) => setSocialHandle(e.target.value)}
                   className="input-luxury"
-                  placeholder="@yourbrand or channel URL"
+                  placeholder="@yourbrand or full profile URL"
+                  autoComplete="username"
                 />
               </div>
               <div>
@@ -223,10 +226,10 @@ export default function PartnersPage() {
                 ✓
               </span>
             </motion.div>
-            <h2 className="font-brand text-xl tracking-[0.06em] text-halal-cream">Application received</h2>
-            <p className="mt-3 text-[0.9rem] leading-relaxed text-halal-muted">
-              Thank you, {name.split(" ")[0] || "friend"}. Our partnerships team will reply within a few business
-              days with next steps and commission tiers.
+            <h2 className="font-brand text-xl tracking-[0.06em] text-halal-gold">Partner Success</h2>
+            <p className="mt-4 text-[0.95rem] leading-relaxed text-halal-cream">
+              Application Received. Deen and the team will review your profile and reach out to the Excellence Circle
+              soon.
             </p>
             {persistenceMode === "demo" && (
               <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-950/30 px-4 py-3 text-[0.78rem] leading-relaxed text-amber-200/90">

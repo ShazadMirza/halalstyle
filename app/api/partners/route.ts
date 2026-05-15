@@ -20,6 +20,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Name and a valid email are required." }, { status: 400 });
     }
 
+    const partnersInbox = process.env.PARTNERS_NOTIFY_EMAIL?.trim() || "partners@halalstyles55.com";
+    console.log("[partners] application received:", {
+      name,
+      social_handle: social_handle || null,
+      email,
+      notifyInbox: partnersInbox,
+    });
+
     // ── 1. Supabase (optional) ───────────────────────────────────────────────
     const sbUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
     const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
@@ -54,7 +62,7 @@ export async function POST(req: Request) {
         },
         body: JSON.stringify({
           from: "HalalStyle <onboarding@resend.dev>",
-          to: ["shazad.mirza@gmail.com"],
+          to: [partnersInbox],
           subject: `✦ New Partner Application — ${name}`,
           html: `
             <div style="font-family:sans-serif;max-width:600px;margin:auto;padding:24px">
@@ -72,10 +80,9 @@ export async function POST(req: Request) {
       }).catch(() => { /* non-fatal */ });
     }
 
-    // ── 3. Console fallback (demo / local) ─────────────────────────────────────
+    // ── 3. Persistence label when DB absent but email may have fired ───────────
     if (!sbUrl || !sbKey) {
       if (resendKey) persistence = "email_only";
-      console.log("[partners] demo mode — application logged for Deen:", { name, social_handle, email });
     }
 
     return NextResponse.json({ ok: true, persistence });
