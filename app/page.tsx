@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/home-hero";
 import { SocialProofStrip } from "@/components/social-proof-strip";
@@ -114,10 +115,16 @@ export default function HomePage() {
               Journal
             </Link>
           </div>
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-8 w-full">
-            <div>
-              <p className="font-brand text-[1.1rem] text-halal-gold tracking-widest">HalalStyle</p>
-              <p className="mt-0.5 text-[0.65rem] text-halal-muted">
+          <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-8">
+            <div className="flex flex-col items-center gap-2 sm:items-start">
+              <Image
+                src="/logo.png"
+                alt="HalalStyle"
+                width={160}
+                height={32}
+                className="h-8 w-auto max-w-[200px] object-contain drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]"
+              />
+              <p className="text-center text-[0.65rem] text-halal-muted sm:text-left">
                 The Excellence Filter · Built by Deen Ali Mirza, age 14 · Shelburne, Ontario
               </p>
             </div>

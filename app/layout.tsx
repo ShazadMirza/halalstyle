@@ -34,17 +34,19 @@ export const metadata: Metadata = {
   twitter: socialTwitter,
   robots: { index: true, follow: true },
   icons: {
-    other: [
-      { rel: "dns-prefetch", url: "https://amazon.ca" },
-      { rel: "dns-prefetch", url: "https://images.unsplash.com" },
-      { rel: "preconnect", url: "https://images.unsplash.com" },
-    ],
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="dns-prefetch" href="https://amazon.ca" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+      </head>
       <body className={`${dmSans.variable} ${playfair.variable} font-sans antialiased`}>
         <JsonLd />
         <FaqPageJsonLd />

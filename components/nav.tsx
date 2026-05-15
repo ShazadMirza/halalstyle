@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -21,10 +22,15 @@ export function Nav() {
     <>
       <nav className="fixed inset-x-0 top-0 z-[60] border-b border-halal-border/30 bg-halal-forest/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link href="/" className="flex flex-col leading-none group">
-            <span className="font-brand text-[1.35rem] font-medium tracking-[0.2em] text-halal-gold transition-colors duration-300 group-hover:text-halal-gold-2">
-              HalalStyle
-            </span>
+          <Link href="/" className="group flex flex-col leading-none">
+            <Image
+              src="/logo.png"
+              alt="HalalStyle"
+              width={160}
+              height={32}
+              priority
+              className="h-8 w-auto max-w-[200px] object-contain object-left drop-shadow-[0_0_10px_rgba(212,175,55,0.35)] transition-opacity group-hover:opacity-95"
+            />
             <span className="mt-0.5 text-[0.5rem] uppercase tracking-[0.3em] text-halal-gold/40">
               The Excellence Filter
             </span>
