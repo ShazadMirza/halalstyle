@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
@@ -16,10 +16,9 @@ import { sanitizeRemoteImageUrl } from "@/lib/utils";
 type Screen = "quiz" | "email-gate" | "loading" | "results";
 
 const LOADING_LINES = [
-  "Vetting for Quality…",
-  "Checking Islamic Values…",
-  "Curating Excellence…",
-  "Aligning with Barakah…",
+  "Filtering for Uncompromising Quality...",
+  "Verifying Ethical & Halal Compliance...",
+  "Curating Your Personal Excellence Suite...",
 ] as const;
 
 function QuizPickImage({ url, title, buyLink }: { url?: string; title: string; buyLink: string }) {
@@ -48,7 +47,7 @@ function QuizPickImage({ url, title, buyLink }: { url?: string; title: string; b
         src={safe}
         alt={title}
         fill
-        unoptimized
+        unoptimized={true}
         className="object-cover"
         sizes="(max-width: 768px) 100vw, 50vw"
         onError={() => setShow(false)}
@@ -256,14 +255,29 @@ export function HalalStyleApp() {
       {/* LOADING */}
       {screen === "loading" && (
         <div className="mx-auto max-w-[600px] px-6 py-24 text-center">
-          <div
-            className="mx-auto mb-6 h-14 w-14 animate-spin rounded-full border-[3px] border-halal-border border-t-halal-gold"
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1.1, repeat: Infinity, ease: "linear" }}
+            className="mx-auto mb-6 h-14 w-14 rounded-full border-[3px] border-halal-border border-t-[#D4AF37]"
             aria-hidden
           />
-          <h3 className="font-brand animate-pulse text-[1.45rem] tracking-[0.05em] text-halal-forest">
-            {LOADING_LINES[loadLine]}
-          </h3>
-          <p className="mt-3 text-[0.9rem] text-halal-muted">Curating your five halal-verified picks…</p>
+          <motion.div className="min-h-[2.5rem]">
+            <AnimatePresence mode="wait">
+              <motion.h3
+                key={loadLine}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                className="font-brand animate-pulse text-[1.45rem] tracking-[0.05em] text-[#D4AF37]"
+              >
+                {LOADING_LINES[loadLine]}
+              </motion.h3>
+            </AnimatePresence>
+          </motion.div>
+          <p className="mt-3 animate-pulse text-[0.9rem] text-halal-muted">
+            Curating your five halal-verified picks…
+          </p>
         </div>
       )}
 

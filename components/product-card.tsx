@@ -14,7 +14,12 @@ const BADGE_STYLES: Record<string, string> = {
 };
 
 function EmeraldImageShimmer() {
-  return <div className="vault-card-image-fallback absolute inset-0 z-0" aria-hidden />;
+  return (
+    <div
+      className="absolute inset-0 z-0 bg-gradient-to-br from-[#022c22] via-[#064e3b] to-[#D4AF37]/35"
+      aria-hidden
+    />
+  );
 }
 
 function ImageFallback({ shopUrl }: { shopUrl: string }) {
@@ -23,7 +28,7 @@ function ImageFallback({ shopUrl }: { shopUrl: string }) {
       href={shopUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-halal-gold/20 via-halal-forest-2/92 to-halal-surface/95 px-4 text-center backdrop-blur-[2px] transition hover:from-halal-gold/30"
+      className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#022c22] via-[#064e3b] to-[#D4AF37]/40 px-4 text-center transition hover:to-[#D4AF37]/55"
     >
       <span className="font-brand text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-halal-cream">
         Image unavailable
@@ -71,6 +76,7 @@ export function ProductCard({ item, priority = false, cardIndex }: ProductCardPr
             src={item.imageUrl}
             alt={item.imageAlt}
             fill
+            unoptimized={true}
             priority={effectivePriority}
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover transition-transform duration-700 ease-luxury group-hover:scale-105"
