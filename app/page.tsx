@@ -135,6 +135,7 @@ export default function HomePage() {
                 key={item.id}
                 item={item}
                 priority={i < 3}
+                cardIndex={i}
               />
             ))}
           </div>

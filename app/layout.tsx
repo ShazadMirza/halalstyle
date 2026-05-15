@@ -41,6 +41,13 @@ export const metadata: Metadata = {
       "Shop halal-verified modest fashion in Canada. Abayas, hijabs, thobes & Islamic gifts — curated for Muslim families.",
   },
   robots: { index: true, follow: true },
+  icons: {
+    other: [
+      { rel: "dns-prefetch", url: "https://amazon.ca" },
+      { rel: "dns-prefetch", url: "https://images.unsplash.com" },
+      { rel: "preconnect", url: "https://images.unsplash.com" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

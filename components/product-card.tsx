@@ -37,13 +37,19 @@ function ImageFallback({ shopUrl }: { shopUrl: string }) {
 
 export type ProductCardProps = {
   item: VaultItem;
-  /** LCP: first featured row on home */
+  /** LCP: parent can mark above-the-fold rows (e.g. home featured) */
   priority?: boolean;
+  /** Grid index: first card gets `priority`; first three get `loading="eager"` */
+  cardIndex?: number;
 };
 
-export function ProductCard({ item, priority = false }: ProductCardProps) {
+export function ProductCard({ item, priority = false, cardIndex }: ProductCardProps) {
   const stars = "★".repeat(Math.round(item.rating)) + "☆".repeat(5 - Math.round(item.rating));
   const [showImage, setShowImage] = useState(true);
+
+  const effectivePriority = priority || cardIndex === 0;
+  const loading: "eager" | "lazy" | undefined =
+    cardIndex !== undefined ? (cardIndex < 3 ? "eager" : "lazy") : priority ? "eager" : "lazy";
 
   return (
     <motion.article
@@ -65,11 +71,10 @@ export function ProductCard({ item, priority = false }: ProductCardProps) {
             src={item.imageUrl}
             alt={item.imageAlt}
             fill
-            priority={priority}
-            unoptimized={true}
+            priority={effectivePriority}
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover transition-transform duration-700 ease-luxury group-hover:scale-105"
-            loading={priority ? "eager" : "lazy"}
+            loading={loading}
             onError={() => setShowImage(false)}
           />
         ) : (

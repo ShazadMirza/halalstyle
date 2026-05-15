@@ -4,6 +4,10 @@
  * Apex hostnames listed where `**.domain` may not match bare domain.
  */
 const nextConfig = {
+  /** Critical CSS inlining (App Router); requires `critters` devDependency */
+  experimental: {
+    optimizeCss: true,
+  },
   async redirects() {
     return [
       { source: "/vault", has: [{ type: "query", key: "cat", value: "Fashion" }], destination: "/vault/fashion", permanent: true },
