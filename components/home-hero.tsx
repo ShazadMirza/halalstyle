@@ -93,10 +93,10 @@ export function HomeHero() {
               Browse The Vault
             </Link>
           </motion.div>
-        </motion.div>
+        </div>
 
         <div className="absolute inset-x-0 bottom-0 border-t border-halal-border/30 bg-halal-forest/80 backdrop-blur-md">
-          <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-6 px-6 py-4">
+          <motion.div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-6 px-6 py-4">
             {TRUST_ITEMS.map(({ icon, label }, idx) => (
               <motion.span
                 key={label}
