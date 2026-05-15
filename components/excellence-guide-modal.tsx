@@ -6,6 +6,7 @@ import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { trackGuideDownload } from "@/lib/analytics-events";
 import { isValidEmail } from "@/lib/email";
+import { EXCELLENCE_GUIDE_DOWNLOAD_PATH } from "@/lib/excellence-guide-constants";
 
 const GUIDE_HEADLINE =
   "Download the 2026 Excellence Guide: The Definitive List for the Modern Muslim High-Achiever.";
@@ -19,6 +20,7 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [downloadUrl, setDownloadUrl] = useState(EXCELLENCE_GUIDE_DOWNLOAD_PATH);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -36,11 +38,17 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: trimmed }),
       });
-      const data = (await res.json()) as { success?: boolean; error?: string };
+      const data = (await res.json()) as { success?: boolean; error?: string; downloadUrl?: string };
       if (!res.ok || data.error) {
         setStatus("error");
         setErrorMessage(data.error ?? "Something went wrong. Please try again.");
         return;
+      }
+      const url = typeof data.downloadUrl === "string" ? data.downloadUrl : EXCELLENCE_GUIDE_DOWNLOAD_PATH;
+      setDownloadUrl(url);
+      if (typeof window !== "undefined") {
+        window.open(url, "_blank", "noopener,noreferrer");
+        trackGuideDownload("modal_pdf_auto");
       }
       setStatus("done");
       trackGuideDownload("modal_success");
@@ -56,6 +64,7 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
       setEmail("");
       setStatus("idle");
       setErrorMessage(null);
+      setDownloadUrl(EXCELLENCE_GUIDE_DOWNLOAD_PATH);
     }, 280);
   }
 
@@ -128,7 +137,7 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
                   className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center"
                 >
                   <a
-                    href="/docs/excellence-guide-2026.pdf"
+                    href={downloadUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackGuideDownload("pdf_download")}

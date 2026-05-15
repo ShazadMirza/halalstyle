@@ -18,8 +18,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/partners", changeFrequency: "monthly", priority: 0.65 },
     { path: "/how-we-earn", changeFrequency: "monthly", priority: 0.65 },
     { path: "/privacy", changeFrequency: "yearly", priority: 0.5 },
+    { path: "/excellence-guide", changeFrequency: "monthly", priority: 0.72 },
     { path: "/results", changeFrequency: "weekly", priority: 0.4 },
     { path: "/docs/excellence-guide-2026.pdf", changeFrequency: "yearly", priority: 0.35 },
+    { path: "/guides/halalstyle-2026-excellence.pdf", changeFrequency: "yearly", priority: 0.36 },
   ];
 
   const journalPosts = getAllJournalSlugs().map((slug) => ({

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { EXCELLENCE_GUIDE_DOWNLOAD_PATH } from "@/lib/excellence-guide-constants";
 
 export const runtime = "nodejs";
 
@@ -29,7 +30,11 @@ export async function POST(req: Request) {
 
     if (!apiKey || !formId) {
       console.log("[newsletter] lead captured (ConvertKit not configured):", { email, source: "excellence-guide" });
-      return NextResponse.json({ success: true, persistence: "demo" as const });
+      return NextResponse.json({
+        success: true,
+        persistence: "demo" as const,
+        downloadUrl: EXCELLENCE_GUIDE_DOWNLOAD_PATH,
+      });
     }
 
     const subRes = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
@@ -63,7 +68,7 @@ export async function POST(req: Request) {
       });
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, downloadUrl: EXCELLENCE_GUIDE_DOWNLOAD_PATH });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Something went wrong.";
     return NextResponse.json({ error: message }, { status: 500 });

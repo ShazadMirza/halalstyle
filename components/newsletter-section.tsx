@@ -4,11 +4,17 @@ import { useState } from "react";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { trackGuideDownload } from "@/lib/analytics-events";
+import { EXCELLENCE_GUIDE_DOWNLOAD_PATH, EXCELLENCE_GUIDE_WEB_PATH } from "@/lib/excellence-guide-constants";
+
+const FOUNDER_NOTE =
+  "Welcome to the Circle. This guide is your first step toward a wardrobe of barakah and excellence.";
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [downloadUrl, setDownloadUrl] = useState(EXCELLENCE_GUIDE_DOWNLOAD_PATH);
 
   async function submitNewsletter() {
     if (!email.trim()) return;
@@ -20,7 +26,11 @@ export function NewsletterSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email.trim() }),
       });
-      const data = (await res.json()) as { success?: boolean; error?: string };
+      const data = (await res.json()) as {
+        success?: boolean;
+        error?: string;
+        downloadUrl?: string;
+      };
 
       if (!res.ok || data.error) {
         setStatus("error");
@@ -28,6 +38,13 @@ export function NewsletterSection() {
         return;
       }
 
+      const url = typeof data.downloadUrl === "string" ? data.downloadUrl : EXCELLENCE_GUIDE_DOWNLOAD_PATH;
+      setDownloadUrl(url);
+      trackGuideDownload("newsletter_success");
+      if (typeof window !== "undefined") {
+        window.open(url, "_blank", "noopener,noreferrer");
+        trackGuideDownload("newsletter_pdf_auto");
+      }
       setStatus("done");
     } catch {
       setStatus("error");
@@ -67,7 +84,7 @@ export function NewsletterSection() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="btn-gold btn-shop-glow inline-flex min-h-[2.75rem] items-center justify-center gap-2 whitespace-nowrap px-5 disabled:opacity-70"
+              className="btn-gold btn-shop-glow inline-flex min-h-[2.75rem] items-center justify-center gap-2 whitespace-nowrap px-5 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] disabled:opacity-70"
             >
               {status === "loading" ? (
                 <>
@@ -107,19 +124,39 @@ export function NewsletterSection() {
             <p className="mt-3 text-[0.95rem] leading-relaxed text-halal-cream">
               You&apos;re in — check your inbox for the 2026 Excellence Guide.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-              <a
-                href="/docs/excellence-guide-2026.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-gold btn-shop-glow inline-flex justify-center text-[0.85rem]"
+            <blockquote className="mt-5 border-l-2 border-halal-gold/50 pl-4 text-left text-[0.85rem] italic leading-relaxed text-halal-muted">
+              <span className="font-medium not-italic text-halal-gold/90">Founder&apos;s note — Deen:</span>{" "}
+              {FOUNDER_NOTE}
+            </blockquote>
+            <a
+              href={downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackGuideDownload("newsletter_pdf_cta")}
+              className="btn-gold btn-shop-glow mt-6 inline-flex w-full min-h-[3rem] items-center justify-center px-6 py-3 text-[0.9rem] font-semibold tracking-wide hover:shadow-[0_0_20px_rgba(212,175,55,0.35)]"
+            >
+              Download Your Guide Now ✦
+            </a>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <Link
+                href={EXCELLENCE_GUIDE_WEB_PATH}
+                className="btn-outline inline-flex justify-center text-[0.82rem]"
               >
-                Open PDF ↗
-              </a>
-              <Link href="/vault" className="btn-outline inline-flex justify-center text-[0.85rem]">
+                Open web lookbook
+              </Link>
+              <Link href="/vault" className="btn-outline inline-flex justify-center text-[0.82rem]">
                 Browse The Vault
               </Link>
             </div>
+            <p className="mt-5 text-[0.65rem] leading-relaxed text-halal-muted/90">
+              <strong className="text-halal-cream/80">Mobile tip:</strong> the PDF opened in a new tab — rotate to
+              portrait and use your reader&apos;s vertical scroll for the cleanest read. For sharpest type and mosaic
+              art, use the{" "}
+              <Link href={EXCELLENCE_GUIDE_WEB_PATH} className="text-halal-gold underline-offset-2 hover:underline">
+                web lookbook
+              </Link>{" "}
+              (add to Home Screen).
+            </p>
           </motion.div>
         )}
 

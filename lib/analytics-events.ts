@@ -17,6 +17,14 @@ export function trackAffiliateShopNow(payload: {
 }
 
 /** Excellence Guide conversion — email capture or PDF download */
-export function trackGuideDownload(source: "modal_success" | "pdf_download") {
+export function trackGuideDownload(
+  source:
+    | "modal_success"
+    | "pdf_download"
+    | "newsletter_success"
+    | "newsletter_pdf_auto"
+    | "newsletter_pdf_cta"
+    | "modal_pdf_auto",
+) {
   track("Guide Download", { source });
 }
