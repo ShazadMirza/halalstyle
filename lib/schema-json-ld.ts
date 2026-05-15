@@ -40,7 +40,11 @@ export function buildOrganizationSchema() {
       worstRating: "1",
       ratingCount: "128",
     },
-    sameAs: [] as string[],
+    sameAs: [
+      "https://www.instagram.com/halalstyles55",
+      "https://www.tiktok.com/@halalstyles55",
+      "https://x.com/halalstyles55",
+    ],
   };
 }
 

@@ -3,13 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
 
   async function submitNewsletter() {
     if (!email.trim()) return;
@@ -30,7 +29,6 @@ export function NewsletterSection() {
       }
 
       setStatus("done");
-      setModalOpen(true);
     } catch {
       setStatus("error");
       setErrorMessage("Something went wrong. Please try again.");
@@ -43,7 +41,7 @@ export function NewsletterSection() {
   }
 
   return (
-    <section className="relative px-6 py-20 pattern-bg">
+    <section id="newsletter" className="relative scroll-mt-24 px-6 py-20 pattern-bg">
       <div className="mx-auto max-w-xl text-center">
         <span className="section-eyebrow mb-4 block">Free Lead Magnet</span>
         <h2 className="section-title mb-4">The Excellence Guide</h2>
@@ -87,81 +85,48 @@ export function NewsletterSection() {
             ) : null}
           </form>
         ) : (
-          <p
-            className="rounded-xl border border-halal-gold/30 bg-halal-gold/10 px-6 py-4 font-medium text-halal-gold"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 340, damping: 22 }}
+            className="mx-auto max-w-md rounded-2xl border border-halal-gold/35 bg-halal-gold/10 px-6 py-8 text-center"
             role="status"
             aria-live="polite"
           >
-            You&apos;re in! Check your inbox ✦
-          </p>
+            <motion.div
+              initial={{ scale: 0, rotate: -20 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ type: "spring", stiffness: 420, damping: 14, delay: 0.05 }}
+              className="excellence-success-badge mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border-2 border-halal-gold bg-halal-gold/20"
+            >
+              <span className="text-3xl text-halal-gold" aria-hidden>
+                ✦
+              </span>
+            </motion.div>
+            <h3 className="font-brand text-xl tracking-[0.06em] text-halal-gold">Excellent.</h3>
+            <p className="mt-3 text-[0.95rem] leading-relaxed text-halal-cream">
+              You&apos;re in — check your inbox for the 2026 Excellence Guide.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <a
+                href="/docs/excellence-guide-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold btn-shop-glow inline-flex justify-center text-[0.85rem]"
+              >
+                Open PDF ↗
+              </a>
+              <Link href="/vault" className="btn-outline inline-flex justify-center text-[0.85rem]">
+                Browse The Vault
+              </Link>
+            </div>
+          </motion.div>
         )}
 
         <p className="mt-4 text-[0.65rem] text-halal-muted">
           No spam. Unsubscribe anytime. We respect your inbox like your values.
         </p>
       </div>
-
-      <AnimatePresence>
-        {modalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-6 backdrop-blur-lg"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="guide-modal-title"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 16, scale: 0.96 }}
-              transition={{ type: "spring", stiffness: 380, damping: 28 }}
-              className="relative max-w-md rounded-2xl border border-halal-gold/50 bg-card-gradient p-8 shadow-[0_0_48px_rgba(212,175,55,0.22)] backdrop-blur-md"
-            >
-              <button
-                type="button"
-                onClick={() => setModalOpen(false)}
-                className="absolute right-4 top-4 text-halal-muted transition hover:text-halal-cream"
-                aria-label="Close"
-              >
-                ✕
-              </button>
-              <h3 id="guide-modal-title" className="font-brand pr-8 text-xl tracking-[0.06em] text-halal-cream">
-                Welcome to the Excellence Circle
-              </h3>
-              <p className="mt-3 text-[0.9rem] leading-relaxed text-halal-muted">
-                Download the 2026 Modest Luxury Style Guide (PDF). Prefer email only? You&apos;ll receive the same
-                content in your inbox.
-              </p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <a
-                  href="/docs/excellence-guide-2026.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-gold btn-shop-glow inline-flex justify-center text-[0.85rem]"
-                >
-                  Open PDF ↗
-                </a>
-                <Link
-                  href="/vault"
-                  className="btn-outline inline-flex justify-center text-[0.85rem]"
-                  onClick={() => setModalOpen(false)}
-                >
-                  Browse The Vault
-                </Link>
-              </div>
-              <button
-                type="button"
-                onClick={() => setModalOpen(false)}
-                className="mt-6 w-full text-center text-[0.75rem] text-halal-muted underline underline-offset-2 hover:text-halal-gold"
-              >
-                Close
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

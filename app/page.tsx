@@ -18,6 +18,7 @@ const CATEGORIES = [
   { label: "Hijabs", icon: "◈", href: `/vault/${vaultCategoryToSlug("Hijabs")}`, desc: "Scarves, caps & accessories" },
   { label: "Menswear", icon: "◇", href: `/vault/${vaultCategoryToSlug("Menswear")}`, desc: "Thobes, kufis & essentials" },
   { label: "Home", icon: "⌂", href: `/vault/${vaultCategoryToSlug("Home")}`, desc: "Prayer rugs, décor & gifts" },
+  { label: "Kids", icon: "👶", href: `/vault/${vaultCategoryToSlug("Kids")}`, desc: "Modest sets for Eid & Jummah." },
   { label: "Gifts", icon: "✧", href: `/vault/${vaultCategoryToSlug("Gifts")}`, desc: "Faith-forward tech, books & more" },
 ] as const;
 
@@ -38,7 +39,7 @@ export default function HomePage() {
             <p className="section-eyebrow mb-3">Curated Collections</p>
             <h2 className="section-title">Shop by Category</h2>
           </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {CATEGORIES.map(({ label, icon, href, desc }) => (
               <Link key={label} href={href}
                 className="group flex flex-col items-center gap-3 rounded-2xl border border-halal-border/40
@@ -113,6 +114,9 @@ export default function HomePage() {
             </Link>
             <Link href="/journal" className="hover:text-halal-gold">
               Journal
+            </Link>
+            <Link href="/privacy" className="hover:text-halal-gold">
+              Privacy Policy
             </Link>
           </div>
           <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-8">

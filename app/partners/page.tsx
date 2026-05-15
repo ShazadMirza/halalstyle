@@ -89,6 +89,18 @@ export default function PartnersPage() {
           aligned creators and brands.
         </p>
 
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a
+            href="mailto:partners@halalstyles55.com?subject=HalalStyle%20Excellence%20Circle%20—%20Partnership%20Inquiry"
+            className="btn-gold btn-shop-glow inline-flex justify-center px-8 py-3 text-[0.9rem]"
+          >
+            Join the Circle — email us
+          </a>
+          <a href="#partner-apply" className="btn-outline inline-flex justify-center px-8 py-3 text-[0.9rem]">
+            Apply online ↓
+          </a>
+        </div>
+
         {/* Swiss-luxury hero surface — no stock/AI imagery until partner assets ship */}
         <div
           className="partner-hero-surface relative mt-10 overflow-hidden rounded-2xl border border-halal-gold/25 p-8 text-center shadow-card"
@@ -127,8 +139,9 @@ export default function PartnersPage() {
 
         {!done ? (
           <form
+            id="partner-apply"
             onSubmit={(e) => void onSubmit(e)}
-            className="mt-12 rounded-2xl border border-halal-border/50 bg-card-gradient p-8 shadow-card sm:p-10"
+            className="mt-12 scroll-mt-28 rounded-2xl border border-halal-border/50 bg-card-gradient p-8 shadow-card sm:p-10"
           >
             <h2 className="mb-6 text-center font-brand text-xl tracking-[0.06em] text-halal-cream">Apply in 60 seconds</h2>
             <div className="space-y-5">

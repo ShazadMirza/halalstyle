@@ -1,7 +1,15 @@
-const TRUST_BRANDS = ["Modanisa", "Saffron Road", "East Essentials"] as const;
+const TRUST_BRANDS = [
+  "Modanisa",
+  "Saffron Road",
+  "East Essentials",
+  "Shukr",
+  "Artizara",
+  "Aab",
+  "The Giving Movement",
+] as const;
 
 /** Duplicated for seamless CSS marquee loop */
-const MARQUEE_BRANDS = [...TRUST_BRANDS, ...TRUST_BRANDS, ...TRUST_BRANDS] as const;
+const MARQUEE_BRANDS = [...TRUST_BRANDS, ...TRUST_BRANDS] as const;
 
 export function SocialProofStrip() {
   return (

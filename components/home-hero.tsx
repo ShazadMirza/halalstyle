@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { ExcellenceGuideModal } from "@/components/excellence-guide-modal";
 
 const TRUST_ITEMS = [
   { icon: "✦", label: "100% Halal Verified" },
@@ -21,9 +19,11 @@ const fadeUp = {
   }),
 };
 
-export function HomeHero() {
-  const [guideOpen, setGuideOpen] = useState(false);
+function scrollToNewsletter() {
+  document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
+export function HomeHero() {
   return (
     <>
       <section className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden pattern-bg px-6 pt-20 text-center">
@@ -84,7 +84,7 @@ export function HomeHero() {
             </Link>
             <button
               type="button"
-              onClick={() => setGuideOpen(true)}
+              onClick={scrollToNewsletter}
               className="btn-outline border-halal-gold/55 text-[0.9rem] hover:border-halal-gold hover:bg-halal-gold/15"
             >
               Get the Guide ✦
@@ -112,8 +112,6 @@ export function HomeHero() {
           </motion.div>
         </div>
       </section>
-
-      <ExcellenceGuideModal open={guideOpen} onClose={() => setGuideOpen(false)} />
     </>
   );
 }

@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", changeFrequency: "monthly", priority: 0.7 },
     { path: "/partners", changeFrequency: "monthly", priority: 0.65 },
     { path: "/how-we-earn", changeFrequency: "monthly", priority: 0.65 },
+    { path: "/privacy", changeFrequency: "yearly", priority: 0.5 },
     { path: "/results", changeFrequency: "weekly", priority: 0.4 },
     { path: "/docs/excellence-guide-2026.pdf", changeFrequency: "yearly", priority: 0.35 },
   ];
