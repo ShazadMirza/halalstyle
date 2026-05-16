@@ -1,0 +1,42 @@
+---
+description: Windows-safe git commits, staging transparency, and push to main
+alwaysApply: true
+---
+
+# Git commit workflow (Windows)
+
+Only create commits when the user explicitly asks. Do not push unless they ask.
+
+## Before staging
+
+1. Run `git status` (and `git diff` when useful). **Show the user** what would be committed.
+2. **Never** run `git add -A` without that preview first.
+
+## Commit messages (avoid CMD quote breakage)
+
+**Multi-line or any tricky characters** (`->`, `/`, `:`, `#`, newlines, etc.):
+
+1. Write the full message to `.git/COMMIT_MSG_TEMP` (e.g. Node: `writeFileSync('.git/COMMIT_MSG_TEMP', \`...\`)` or another safe writer).
+2. Then run:
+
+```text
+git add -A
+git commit -F .git/COMMIT_MSG_TEMP
+git push origin main
+```
+
+(Adjust branch if the user names a different one.)
+
+**Short one-line messages only** (no `->` / `/` / `:` / `#` in the message):
+
+```text
+powershell -Command "git add -A; git commit -m 'your short message'; git push origin main"
+```
+
+Use **single quotes** inside `-m '...'`. Do **not** use `cmd /c` with `git commit -m "..."` (double quotes break easily).
+
+## Never
+
+- `git commit -m` with double quotes inside fragile CMD wrappers.
+- Special characters in inline `-m` when going through CMD; use `-F` instead.
+- Skip hooks (`--no-verify`) or change `git config` unless the user explicitly asks.
