@@ -8,14 +8,21 @@ export const EXCELLENCE_GUIDE_DOWNLOAD_PATH = "/guides/halalstyle-2026-excellenc
 /** Rich web lookbook (mobile-optimized typography vs. static PDF). */
 export const EXCELLENCE_GUIDE_WEB_PATH = "/excellence-guide";
 
-/** UTM campaign slug for lookbook + Amazon outbound (ConvertKit / May 2026). */
-export const EXCELLENCE_GUIDE_LOOKBOOK_UTM_CAMPAIGN = "editors_picks_may2026";
+/**
+ * UTM campaign slug — auto-derived from current month/year at runtime so broadcasts
+ * stay correctly namespaced in Amazon Associates + Vercel without manual edits.
+ * Format: `editors_picks_may2026`, `editors_picks_jun2026`, etc.
+ */
+const _d = new Date();
+const _mo = _d.toLocaleString("en-US", { month: "short" }).toLowerCase(); // "may"
+const _yr = _d.getFullYear(); // 2026
+export const EXCELLENCE_GUIDE_LOOKBOOK_UTM_CAMPAIGN = `editors_picks_${_mo}${_yr}`;
 
-/** UTM bundle appended to lookbook PDF, Vault, and Amazon outbound links (ConvertKit / May 2026 campaign). */
+/** UTM bundle appended to lookbook PDF, Vault, and Amazon outbound links. */
 export const EXCELLENCE_GUIDE_LOOKBOOK_UTM_QUERY = `utm_source=convertkit&utm_medium=email&utm_campaign=${EXCELLENCE_GUIDE_LOOKBOOK_UTM_CAMPAIGN}`;
 
-/** sessionStorage key — set after newsletter success before redirect to lookbook. */
-export const EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY = "excellence-guide-welcome-email";
+/** sessionStorage flag (`"1"`) — lookbook shows a one-time welcome banner after newsletter capture. */
+export const EXCELLENCE_GUIDE_CK_WELCOME_FLAG_KEY = "ck_welcome";
 
 /**
  * Visual Automation segment tags (create these exact names in ConvertKit).
@@ -34,7 +41,7 @@ export const CONVERTKIT_TAG_NEEDS_RE_ENGAGEMENT = "Needs Re-engagement";
 export const EXCELLENCE_GUIDE_EMAIL_SUBJECT = "Your 2026 Excellence Guide is here ✦";
 export const EXCELLENCE_GUIDE_EMAIL_PREVIEW_TEXT = "The Circle is open. Your guide + a note from Deen.";
 
-/** ConvertKit Email 2 (Day 2, Wednesday — “Friday Standard” / menswear + Amazon picks). */
+/** ConvertKit Email 2 (Day 2, Wednesday — "Friday Standard" / menswear + Amazon picks). */
 export const EXCELLENCE_GUIDE_EMAIL_2_SUBJECT = "The Friday Standard: dress the part ✦";
 export const EXCELLENCE_GUIDE_EMAIL_2_PREVIEW_TEXT =
   "Jummah is two days away. Here's the edit.";
@@ -54,7 +61,7 @@ export const EXCELLENCE_GUIDE_EMAIL_3_ALT_REENGAGEMENT_PREVIEW_TEXT =
   "No essay. One Vault pick. Halal-verified.";
 
 /**
- * ConvertKit Email 4 — recurring broadcast (“Editor’s Picks”). Replace `[Month]`, `[Year]`,
+ * ConvertKit Email 4 — recurring broadcast ("Editor's Picks"). Replace `[Month]`, `[Year]`,
  * `[MONTH]` (UTM slug, e.g. `may2026`), product fields, and `[ASIN]` each send.
  */
 export const EXCELLENCE_GUIDE_EMAIL_4_SUBJECT_TEMPLATE = "Editor's Picks: [Month] [Year] ✦";

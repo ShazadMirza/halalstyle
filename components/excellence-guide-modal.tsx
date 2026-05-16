@@ -7,8 +7,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { trackGuideDownload, trackNewsletterFormFocus, trackNewsletterSubmitAttempt } from "@/lib/analytics-events";
 import { isValidEmail } from "@/lib/email";
 import {
+  EXCELLENCE_GUIDE_CK_WELCOME_FLAG_KEY,
   EXCELLENCE_GUIDE_WEB_PATH,
-  EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY,
 } from "@/lib/excellence-guide-constants";
 
 const GUIDE_HEADLINE =
@@ -55,7 +55,7 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
         return;
       }
       try {
-        sessionStorage.setItem(EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY, trimmed);
+        sessionStorage.setItem(EXCELLENCE_GUIDE_CK_WELCOME_FLAG_KEY, "1");
       } catch {
         /* private mode */
       }

@@ -6,7 +6,7 @@ import { ExcellenceGuideExecutiveGrid } from "@/components/excellence-guide-exec
 import {
   ExcellenceGuideStickyVault,
   ExcellenceGuidePrintBar,
-  ExcellenceGuideWelcomeToast,
+  ExcellenceGuideWelcomeBanner,
 } from "@/components/excellence-guide-chrome";
 import {
   EXCELLENCE_GUIDE_DOWNLOAD_PATH,
@@ -110,7 +110,7 @@ export default function ExcellenceGuidePage() {
         className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_90%_45%_at_50%_0%,rgba(212,175,55,0.1),transparent_55%)]"
         aria-hidden
       />
-      <ExcellenceGuideWelcomeToast />
+      <ExcellenceGuideWelcomeBanner />
       <ExcellenceGuideStickyVault />
 
       <main className="relative z-[2] pb-8 pt-24 print:pt-8">

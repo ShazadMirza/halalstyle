@@ -9,8 +9,8 @@ import {
   trackNewsletterSubmitAttempt,
 } from "@/lib/analytics-events";
 import {
+  EXCELLENCE_GUIDE_CK_WELCOME_FLAG_KEY,
   EXCELLENCE_GUIDE_WEB_PATH,
-  EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY,
 } from "@/lib/excellence-guide-constants";
 
 type SubmitStatus = "idle" | "loading" | "error";
@@ -48,7 +48,7 @@ export function NewsletterSection() {
 
       trackGuideDownload("newsletter_success");
       try {
-        sessionStorage.setItem(EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY, email.trim());
+        sessionStorage.setItem(EXCELLENCE_GUIDE_CK_WELCOME_FLAG_KEY, "1");
       } catch {
         /* private mode */
       }
