@@ -4,12 +4,12 @@ import { JOURNAL_POSTS } from "@/lib/journal-posts";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Excellence Journal — HalalStyle",
+  title: "Excellence Journal — HalalStyles",
   description:
     "Editorial essays on modest luxury, halal-verified fashion, and the Muslim high-achiever mindset. The Excellence Filter, in writing.",
   alternates: { canonical: "/journal" },
   openGraph: {
-    title: "Excellence Journal — HalalStyle",
+    title: "Excellence Journal — HalalStyles",
     description:
       "Editorial essays on modest luxury, halal-verified fashion, and the Muslim high-achiever mindset.",
     url: absoluteUrl("/journal"),

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { BRAND_NAME } from "@/lib/brand";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -22,18 +23,21 @@ export function Nav() {
     <>
       <nav className="fixed inset-x-0 top-0 z-[60] border-b border-halal-border/30 bg-halal-forest/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link href="/" className="group flex flex-col leading-none">
+          <Link href="/" className="group flex items-center gap-3 leading-none">
             <Image
-              src="/logo.png"
-              alt="HalalStyle"
-              width={160}
-              height={32}
+              src="/halalstyles-logo.png"
+              alt={`${BRAND_NAME} logo`}
+              width={44}
+              height={44}
               priority
-              className="h-8 w-auto max-w-[200px] object-contain object-left drop-shadow-[0_0_10px_rgba(212,175,55,0.35)] transition-opacity group-hover:opacity-95"
+              className="h-11 w-11 shrink-0 rounded-full object-cover object-center ring-1 ring-halal-gold/30 drop-shadow-[0_0_12px_rgba(212,175,55,0.35)] transition-opacity group-hover:opacity-95"
             />
-            <span className="mt-0.5 text-[0.5rem] uppercase tracking-[0.3em] text-halal-gold/40">
-              The Excellence Filter
-            </span>
+            <div className="flex flex-col items-start">
+              <span className="font-brand text-[1.05rem] tracking-[0.06em] text-halal-cream">{BRAND_NAME}</span>
+              <span className="mt-0.5 text-[0.5rem] uppercase tracking-[0.3em] text-halal-gold/40">
+                The Excellence Filter
+              </span>
+            </div>
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">

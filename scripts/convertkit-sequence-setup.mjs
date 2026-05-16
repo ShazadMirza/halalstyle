@@ -64,7 +64,7 @@ A note from Deen, our founder:
 excellence. Every piece was chosen with one question: does this
 reflect who we're meant to be?"
 
-— Deen Ali Mirza, Founder, HalalStyle
+— Deen Ali Mirza, Founder, HalalStyles
 
 What's inside the guide:
   · The Doha Minimalism vs. Dubai Opulence trend report
@@ -77,13 +77,13 @@ Bookmark the lookbook. The Vault updates weekly.
 ${SITE_URL}/vault
 
 With excellence,
-The HalalStyle Team
+The HalalStyles Team
 
 ---
 You're receiving this because you requested the 2026 Excellence Guide
 at halalstyles55.com. We respect your inbox.
 Unsubscribe: {{ unsubscribe_url }}
-HalalStyle · Shelburne, Ontario, Canada
+HalalStyles · Shelburne, Ontario, Canada
 `;
 
 const EXCELLENCE_GUIDE_EMAIL_2_BODY_TEXT = `Salaam {{ subscriber.first_name | default: "friend" }},
@@ -113,12 +113,12 @@ Directly on Amazon (ships to Canada):
   · Sejadah Premium Prayer Rug
     https://www.amazon.ca/s?k=luxury+velvet+prayer+rug+compass&tag=halalstyle50d-20&${AMAZON_UTM}
 
-Every link is halal-verified. Every purchase supports HalalStyle
+Every link is halal-verified. Every purchase supports HalalStyles
 at no extra cost to you — barakah in the transaction.
 
 Jumu'ah Mubarak in advance.
 
-— The HalalStyle Edit Desk
+— The HalalStyles Edit Desk
 
 ---
 Unsubscribe: {{ unsubscribe_url }}
@@ -157,7 +157,7 @@ The Excellence Filter says: buy once, buy correctly.
 ${SITE_URL}/about?${DOHA_EDIT_W2_UTM}
 
 With excellence,
-The HalalStyle Edit Desk
+The HalalStyles Edit Desk
 
 ---
 Unsubscribe: {{ unsubscribe_url }}
@@ -193,12 +193,12 @@ All four are live in the Vault with the full halal-verified breakdown:
 
 Reply and tell us which one you bought. We read every reply.
 
-— Deen + The HalalStyle Edit Desk
+— Deen + The HalalStyles Edit Desk
 
 ---
-You're on the HalalStyle Circle list. We send when it's worth sending.
+You're on the HalalStyles Circle list. We send when it's worth sending.
 Unsubscribe: {{ unsubscribe_url }}
-HalalStyle · Shelburne, Ontario, Canada
+HalalStyles · Shelburne, Ontario, Canada
 `;
 
 const API_BASE = "https://api.kit.com/v4";

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="HalalStyles">
+  <defs>
+    <linearGradient id="hsGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0d78c"/>
+      <stop offset="45%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8a6d2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="#062618"/>
+  <!-- Four-point star (brand mark) -->
+  <path
+    fill="url(#hsGold)"
+    d="M16 4l2.2 8.2L26 16l-7.8 3.8L16 28l-2.2-8.2L6 16l7.8-3.8L16 4z"
+  />
+</svg>

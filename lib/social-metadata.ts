@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 /** Shared social / OG copy for layout + homepage */
-export const SOCIAL_TITLE = "HalalStyle — The Excellence Filter for Modest Fashion";
+export const SOCIAL_TITLE = "HalalStyles — The Excellence Filter for Modest Fashion";
 
 export const SOCIAL_DESCRIPTION =
   "Curated modest luxury for the modern Muslim high-achiever. 100% Halal-verified fashion, lifestyle and gifts. Ships via Amazon.ca.";
@@ -11,14 +11,14 @@ export const SOCIAL_IMAGE = {
   url: "/opengraph-image",
   width: 1200,
   height: 630,
-  alt: "HalalStyle — Emerald and gold hero, The Excellence Filter for Modest Fashion",
+  alt: "HalalStyles — Emerald and gold hero, The Excellence Filter for Modest Fashion",
 } as const;
 
 export const socialOpenGraph = {
   title: SOCIAL_TITLE,
   description: SOCIAL_DESCRIPTION,
   type: "website" as const,
-  siteName: "HalalStyle",
+  siteName: "HalalStyles",
   locale: "en_CA",
   images: [SOCIAL_IMAGE],
 };

@@ -4,16 +4,16 @@ import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Our Story — HalalStyle | Halal Fashion Canada",
+  title: "Our Story — HalalStyles | Halal Fashion Canada",
   description:
-    "HalalStyle was built by Deen Ali Mirza, age 14, from Shelburne Ontario. The Excellence Filter for Canadian Muslim families seeking halal-verified modest fashion.",
+    "HalalStyles was built by Deen Ali Mirza, age 14, from Shelburne Ontario. The Excellence Filter for Canadian Muslim families seeking halal-verified modest fashion.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "Our Story — HalalStyle | Halal Fashion Canada",
+    title: "Our Story — HalalStyles | Halal Fashion Canada",
     description:
-      "HalalStyle was built by Deen Ali Mirza, age 14, from Shelburne Ontario. The Excellence Filter for Canadian Muslim families seeking halal-verified modest fashion.",
+      "HalalStyles was built by Deen Ali Mirza, age 14, from Shelburne Ontario. The Excellence Filter for Canadian Muslim families seeking halal-verified modest fashion.",
     url: absoluteUrl("/about"),
-    siteName: "HalalStyle",
+    siteName: "HalalStyles",
     locale: "en_CA",
     type: "website",
   },
@@ -31,7 +31,7 @@ export default function AboutPage() {
           <span className="italic text-halal-gold">Inspired by Faith.</span>
         </h1>
         <p className="mx-auto max-w-lg text-[1rem] text-halal-muted leading-relaxed">
-          HalalStyle was born from a simple question: why should modest fashion mean compromising on quality?
+          HalalStyles was born from a simple question: why should modest fashion mean compromising on quality?
         </p>
       </section>
 
@@ -42,7 +42,7 @@ export default function AboutPage() {
             <p className="section-eyebrow mb-4">The Founder</p>
             <h2 className="font-display text-[1.5rem] text-halal-cream mb-4">Deen Ali Mirza</h2>
             <p className="text-[0.9rem] text-halal-muted leading-relaxed mb-4">
-              I&apos;m Deen — I built HalalStyle when I was 14 years old in Shelburne, Ontario.
+              I&apos;m Deen — I built HalalStyles when I was 14 years old in Shelburne, Ontario.
               I grew up watching my family struggle to find fashion that was both high-quality and
               aligned with our values. Everything was either cheap and modest, or beautiful and immodest.
               Nothing in between.
@@ -52,7 +52,7 @@ export default function AboutPage() {
               who&apos;s already vetted everything for you. No compromises. Just excellence and barakah.
             </p>
             <p className="text-[0.9rem] text-halal-muted leading-relaxed">
-              HalalStyle is my contribution to the global Muslim community — powered by AI, guided by values.
+              HalalStyles is my contribution to the global Muslim community — powered by AI, guided by values.
             </p>
           </div>
 
@@ -75,7 +75,7 @@ export default function AboutPage() {
             {[
               { icon: "✦", title: "Halal First", body: "Every product is verified against Islamic modesty standards before it enters the vault." },
               { icon: "◈", title: "Quality Always", body: "We only feature items we\'d buy ourselves. Cheap fast fashion has no place here." },
-              { icon: "◇", title: "Community", body: "HalalStyle is built for the global Muslim community, from Canada to the world." },
+              { icon: "◇", title: "Community", body: "HalalStyles is built for the global Muslim community, from Canada to the world." },
             ].map(({ icon, title, body }) => (
               <div key={title} className="rounded-xl border border-halal-border/40 bg-halal-forest-2/30 p-5 text-center">
                 <span className="font-display text-[1.2rem] text-halal-gold/60 block mb-3">{icon}</span>

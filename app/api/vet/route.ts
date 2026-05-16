@@ -1,7 +1,7 @@
 /**
  * POST /api/vet
  *
- * Lightweight vetting endpoint for the HalalStyle Chrome extension.
+ * Lightweight vetting endpoint for the HalalStyles Chrome extension.
  * The extension calls this instead of bundling vault-items.ts (~437 lines of data).
  *
  * Body: { productName?: string; asin?: string }

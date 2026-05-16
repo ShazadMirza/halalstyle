@@ -20,7 +20,7 @@ export function JournalArticleJsonLd({ post }: JournalArticleJsonLdProps) {
     },
     publisher: {
       "@type": "Organization",
-      name: "HalalStyle",
+      name: "HalalStyles",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",

@@ -106,7 +106,7 @@ export function PwaPrompt() {
           exit={{ opacity: 0, y: 20 }}
           transition={{ type: "spring", stiffness: 380, damping: 30 }}
           className="pwa-install-prompt fixed inset-x-0 bottom-0 z-[48] mx-auto max-w-lg border-t-2 border-halal-gold/60 bg-gradient-to-t from-halal-forest via-halal-forest-2 to-halal-surface/98 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4 shadow-[0_-12px_48px_rgba(212,175,55,0.18)] backdrop-blur-md sm:left-auto sm:right-4 sm:rounded-t-2xl sm:border-x sm:border-t"
-          aria-label="Add HalalStyle to home screen"
+          aria-label="Add HalalStyles to home screen"
         >
           <button
             type="button"
@@ -123,7 +123,7 @@ export function PwaPrompt() {
                 ✦
               </span>
               <p className="font-brand text-[0.92rem] leading-snug tracking-[0.04em] text-halal-cream">
-                Experience Excellence. Add HalalStyle to your home screen for an app-like experience.
+                Experience Excellence. Add HalalStyles to your home screen for an app-like experience.
               </p>
             </div>
 

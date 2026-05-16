@@ -135,9 +135,9 @@ export function HalalStyleApp() {
   }
 
   function shareResults() {
-    const text = `I just got my personalised halal fashion picks on HalalStyle! Take the free quiz to get yours ✨\n${window.location.href}`;
+    const text = `I just got my personalised halal fashion picks on HalalStyles! Take the free quiz to get yours ✨\n${window.location.href}`;
     if (navigator.share) {
-      void navigator.share({ title: "My HalalStyle Picks", text, url: window.location.href });
+      void navigator.share({ title: "My HalalStyles Picks", text, url: window.location.href });
     } else {
       void navigator.clipboard.writeText(text);
       setShareToast(true);
@@ -150,7 +150,7 @@ export function HalalStyleApp() {
       {/* SHARE TOAST */}
       {shareToast && (
         <div className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-halal-forest px-6 py-3 text-sm font-medium text-white shadow-lg">
-          Link copied! Share your HalalStyle picks ✦
+          Link copied! Share your HalalStyles picks ✦
         </div>
       )}
 
@@ -287,7 +287,7 @@ export function HalalStyleApp() {
       {screen === "results" && (
         <div className="mx-auto max-w-[900px] px-6 py-10">
           <div className="mb-8 text-center">
-            <h2 className="font-brand text-[2rem] tracking-[0.05em] text-halal-forest">Your HalalStyle Picks 🤍</h2>
+            <h2 className="font-brand text-[2rem] tracking-[0.05em] text-halal-forest">Your HalalStyles Picks 🤍</h2>
             <p className="mt-2 text-halal-muted">
               Curated for: <span className="font-medium text-halal-forest">{style} · {category} · {budget} · {occasion}</span>
             </p>

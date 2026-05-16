@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "HalalStyle — The Excellence Filter for Modest Fashion";
+export const alt = "HalalStyles — The Excellence Filter for Modest Fashion";
 
 export const size = { width: 1200, height: 630 };
 
@@ -65,7 +65,7 @@ export default function OpenGraphImage() {
             textShadow: "0 4px 32px rgba(0,0,0,0.4)",
           }}
         >
-          HalalStyle
+          HalalStyles
         </div>
         <div
           style={{

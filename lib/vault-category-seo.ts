@@ -41,18 +41,18 @@ export type CategorySeo = {
 
 export const CATEGORY_SEO: Record<VaultCategory, CategorySeo> = {
   Fashion: {
-    title: "Modest Fashion & Abayas Canada | HalalStyle Vault",
+    title: "Modest Fashion & Abayas Canada | HalalStyles Vault",
     description:
       "Shop halal-verified abayas, modest dresses and Islamic fashion for women in Canada. Curated picks on Amazon.ca.",
     tagline: "Abayas, maxi dresses, and boardroom-ready modest sets — curated for coverage, drape, and barakah.",
     paragraphs: [
-      "HalalStyle’s Fashion edit treats modesty as non-negotiable and quality as sacred. Every piece is chosen for opaque fabrics, loose silhouettes, and occasion versatility — from everyday errands to Eid gatherings.",
+      "The HalalStyles Fashion edit treats modesty as non-negotiable and quality as sacred. Every piece is chosen for opaque fabrics, loose silhouettes, and occasion versatility — from everyday errands to Eid gatherings.",
       "Whether you are building a capsule wardrobe in Toronto or gifting abroad, these picks prioritise crepe, jersey, and woven blends that photograph beautifully and wear comfortably in Canadian seasons.",
       "Use the filters for budget and occasion, then shop with confidence: each listing includes a plain-language note on why it aligns with common Islamic dress expectations.",
     ],
   },
   Hijabs: {
-    title: "Hijabs & Modest Headscarves Canada | HalalStyle Vault",
+    title: "Hijabs & Modest Headscarves Canada | HalalStyles Vault",
     description:
       "Premium hijabs, undercaps and modest headscarves for Canadian Muslim women. Editor-vetted picks on Amazon.ca.",
     tagline: "Jersey, chiffon, and everyday sets chosen for slip-resistance, breathability, and full coverage.",
@@ -63,7 +63,7 @@ export const CATEGORY_SEO: Record<VaultCategory, CategorySeo> = {
     ],
   },
   Menswear: {
-    title: "Islamic Menswear & Thobes Canada | HalalStyle Vault",
+    title: "Islamic Menswear & Thobes Canada | HalalStyles Vault",
     description:
       "Thobes, kufis and modest menswear for Canadian Muslim men. Halal-verified picks available on Amazon.ca.",
     tagline: "Tailored thobes and staples that respect length and looseness without sacrificing polish.",
@@ -74,7 +74,7 @@ export const CATEGORY_SEO: Record<VaultCategory, CategorySeo> = {
     ],
   },
   Home: {
-    title: "Islamic Home Decor & Prayer Rugs Canada | HalalStyle Vault",
+    title: "Islamic Home Decor & Prayer Rugs Canada | HalalStyles Vault",
     description:
       "Prayer rugs, Quran stands, calligraphy and Islamic home decor for Muslim homes in Canada.",
     tagline: "Pieces that elevate dhikr corners, coffee tables, and guest spaces with restraint and warmth.",
@@ -85,7 +85,7 @@ export const CATEGORY_SEO: Record<VaultCategory, CategorySeo> = {
     ],
   },
   Kids: {
-    title: "Modest Kids Clothing Canada | HalalStyle Vault",
+    title: "Modest Kids Clothing Canada | HalalStyles Vault",
     description:
       "Halal-verified modest clothing for Muslim children in Canada — girls dresses, boys thobes and Islamic gifts.",
     tagline: "Play-ready modesty: breathable fabrics and cuts that keep active kids covered with ease.",
@@ -96,7 +96,7 @@ export const CATEGORY_SEO: Record<VaultCategory, CategorySeo> = {
     ],
   },
   Gifts: {
-    title: "Islamic Gifts Canada — Eid & Ramadan | HalalStyle Vault",
+    title: "Islamic Gifts Canada — Eid & Ramadan | HalalStyles Vault",
     description:
       "Curated halal gift ideas for Eid, Ramadan and everyday giving. Islamic books, tech and home goods on Amazon.ca.",
     tagline: "High-intent gifting — tech, fragrance, and art objects that feel premium, not gimmicky.",

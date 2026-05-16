@@ -1,4 +1,4 @@
-/** HalalStyle Amazon.ca affiliate programme tag — must appear on outbound Amazon links. */
+/** HalalStyles Amazon.ca affiliate programme tag — must appear on outbound Amazon links. */
 export const HALALSTYLE_AMAZON_TAG = "halalstyle50d-20";
 
 /**

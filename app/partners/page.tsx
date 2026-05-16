@@ -14,7 +14,7 @@ const BENEFITS = [
   {
     icon: "◈",
     title: "Verified Excellence Badge",
-    body: "Eligible partners receive a HalalStyle trust mark for your bio, link-in-bio, and newsletter footers.",
+    body: "Eligible partners receive a HalalStyles trust mark for your bio, link-in-bio, and newsletter footers.",
   },
   {
     icon: "◇",
@@ -91,13 +91,13 @@ export default function PartnersPage() {
           Join the <span className="text-halal-gold">Excellence Circle</span>
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-center text-[0.95rem] leading-relaxed text-halal-muted">
-          Partner with HalalStyle — Canada’s AI-curated modest luxury filter. Limited collaborations each season for
+          Partner with HalalStyles — Canada’s AI-curated modest luxury filter. Limited collaborations each season for
           aligned creators and brands.
         </p>
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="mailto:partners@halalstyles55.com?subject=HalalStyle%20Excellence%20Circle%20—%20Partnership%20Inquiry"
+            href="mailto:partners@halalstyles55.com?subject=HalalStyles%20Excellence%20Circle%20—%20Partnership%20Inquiry"
             className="btn-gold btn-shop-glow inline-flex justify-center px-8 py-3 text-[0.9rem]"
           >
             Join the Circle — email us
@@ -248,13 +248,13 @@ export default function PartnersPage() {
               </p>
             )}
             <Link href="/" className="btn-outline btn-shop-glow mt-8 inline-flex">
-              ← Back to HalalStyle
+              ← Back to HalalStyles
             </Link>
           </motion.div>
         )}
 
         <p className="mt-10 text-center text-[0.7rem] text-halal-muted/80">
-          By applying you agree we may contact you about the HalalStyle partner programme. No spam — ever.
+          By applying you agree we may contact you about the HalalStyles partner programme. No spam — ever.
         </p>
       </div>
     </main>

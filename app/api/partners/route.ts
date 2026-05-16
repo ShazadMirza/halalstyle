@@ -64,7 +64,7 @@ export async function POST(req: Request) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "HalalStyle <onboarding@resend.dev>",
+          from: "HalalStyles <onboarding@resend.dev>",
           to: [partnersInbox],
           subject: `✦ New Partner Application — ${name}`,
           html: `

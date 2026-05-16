@@ -38,27 +38,27 @@ const OG_EXCELLENCE_IMAGE = {
   url: "/og/excellence-guide-2026.jpg",
   width: 1200,
   height: 630,
-  alt: "2026 Excellence Guide — modest luxury lookbook by HalalStyle",
+  alt: "2026 Excellence Guide — modest luxury lookbook by HalalStyles",
 } as const;
 
 export const metadata: Metadata = {
-  title: "2026 Excellence: The Private Lookbook | HalalStyle",
+  title: "2026 Excellence: The Private Lookbook | HalalStyles",
   description:
     "Curated for the Muslim high-achiever. Vetted for barakah. Doha executive wardrobe, the Friday standard, and the tech edit — with halal-verified Amazon.ca picks.",
   keywords: [...GUIDE_KEYWORDS],
   alternates: { canonical: EXCELLENCE_GUIDE_WEB_PATH },
   openGraph: {
-    title: "2026 Excellence: The Private Lookbook | HalalStyle",
+    title: "2026 Excellence: The Private Lookbook | HalalStyles",
     description: "Modest luxury. Curated. Verified. Free.",
     url: absoluteUrl(EXCELLENCE_GUIDE_WEB_PATH),
-    siteName: "HalalStyle",
+    siteName: "HalalStyles",
     locale: "en_CA",
     type: "article",
     images: [OG_EXCELLENCE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "2026 Excellence: The Private Lookbook | HalalStyle",
+    title: "2026 Excellence: The Private Lookbook | HalalStyles",
     description: "Modest luxury. Curated. Verified. Free.",
     images: [OG_EXCELLENCE_IMAGE.url],
   },
@@ -132,7 +132,7 @@ export default function ExcellenceGuidePage() {
             aria-hidden
           />
           <div className="absolute inset-0 flex flex-col items-center justify-end px-5 pb-16 pt-32 text-center sm:pb-24">
-            <p className="text-[0.65rem] font-medium uppercase tracking-[0.35em] text-halal-gold/90">HalalStyle · Private</p>
+            <p className="text-[0.65rem] font-medium uppercase tracking-[0.35em] text-halal-gold/90">HalalStyles · Private</p>
             <h1 className="mt-5 max-w-4xl font-serif text-[clamp(1.85rem,6.5vw,3.5rem)] font-medium leading-[1.12] tracking-wide text-halal-cream drop-shadow-[0_2px_24px_rgba(0,0,0,0.65)]">
               2026 Excellence: The Private Lookbook
             </h1>
@@ -207,7 +207,7 @@ export default function ExcellenceGuidePage() {
               respect adab, and objects that remind you of salah between meetings.
             </p>
             <p className="mt-4">
-              At HalalStyle we filter for coverage you can trust, materials that age with dignity, and affiliate paths
+              At HalalStyles we filter for coverage you can trust, materials that age with dignity, and affiliate paths
               that keep the lights on without ever taxing your values.
             </p>
             <p className="mt-4 text-halal-cream/90">Welcome to the Circle.</p>
@@ -217,7 +217,7 @@ export default function ExcellenceGuidePage() {
         <ExcellenceGuidePrintBar />
 
         <footer className="mx-auto max-w-2xl px-5 pb-16 pt-4 text-center print:hidden">
-          <p className="font-serif text-sm text-halal-gold/80">HalalStyle</p>
+          <p className="font-serif text-sm text-halal-gold/80">HalalStyles</p>
           <Link href={homeHref} className="mt-3 inline-block font-sans text-[0.8rem] text-halal-muted hover:text-halal-gold">
             ← Home
           </Link>

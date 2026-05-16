@@ -1,5 +1,5 @@
 """
-HalalStyle 2026 Excellence Guide — PDF Generator
+HalalStyles 2026 Excellence Guide — PDF Generator
 Outputs: public/guides/halalstyle-2026-excellence.pdf
 Run:     python scripts/generate-excellence-pdf.py
 """
@@ -347,7 +347,7 @@ def section_page(c, section):
 
     # Footer
     gold_line(c, MARGIN, 44, W - MARGIN, width=0.3)
-    draw_centered(c, "halalstyles55.com  ·  HalalStyle 2026 Excellence Guide",
+    draw_centered(c, "halalstyles55.com  ·  HalalStyles 2026 Excellence Guide",
                   30, font="Helvetica", size=7, color=MUTED)
 
 
@@ -366,7 +366,7 @@ def coda_page(c):
 
     paras = [
         "Excellence is not a single purchase — it is the slow craft of choosing fabrics that breathe, cuts that respect adab, and objects that remind you of salah between meetings.",
-        "At HalalStyle we filter for coverage you can trust, materials that age with dignity, and affiliate paths that keep the lights on without ever taxing your values.",
+        "At HalalStyles we filter for coverage you can trust, materials that age with dignity, and affiliate paths that keep the lights on without ever taxing your values.",
         "Every link in this guide carries our Amazon.ca affiliate tag (halalstyle50d-20). You pay nothing extra. We earn a small commission that funds the next edition of this guide.",
         "Welcome to the Circle.",
     ]
@@ -381,7 +381,7 @@ def coda_page(c):
         y -= 8
 
     y -= 20
-    draw_centered(c, "— Deen Ali Mirza, Founder, HalalStyle", y,
+    draw_centered(c, "— Deen Ali Mirza, Founder, HalalStyles", y,
                   font="Helvetica-Oblique", size=10, color=GOLD_DIM)
 
     y -= 40
@@ -393,7 +393,7 @@ def coda_page(c):
               (MARGIN * 2, y - 3, W - MARGIN * 2, y + 10), relative=0)
 
     gold_line(c, MARGIN, 44, W - MARGIN, width=0.3)
-    draw_centered(c, "halalstyles55.com  ·  HalalStyle 2026 Excellence Guide",
+    draw_centered(c, "halalstyles55.com  ·  HalalStyles 2026 Excellence Guide",
                   30, font="Helvetica", size=7, color=MUTED)
 
 
@@ -404,8 +404,8 @@ OUT = os.path.join(os.path.dirname(__file__),
 OUT = os.path.normpath(OUT)
 
 c = canvas.Canvas(OUT, pagesize=A4)
-c.setTitle("2026 Excellence: The Private Lookbook — HalalStyle")
-c.setAuthor("HalalStyle / Deen Ali Mirza")
+c.setTitle("2026 Excellence: The Private Lookbook — HalalStyles")
+c.setAuthor("HalalStyles / Deen Ali Mirza")
 c.setSubject("Modest luxury for the Muslim high-achiever. 9 halal-verified picks.")
 c.setKeywords("modest fashion, halal, muslim, luxury, canada")
 

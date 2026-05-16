@@ -9,6 +9,7 @@ import { ProductCard } from "@/components/product-card";
 import { VAULT_ITEMS } from "@/lib/vault-items";
 import { vaultCategoryToSlug } from "@/lib/vault-category-seo";
 import { buildHomeMetadata } from "@/lib/social-metadata";
+import { BRAND_NAME } from "@/lib/brand";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = buildHomeMetadata(absoluteUrl("/"));
@@ -120,20 +121,23 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-between sm:gap-8">
-            <div className="flex flex-col items-center gap-2 sm:items-start">
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-start sm:gap-4">
               <Image
-                src="/logo.png"
-                alt="HalalStyle"
-                width={160}
-                height={32}
-                className="h-8 w-auto max-w-[200px] object-contain drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]"
+                src="/halalstyles-logo.png"
+                alt={`${BRAND_NAME} logo`}
+                width={48}
+                height={48}
+                className="h-12 w-12 shrink-0 rounded-full object-cover object-center ring-1 ring-halal-gold/25 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]"
               />
-              <p className="text-center text-[0.65rem] text-halal-muted sm:text-left">
-                The Excellence Filter · Built by Deen Ali Mirza, age 14 · Shelburne, Ontario
-              </p>
+              <div className="flex flex-col items-center gap-1 sm:items-start">
+                <span className="font-brand text-[1.1rem] tracking-[0.06em] text-halal-cream">{BRAND_NAME}</span>
+                <p className="text-center text-[0.65rem] text-halal-muted sm:text-left">
+                  The Excellence Filter · Built by Deen Ali Mirza, age 14 · Shelburne, Ontario
+                </p>
+              </div>
             </div>
             <p className="max-w-md text-[0.65rem] text-halal-muted">
-              © 2026 HalalStyle. Amazon affiliate links — we earn a small commission at no extra cost to you.{" "}
+              © 2026 {BRAND_NAME}. Amazon affiliate links — we earn a small commission at no extra cost to you.{" "}
               <Link href="/how-we-earn" className="text-halal-gold/90 underline-offset-2 hover:underline">
                 Read our disclosure
               </Link>

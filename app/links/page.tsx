@@ -1,17 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { BRAND_NAME } from "@/lib/brand";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "HalalStyle — Curated Links",
+  title: `${BRAND_NAME} — Curated Links`,
   description: "Start your journey to modest excellence.",
   alternates: { canonical: "/links" },
   openGraph: {
-    title: "HalalStyle — Curated Links",
+    title: `${BRAND_NAME} — Curated Links`,
     description: "Start your journey to modest excellence.",
     url: absoluteUrl("/links"),
-    siteName: "HalalStyle",
+    siteName: BRAND_NAME,
     locale: "en_CA",
     type: "website",
   },
@@ -35,16 +36,17 @@ export default function LinksPage() {
       <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-5rem)] max-w-sm flex-col items-center px-5 pb-12 pt-8 sm:px-6">
         <header className="mb-12 flex w-full flex-col items-center">
           <Image
-            src="/logo.png"
-            alt="HalalStyle"
-            width={200}
-            height={40}
-            className="h-10 w-auto object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.45)]"
+            src="/halalstyles-logo.png"
+            alt={`${BRAND_NAME} logo`}
+            width={120}
+            height={120}
+            className="h-28 w-28 rounded-full object-cover object-center ring-2 ring-halal-gold/35 drop-shadow-[0_0_24px_rgba(212,175,55,0.45)]"
             priority
           />
+          <p className="mt-4 font-brand text-xl tracking-[0.06em] text-halal-cream">{BRAND_NAME}</p>
         </header>
 
-        <nav className="flex w-full flex-1 flex-col items-center gap-3.5" aria-label="HalalStyle links">
+        <nav className="flex w-full flex-1 flex-col items-center gap-3.5" aria-label={`${BRAND_NAME} links`}>
           <Link href="/#quiz" className={linkBtn}>
             ✦ Take the Style Quiz
           </Link>

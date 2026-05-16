@@ -9,14 +9,14 @@ export function buildOrganizationSchema() {
   return {
     "@type": "Organization",
     "@id": ORG_ID,
-    name: "HalalStyle",
-    alternateName: "HalalStyle — The Excellence Filter",
+    name: "HalalStyles",
+    alternateName: "HalalStyles — The Excellence Filter",
     url: SITE_URL,
     logo: {
       "@type": "ImageObject",
-      url: absoluteUrl("/opengraph-image"),
-      width: 1200,
-      height: 630,
+      url: absoluteUrl("/halalstyles-logo.png"),
+      width: 512,
+      height: 512,
     },
     description:
       "Curated modest luxury for the modern Muslim high-achiever. Halal-verified fashion, lifestyle, and editorial reviews for Canada.",
@@ -30,7 +30,7 @@ export function buildOrganizationSchema() {
     },
     brand: {
       "@type": "Brand",
-      name: "HalalStyle",
+      name: "HalalStyles",
       slogan: "The Excellence Filter for Modest Fashion",
     },
     aggregateRating: {
@@ -52,7 +52,7 @@ export function buildWebSiteSchema() {
   return {
     "@type": "WebSite",
     "@id": WEBSITE_ID,
-    name: "HalalStyle",
+    name: "HalalStyles",
     url: SITE_URL,
     description: "Modest fashion quiz, curated vault, and editorial picks with Amazon.ca affiliate transparency.",
     publisher: { "@id": ORG_ID },
@@ -98,7 +98,7 @@ export function buildProductSchemas() {
       },
       review: {
         "@type": "Review",
-        author: { "@type": "Organization", name: "HalalStyle Editorial" },
+        author: { "@type": "Organization", name: "HalalStyles Editorial" },
         reviewRating: {
           "@type": "Rating",
           ratingValue: String(item.rating),

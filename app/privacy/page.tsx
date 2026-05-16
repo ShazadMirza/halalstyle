@@ -5,11 +5,11 @@ import { absoluteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How HalalStyle collects, uses, and protects personal information in line with PIPEDA and Canadian privacy expectations.",
+    "How HalalStyles collects, uses, and protects personal information in line with PIPEDA and Canadian privacy expectations.",
   alternates: { canonical: "/privacy" },
   openGraph: {
-    title: "Privacy Policy — HalalStyle",
-    description: "PIPEDA-aligned privacy practices for HalalStyle visitors and subscribers.",
+    title: "Privacy Policy — HalalStyles",
+    description: "PIPEDA-aligned privacy practices for HalalStyles visitors and subscribers.",
     url: absoluteUrl("/privacy"),
   },
 };
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
           <p className="section-eyebrow mb-4 text-halal-gold/90">Legal · PIPEDA</p>
           <h1 className="section-title mb-6 text-halal-cream">Privacy Policy</h1>
           <p className="text-[0.95rem] leading-relaxed text-halal-muted">
-            Last updated: May 15, 2026. HalalStyle (&quot;we&quot;, &quot;us&quot;) operates{" "}
+            Last updated: May 15, 2026. HalalStyles (&quot;we&quot;, &quot;us&quot;) operates{" "}
             <span className="text-halal-gold/90">halalstyles55.com</span> for Canadian visitors and subscribers. This policy
             describes how we handle personal information under Canada&apos;s{" "}
             <strong className="text-halal-cream/90">Personal Information Protection and Electronic Documents Act (PIPEDA)</strong>{" "}
@@ -36,7 +36,7 @@ export default function PrivacyPage() {
           <div className="rounded-2xl border border-halal-gold/20 bg-halal-forest-2/40 p-6">
             <h2 className="font-brand mb-3 text-lg tracking-[0.06em] text-halal-gold">Who we are</h2>
             <p>
-              HalalStyle is a modest fashion discovery and editorial site. The operator is identified on our{" "}
+              HalalStyles is a modest fashion discovery and editorial site. The operator is identified on our{" "}
               <Link href="/about" className="text-halal-gold underline-offset-2 hover:underline">
                 About
               </Link>{" "}
@@ -165,7 +165,7 @@ export default function PrivacyPage() {
             <p>
               For privacy requests or questions:{" "}
               <a
-                href="mailto:privacy@halalstyles55.com?subject=HalalStyle%20Privacy%20Request"
+                href="mailto:privacy@halalstyles55.com?subject=HalalStyles%20Privacy%20Request"
                 className="text-halal-gold underline-offset-2 hover:underline"
               >
                 privacy@halalstyles55.com

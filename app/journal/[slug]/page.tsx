@@ -13,10 +13,10 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: PageProps): Metadata {
   const post = getJournalPost(params.slug);
-  if (!post) return { title: "Journal — HalalStyle" };
+  if (!post) return { title: "Journal — HalalStyles" };
 
   return {
-    title: `${post.title} — Excellence Journal | HalalStyle`,
+    title: `${post.title} — Excellence Journal | HalalStyles`,
     description: post.excerpt,
     alternates: { canonical: `/journal/${post.slug}` },
     openGraph: {

@@ -5,10 +5,10 @@ import { absoluteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "How We Vet & How We Earn",
   description:
-    "HalalStyle’s editorial standards, affiliate disclosure, and how we curate halal-verified modest fashion for Canadian Muslim families.",
+    "HalalStyles editorial standards, affiliate disclosure, and how we curate halal-verified modest fashion for Canadian Muslim families.",
   alternates: { canonical: "/how-we-earn" },
   openGraph: {
-    title: "How We Vet & How We Earn — HalalStyle",
+    title: "How We Vet & How We Earn — HalalStyles",
     description: "Transparency on curation, modesty notes, and Amazon affiliate commissions.",
     url: absoluteUrl("/how-we-earn"),
   },
@@ -22,7 +22,7 @@ export default function HowWeEarnPage() {
           <p className="section-eyebrow mb-4">Transparency</p>
           <h1 className="section-title mb-6">How We Vet &amp; How We Earn</h1>
           <p className="text-[0.95rem] text-halal-muted leading-relaxed">
-            HalalStyle exists to save you time — not to hide how the lights stay on. Here is exactly how we choose products and
+            HalalStyles exists to save you time — not to hide how the lights stay on. Here is exactly how we choose products and
             how affiliate links work.
           </p>
         </div>

@@ -34,8 +34,7 @@ export const metadata: Metadata = {
   twitter: socialTwitter,
   robots: { index: true, follow: true },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    apple: "/halalstyles-logo.png",
   },
 };
 
