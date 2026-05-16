@@ -1,6 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { ExcellenceGuideMosaicOverlay } from "@/components/excellence-guide-mosaic-overlay";
 import { withHalalStyleAffiliateTag } from "@/lib/amazon-affiliate";
+import {
+  amazonAffiliateUrlToAsinLabel,
+  trackAffiliateShopNow,
+  trackFirstShopNow,
+} from "@/lib/analytics-events";
 import { resolveVaultItemImageSrc } from "@/lib/amazon-utils";
 import type { VaultItem } from "@/lib/vault-items";
 
@@ -30,6 +37,16 @@ export function ExcellenceGuideLookCard({ item, blurb }: { item: VaultItem; blur
           href={shopUrl}
           target="_blank"
           rel="noopener noreferrer sponsored"
+          onClick={() => {
+            trackAffiliateShopNow({
+              productId: item.id,
+              productTitle: item.title,
+              category: item.category,
+              priceCAD: item.priceCAD,
+            });
+            const asin = item.asin?.trim() || amazonAffiliateUrlToAsinLabel(shopUrl);
+            trackFirstShopNow(asin, item.title);
+          }}
           className="mt-3 inline-flex text-[0.72rem] font-medium uppercase tracking-wider text-halal-gold underline-offset-4 hover:underline"
         >
           Shop on Amazon →

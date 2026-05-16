@@ -1,5 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { withHalalStyleAffiliateTag } from "@/lib/amazon-affiliate";
+import {
+  amazonAffiliateUrlToAsinLabel,
+  trackAffiliateShopNow,
+  trackFirstShopNow,
+} from "@/lib/analytics-events";
 import { EXECUTIVE_BUNDLES, resolveBundleItems } from "@/lib/executive-bundles";
 
 export function ExecutiveBundlesSection() {
@@ -57,17 +65,30 @@ export function ExecutiveBundlesSection() {
                 </p>
 
                 <div className="mt-4 flex flex-col gap-2">
-                  {items.map((item) => (
-                    <a
-                      key={item.id}
-                      href={item.affiliateUrl}
-                      target="_blank"
-                      rel="noopener noreferrer sponsored"
-                      className="btn-outline w-full py-2.5 text-[0.72rem]"
-                    >
-                      Shop {item.title.split("—")[0].trim()} →
-                    </a>
-                  ))}
+                  {items.map((item) => {
+                    const href = withHalalStyleAffiliateTag(item.affiliateUrl);
+                    return (
+                      <a
+                        key={item.id}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer sponsored"
+                        onClick={() => {
+                          trackAffiliateShopNow({
+                            productId: item.id,
+                            productTitle: item.title,
+                            category: item.category,
+                            priceCAD: item.priceCAD,
+                          });
+                          const asin = item.asin?.trim() || amazonAffiliateUrlToAsinLabel(href);
+                          trackFirstShopNow(asin, item.title);
+                        }}
+                        className="btn-outline w-full py-2.5 text-[0.72rem]"
+                      >
+                        Shop {item.title.split("—")[0].trim()} →
+                      </a>
+                    );
+                  })}
                 </div>
               </article>
             );

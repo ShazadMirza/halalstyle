@@ -11,6 +11,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
+        /** Editorial / lookbook headlines — Playfair Display */
+        serif: ["var(--font-playfair)", "Georgia", "Cambria", "Times New Roman", "serif"],
         display: ["var(--font-playfair)", "Georgia", "serif"],
         /** Logo + section headings — Playfair with strong Georgia fallbacks */
         brand: ["var(--font-playfair)", "Georgia", "Cambria", "Times New Roman", "serif"],
@@ -40,6 +42,8 @@ const config: Config = {
           "border-light": "#1E6B45",
           surface: "#071F15",
           "surface-2": "#0A2E1F",
+          /** Deepest forest — digital lookbook canvas */
+          "forest-dark": "#021910",
         },
       },
       boxShadow: {

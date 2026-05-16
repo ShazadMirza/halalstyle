@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { X } from "lucide-react";
 import { EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY } from "@/lib/excellence-guide-constants";
+import { excellenceGuideLookbookLocalHref } from "@/lib/excellence-guide-lookbook-attribution";
 
 export function ExcellenceGuideWelcomeToast() {
   const [email, setEmail] = useState<string | null>(null);
@@ -48,6 +50,33 @@ export function ExcellenceGuideWelcomeToast() {
       </div>
       <p className="mt-1 text-[0.7rem] text-halal-muted">Your private lookbook is unlocked below.</p>
     </div>
+  );
+}
+
+export function ExcellenceGuideStickyVault() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - window.innerHeight;
+      const ratio = scrollable > 0 ? window.scrollY / scrollable : 1;
+      setVisible(ratio >= 0.5);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <Link
+      href={excellenceGuideLookbookLocalHref("/vault")}
+      className="btn-gold btn-shop-glow fixed bottom-6 right-4 z-[65] min-h-[2.75rem] px-5 py-2.5 text-[0.78rem] font-semibold tracking-wide shadow-[0_8px_32px_rgba(0,0,0,0.45)] print:hidden sm:right-6"
+    >
+      Shop the Full Vault
+    </Link>
   );
 }
 

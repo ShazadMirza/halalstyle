@@ -1,14 +1,12 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { trackGuideDownload } from "@/lib/analytics-events";
+import { trackGuideDownload, trackNewsletterFormFocus, trackNewsletterSubmitAttempt } from "@/lib/analytics-events";
 import { isValidEmail } from "@/lib/email";
 import {
-  EXCELLENCE_GUIDE_DOWNLOAD_PATH,
   EXCELLENCE_GUIDE_WEB_PATH,
   EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY,
 } from "@/lib/excellence-guide-constants";
@@ -21,24 +19,13 @@ type ExcellenceGuideModalProps = {
   onClose: () => void;
 };
 
-type ModalStatus = "idle" | "loading" | "done" | "error" | "redirect";
+type ModalStatus = "idle" | "loading" | "error";
 
 export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProps) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<ModalStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [downloadUrl, setDownloadUrl] = useState(EXCELLENCE_GUIDE_DOWNLOAD_PATH);
-  const redirectTargetRef = useRef<string | null>(null);
-
-  useEffect(() => {
-    if (status !== "redirect" || !redirectTargetRef.current) return;
-    const to = redirectTargetRef.current;
-    const id = window.setTimeout(() => {
-      router.push(to);
-    }, 900);
-    return () => window.clearTimeout(id);
-  }, [status, router]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -48,9 +35,9 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
       setErrorMessage("Please enter a valid email address.");
       return;
     }
+    trackNewsletterSubmitAttempt();
     setStatus("loading");
     setErrorMessage(null);
-    redirectTargetRef.current = null;
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",
@@ -61,34 +48,21 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
         success?: boolean;
         error?: string;
         downloadUrl?: string;
-        redirectUrl?: string;
       };
       if (!res.ok || data.error) {
         setStatus("error");
         setErrorMessage(data.error ?? "Something went wrong. Please try again.");
         return;
       }
-      const url = typeof data.downloadUrl === "string" ? data.downloadUrl : EXCELLENCE_GUIDE_DOWNLOAD_PATH;
-      setDownloadUrl(url);
-      const redirect =
-        typeof data.redirectUrl === "string" && data.redirectUrl.startsWith("/") ? data.redirectUrl : null;
-      if (redirect) {
-        try {
-          sessionStorage.setItem(EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY, trimmed);
-        } catch {
-          /* private mode */
-        }
-        redirectTargetRef.current = redirect;
-        setStatus("redirect");
-        trackGuideDownload("modal_success");
-        return;
+      try {
+        sessionStorage.setItem(EXCELLENCE_GUIDE_WELCOME_STORAGE_KEY, trimmed);
+      } catch {
+        /* private mode */
       }
-      if (typeof window !== "undefined") {
-        window.open(url, "_blank", "noopener,noreferrer");
-        trackGuideDownload("modal_pdf_auto");
-      }
-      setStatus("done");
       trackGuideDownload("modal_success");
+      setStatus("idle");
+      router.push(EXCELLENCE_GUIDE_WEB_PATH);
+      onClose();
     } catch {
       setStatus("error");
       setErrorMessage("Something went wrong. Please try again.");
@@ -101,8 +75,6 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
       setEmail("");
       setStatus("idle");
       setErrorMessage(null);
-      setDownloadUrl(EXCELLENCE_GUIDE_DOWNLOAD_PATH);
-      redirectTargetRef.current = null;
     }, 280);
   }
 
@@ -137,122 +109,59 @@ export function ExcellenceGuideModal({ open, onClose }: ExcellenceGuideModalProp
               ✕
             </button>
 
-            {status === "redirect" ? (
-              <div className="py-4 text-center" role="status" aria-live="polite">
-                <p id="excellence-guide-modal-title" className="font-serif text-lg text-halal-cream">
-                  Opening your private lookbook…
-                </p>
-                <p className="mt-2 text-[0.8rem] text-halal-muted">You&apos;ll be redirected to {EXCELLENCE_GUIDE_WEB_PATH}</p>
-              </div>
-            ) : status === "done" ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.92 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ type: "spring", stiffness: 340, damping: 22 }}
-                className="text-center"
-                role="status"
-                aria-live="polite"
+            <>
+              <p className="section-eyebrow mb-3">Free Lead Magnet</p>
+              <h3
+                id="excellence-guide-modal-title"
+                className="font-brand pr-6 text-[1.15rem] leading-snug tracking-[0.05em] text-halal-cream sm:text-xl"
               >
-                <motion.div
-                  initial={{ scale: 0, rotate: -20 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ type: "spring", stiffness: 420, damping: 14, delay: 0.05 }}
-                  className="excellence-success-badge mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border-2 border-halal-gold bg-halal-gold/20"
+                {GUIDE_HEADLINE}
+              </h3>
+              <form method="post" onSubmit={(e) => void handleSubmit(e)} className="mt-6 space-y-3" noValidate>
+                <input
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  placeholder="your@email.com"
+                  required
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (status === "error") {
+                      setStatus("idle");
+                      setErrorMessage(null);
+                    }
+                  }}
+                  onFocus={() => trackNewsletterFormFocus()}
+                  className={`input-luxury ${status === "error" ? "border-red-400/50 focus:border-red-400/60" : ""}`}
+                  disabled={status === "loading"}
+                  aria-busy={status === "loading"}
+                  aria-invalid={status === "error"}
+                />
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="btn-gold btn-shop-glow flex w-full items-center justify-center gap-2 disabled:opacity-70"
                 >
-                  <span className="text-3xl text-halal-gold" aria-hidden>
-                    ✦
-                  </span>
-                </motion.div>
-                <h3
-                  id="excellence-guide-modal-title"
-                  className="font-brand text-xl tracking-[0.06em] text-halal-gold"
-                >
-                  Excellent.
-                </h3>
-                <p className="mt-3 text-[0.95rem] leading-relaxed text-halal-cream">
-                  Check your inbox for your 2026 Guide.
-                </p>
-                <p className="mt-2 text-[0.8rem] text-halal-muted">
-                  Instant access while you wait — download the PDF or explore The Vault.
-                </p>
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center"
-                >
-                  <a
-                    href={downloadUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackGuideDownload("pdf_download")}
-                    className="btn-outline inline-flex justify-center text-[0.85rem]"
-                  >
-                    Download PDF ↗
-                  </a>
-                  <Link
-                    href="/vault"
-                    className="btn-gold btn-shop-glow inline-flex justify-center text-[0.85rem]"
-                    onClick={handleClose}
-                  >
-                    Shop Executive Bundles
-                  </Link>
-                </motion.div>
-              </motion.div>
-            ) : (
-              <>
-                <p className="section-eyebrow mb-3">Free Lead Magnet</p>
-                <h3
-                  id="excellence-guide-modal-title"
-                  className="font-brand pr-6 text-[1.15rem] leading-snug tracking-[0.05em] text-halal-cream sm:text-xl"
-                >
-                  {GUIDE_HEADLINE}
-                </h3>
-                <form method="post" onSubmit={(e) => void handleSubmit(e)} className="mt-6 space-y-3" noValidate>
-                  <input
-                    type="email"
-                    name="email"
-                    autoComplete="email"
-                    placeholder="your@email.com"
-                    required
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                      if (status === "error") {
-                        setStatus("idle");
-                        setErrorMessage(null);
-                      }
-                    }}
-                    className={`input-luxury ${status === "error" ? "border-red-400/50 focus:border-red-400/60" : ""}`}
-                    disabled={status === "loading"}
-                    aria-busy={status === "loading"}
-                    aria-invalid={status === "error"}
-                  />
-                  <button
-                    type="submit"
-                    disabled={status === "loading"}
-                    className="btn-gold btn-shop-glow flex w-full items-center justify-center gap-2 disabled:opacity-70"
-                  >
-                    {status === "loading" ? (
-                      <>
-                        <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-                        Sending…
-                      </>
-                    ) : (
-                      "Get the Guide ✦"
-                    )}
-                  </button>
-                  {status === "error" && errorMessage ? (
-                    <p className="text-sm text-red-400" role="alert" aria-live="polite">
-                      {errorMessage}
-                    </p>
-                  ) : null}
-                </form>
-                <p className="mt-4 text-[0.65rem] text-halal-muted">
-                  No spam. Unsubscribe anytime. We respect your inbox like your values.
-                </p>
-              </>
-            )}
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+                      Sending…
+                    </>
+                  ) : (
+                    "Get the Guide ✦"
+                  )}
+                </button>
+                {status === "error" && errorMessage ? (
+                  <p className="text-sm text-red-400" role="alert" aria-live="polite">
+                    {errorMessage}
+                  </p>
+                ) : null}
+              </form>
+              <p className="mt-4 text-[0.65rem] text-halal-muted">
+                No spam. Unsubscribe anytime. We respect your inbox like your values.
+              </p>
+            </>
 
             <button
               type="button"

@@ -412,6 +412,42 @@ const VAULT_ITEMS_RAW: Omit<VaultItem, "imageAlt">[] = [
     rating: 4.6,
   },
   {
+    id: "v23",
+    title: "Silk-Route Travel Prayer Rug",
+    brand: "Al-Noor",
+    category: "Home",
+    occasion: ["Prayer", "Everyday"],
+    priceCAD: 48,
+    priceRange: "$44–$54 CAD",
+    description:
+      "Lightweight jacquard prayer mat with carrying strap — folds slim for carry-on without losing masjid-grade feel.",
+    whyHalal: "Qibla-ready, clean non-figurative patterning, purpose-built for salah on the road",
+    imageKeyword: "travel+prayer+rug+islamic",
+    imageUrl:
+      "https://images.unsplash.com/photo-1590076215577-87543389193d?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=travel+prayer+rug+islamic+portable&tag=halalstyle50d-20",
+    badge: "New",
+    rating: 4.7,
+  },
+  {
+    id: "v24",
+    title: "Luxury Miswak Gift Set — Natural Siwak",
+    brand: "Dar al-Sunnah",
+    category: "Gifts",
+    occasion: ["Everyday", "Eid"],
+    priceCAD: 28,
+    priceRange: "$24–$32 CAD",
+    description:
+      "Hand-cut natural siwak sticks with brass case and presentation box — the understated Jummah bag essential.",
+    whyHalal: "Sunnah oral care; alcohol-free, no doubtful additives in packaging materials",
+    imageKeyword: "miswak+siwak+gift+set",
+    imageUrl:
+      "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=900&q=85",
+    affiliateUrl: "https://www.amazon.ca/s?k=luxury+miswak+siwak+gift+set&tag=halalstyle50d-20",
+    badge: "Editor's Pick",
+    rating: 4.8,
+  },
+  {
     id: "v21",
     title: "Ramadan Countdown Lantern Set",
     brand: "NoorTech",

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { trackHeroCTAClick } from "@/lib/analytics-events";
 
 const TRUST_ITEMS = [
   { icon: "✦", label: "100% Halal Verified" },
@@ -20,6 +21,7 @@ const fadeUp = {
 };
 
 function scrollToNewsletter() {
+  trackHeroCTAClick();
   document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 

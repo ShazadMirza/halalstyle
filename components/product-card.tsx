@@ -6,7 +6,11 @@ import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { withHalalStyleAffiliateTag } from "@/lib/amazon-affiliate";
 import { getVaultItemImageCandidates } from "@/lib/amazon-utils";
-import { trackAffiliateShopNow } from "@/lib/analytics-events";
+import {
+  amazonAffiliateUrlToAsinLabel,
+  trackAffiliateShopNow,
+  trackFirstShopNow,
+} from "@/lib/analytics-events";
 import { isAmazonImageUrl } from "@/lib/image-url";
 import type { VaultItem } from "@/lib/vault-items";
 
@@ -85,6 +89,8 @@ export function ProductCard({ item, priority = false, cardIndex, showExcellenceG
       category: item.category,
       priceCAD: item.priceCAD,
     });
+    const asin = item.asin?.trim() || amazonAffiliateUrlToAsinLabel(shopUrl);
+    trackFirstShopNow(asin, item.title);
   }
 
   function handleImageError() {
